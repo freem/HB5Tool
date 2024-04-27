@@ -23,6 +23,6 @@ Kind of. It gets a bit tricky. All of these are in varying states of completion.
 
 ## Legal Notes
 
-I'm not afffiliated with Accolade, MindSpan, the MLBPA, the MLB, or whoever currently owns the HardBall license.
+I'm not affiliated with Accolade, MindSpan, the MLBPA, the MLB, or whoever currently owns the HardBall license.
 
 This tool is provided for informational and educational purposes.
