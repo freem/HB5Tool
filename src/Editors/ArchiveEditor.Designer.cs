@@ -1,0 +1,200 @@
+﻿
+namespace HB5Tool
+{
+	partial class ArchiveEditor
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
+
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
+
+		#region Windows Form Designer generated code
+
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ArchiveEditor));
+			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+			this.tssLabelFilePath = new System.Windows.Forms.ToolStripStatusLabel();
+			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.archiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveChangesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.tbOutput = new System.Windows.Forms.TextBox();
+			this.lvArchiveFiles = new System.Windows.Forms.ListView();
+			this.chFilename = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.cmsArchiveFiles = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.extractFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.statusStrip1.SuspendLayout();
+			this.menuStrip1.SuspendLayout();
+			this.cmsArchiveFiles.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// statusStrip1
+			// 
+			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tssLabelFilePath});
+			this.statusStrip1.Location = new System.Drawing.Point(0, 339);
+			this.statusStrip1.Name = "statusStrip1";
+			this.statusStrip1.Size = new System.Drawing.Size(624, 22);
+			this.statusStrip1.TabIndex = 0;
+			this.statusStrip1.Text = "statusStrip1";
+			// 
+			// tssLabelFilePath
+			// 
+			this.tssLabelFilePath.Name = "tssLabelFilePath";
+			this.tssLabelFilePath.Size = new System.Drawing.Size(58, 17);
+			this.tssLabelFilePath.Text = "[file path]";
+			// 
+			// menuStrip1
+			// 
+			this.menuStrip1.AllowMerge = false;
+			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.archiveToolStripMenuItem});
+			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+			this.menuStrip1.Name = "menuStrip1";
+			this.menuStrip1.Size = new System.Drawing.Size(624, 24);
+			this.menuStrip1.TabIndex = 1;
+			this.menuStrip1.Text = "menuStrip1";
+			// 
+			// archiveToolStripMenuItem
+			// 
+			this.archiveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveChangesToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.exitToolStripMenuItem});
+			this.archiveToolStripMenuItem.Name = "archiveToolStripMenuItem";
+			this.archiveToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+			this.archiveToolStripMenuItem.Text = "&Archive";
+			// 
+			// saveChangesToolStripMenuItem
+			// 
+			this.saveChangesToolStripMenuItem.Name = "saveChangesToolStripMenuItem";
+			this.saveChangesToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+			this.saveChangesToolStripMenuItem.Text = "Save Changes";
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(144, 6);
+			// 
+			// exitToolStripMenuItem
+			// 
+			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+			this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+			this.exitToolStripMenuItem.Text = "E&xit";
+			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+			// 
+			// tbOutput
+			// 
+			this.tbOutput.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tbOutput.Location = new System.Drawing.Point(154, 27);
+			this.tbOutput.MaxLength = 65535;
+			this.tbOutput.Multiline = true;
+			this.tbOutput.Name = "tbOutput";
+			this.tbOutput.ReadOnly = true;
+			this.tbOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.tbOutput.Size = new System.Drawing.Size(458, 309);
+			this.tbOutput.TabIndex = 2;
+			// 
+			// lvArchiveFiles
+			// 
+			this.lvArchiveFiles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chFilename});
+			this.lvArchiveFiles.GridLines = true;
+			this.lvArchiveFiles.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+			this.lvArchiveFiles.HideSelection = false;
+			this.lvArchiveFiles.LabelWrap = false;
+			this.lvArchiveFiles.Location = new System.Drawing.Point(12, 27);
+			this.lvArchiveFiles.Name = "lvArchiveFiles";
+			this.lvArchiveFiles.ShowGroups = false;
+			this.lvArchiveFiles.Size = new System.Drawing.Size(136, 309);
+			this.lvArchiveFiles.TabIndex = 3;
+			this.lvArchiveFiles.UseCompatibleStateImageBehavior = false;
+			this.lvArchiveFiles.View = System.Windows.Forms.View.Details;
+			this.lvArchiveFiles.SelectedIndexChanged += new System.EventHandler(this.lvArchiveFiles_SelectedIndexChanged);
+			// 
+			// chFilename
+			// 
+			this.chFilename.Text = "Filename";
+			this.chFilename.Width = 108;
+			// 
+			// cmsArchiveFiles
+			// 
+			this.cmsArchiveFiles.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.extractFilesToolStripMenuItem});
+			this.cmsArchiveFiles.Name = "cmsArchiveFiles";
+			this.cmsArchiveFiles.Size = new System.Drawing.Size(154, 26);
+			// 
+			// extractFilesToolStripMenuItem
+			// 
+			this.extractFilesToolStripMenuItem.Name = "extractFilesToolStripMenuItem";
+			this.extractFilesToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+			this.extractFilesToolStripMenuItem.Text = "&Extract File(s)...";
+			this.extractFilesToolStripMenuItem.Click += new System.EventHandler(this.extractFilesToolStripMenuItem_Click);
+			// 
+			// ArchiveEditor
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(624, 361);
+			this.Controls.Add(this.lvArchiveFiles);
+			this.Controls.Add(this.tbOutput);
+			this.Controls.Add(this.statusStrip1);
+			this.Controls.Add(this.menuStrip1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.MainMenuStrip = this.menuStrip1;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
+			this.Name = "ArchiveEditor";
+			this.ShowInTaskbar = false;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.Text = "Archive Editor";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ArchiveEditor_FormClosing);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ArchiveEditor_FormClosed);
+			this.statusStrip1.ResumeLayout(false);
+			this.statusStrip1.PerformLayout();
+			this.menuStrip1.ResumeLayout(false);
+			this.menuStrip1.PerformLayout();
+			this.cmsArchiveFiles.ResumeLayout(false);
+			this.ResumeLayout(false);
+			this.PerformLayout();
+
+		}
+
+		#endregion
+
+		private System.Windows.Forms.StatusStrip statusStrip1;
+		private System.Windows.Forms.ToolStripStatusLabel tssLabelFilePath;
+		private System.Windows.Forms.MenuStrip menuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem archiveToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem saveChangesToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+		private System.Windows.Forms.TextBox tbOutput;
+		private System.Windows.Forms.ListView lvArchiveFiles;
+		private System.Windows.Forms.ContextMenuStrip cmsArchiveFiles;
+		private System.Windows.Forms.ToolStripMenuItem extractFilesToolStripMenuItem;
+		private System.Windows.Forms.ColumnHeader chFilename;
+	}
+}

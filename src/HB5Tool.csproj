@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3A0FA687-9379-4D57-9AA3-FECA44B158A3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>HB5Tool</RootNamespace>
+    <AssemblyName>HB5Tool</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>hb5tool.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataStructures\AnnounceBin.cs" />
+    <Compile Include="DataStructures\CustomBin.cs" />
+    <Compile Include="DataStructures\DefaultsBin.cs" />
+    <Compile Include="DataStructures\DigsFile.cs" />
+    <Compile Include="DataStructures\FontData.cs" />
+    <Compile Include="DataStructures\GlueList.cs" />
+    <Compile Include="DataStructures\HmiSound.cs" />
+    <Compile Include="DataStructures\ImageMsh.cs" />
+    <Compile Include="DataStructures\MgsFile.cs" />
+    <Compile Include="DataStructures\PicsBin.cs" />
+    <Compile Include="DataStructures\PlayerStats.cs" />
+    <Compile Include="DataStructures\ScheduleFile.cs" />
+    <Compile Include="DataStructures\StadiumInfo.cs" />
+    <Compile Include="DataStructures\TeamLogo.cs" />
+    <Compile Include="Dialogs\AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataStructures\GlueMB.cs" />
+    <Compile Include="DataStructures\LeagueData.cs" />
+    <Compile Include="DataStructures\ExportPlayer.cs" />
+    <Compile Include="DataStructures\ExportTeam.cs" />
+    <Compile Include="DataStructures\MshFile.cs" />
+    <Compile Include="DefaultData.cs" />
+    <Compile Include="Dialogs\ProgOptionsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ProgOptionsDialog.Designer.cs">
+      <DependentUpon>ProgOptionsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\AnnounceBinEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\AnnounceBinEditor.Designer.cs">
+      <DependentUpon>AnnounceBinEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\ArchiveEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\ArchiveEditor.Designer.cs">
+      <DependentUpon>ArchiveEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\CustomBinEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\CustomBinEditor.Designer.cs">
+      <DependentUpon>CustomBinEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\DefaultsBinEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\DefaultsBinEditor.Designer.cs">
+      <DependentUpon>DefaultsBinEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\DigsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\DigsEditor.Designer.cs">
+      <DependentUpon>DigsEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\FontEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\FontEditor.Designer.cs">
+      <DependentUpon>FontEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\GlueListEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\GlueListEditor.Designer.cs">
+      <DependentUpon>GlueListEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\LeagueEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\LeagueEditor.Designer.cs">
+      <DependentUpon>LeagueEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\LogoFileEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\LogoFileEditor.Designer.cs">
+      <DependentUpon>LogoFileEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\MgsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\MgsEditor.Designer.cs">
+      <DependentUpon>MgsEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\MshEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\MshEditor.Designer.cs">
+      <DependentUpon>MshEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\PicsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\PicsEditor.Designer.cs">
+      <DependentUpon>PicsEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\PlayerEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\PlayerEditor.Designer.cs">
+      <DependentUpon>PlayerEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\ScheduleEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\ScheduleEditor.Designer.cs">
+      <DependentUpon>ScheduleEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\TeamEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\TeamEditor.Designer.cs">
+      <DependentUpon>TeamEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="SharedStrings.cs" />
+    <Compile Include="Tools\QuickDecode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\QuickDecode.Designer.cs">
+      <DependentUpon>QuickDecode.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Dialogs\AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProgOptionsDialog.resx">
+      <DependentUpon>ProgOptionsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\AnnounceBinEditor.resx">
+      <DependentUpon>AnnounceBinEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\ArchiveEditor.resx">
+      <DependentUpon>ArchiveEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\CustomBinEditor.resx">
+      <DependentUpon>CustomBinEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\DefaultsBinEditor.resx">
+      <DependentUpon>DefaultsBinEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\DigsEditor.resx">
+      <DependentUpon>DigsEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\FontEditor.resx">
+      <DependentUpon>FontEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\GlueListEditor.resx">
+      <DependentUpon>GlueListEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\LeagueEditor.resx">
+      <DependentUpon>LeagueEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\LogoFileEditor.resx">
+      <DependentUpon>LogoFileEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\MgsEditor.resx">
+      <DependentUpon>MgsEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\MshEditor.resx">
+      <DependentUpon>MshEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\PicsEditor.resx">
+      <DependentUpon>PicsEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\PlayerEditor.resx">
+      <DependentUpon>PlayerEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\ScheduleEditor.resx">
+      <DependentUpon>ScheduleEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\TeamEditor.resx">
+      <DependentUpon>TeamEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Tools\QuickDecode.resx">
+      <DependentUpon>QuickDecode.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include=".editorconfig" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="hb5tool.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="hb5ico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="batter.ico" />
+    <EmbeddedResource Include="pitcher.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
