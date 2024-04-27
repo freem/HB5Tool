@@ -51,6 +51,8 @@ namespace HB5Tool
 			"Unknown 0x1E",
 			"Unknown 0x1F",
 
+			/// xxx: these don't exist in v5.13 and later
+			/// (aside from Colorado 95 being moved to the main list)
 			"Baker Bowl",
 			"Braves Field",
 			"Colorado 95",
@@ -667,5 +669,7 @@ namespace HB5Tool
 			Color.FromArgb(56,146,146),  // 0x0B = Teal
 			Color.FromArgb(81,65,178),   // 0x0C = Purplish-blue, not normally selectable
 		};
+
+		// todo: full color database using Dictionary<int, Color[]>
 	}
 }
