@@ -519,5 +519,10 @@ namespace HB5Tool
 				}
 			}
 		}
+
+		private void manualToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			MessageBox.Show("Manual has not yet been written, mainly because the program is not that useful for people who aren't freem.");
+		}
 	}
 }
