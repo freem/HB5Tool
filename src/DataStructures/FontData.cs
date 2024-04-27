@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace HB5Tool
 {
 	/// <summary>
-	/// Despite using .fnt as the extension, there are two distinct font types.
+	/// Despite using .fnt as the file extension, there are two distinct font types.
 	/// </summary>
 	public enum FontTypes
 	{
@@ -77,6 +77,7 @@ namespace HB5Tool
 
 	/// <summary>
 	/// Representation of a .FNT file.
+	/// .PFN files (PS1 fonts) are slightly different than this
 	/// </summary>
 	public class FontData
 	{
