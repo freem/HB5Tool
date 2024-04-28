@@ -61,6 +61,10 @@ namespace HB5Tool
 
 				LeagueOverridePath = tbOverrideDefaultLeague.Text;
 			}
+			else
+			{
+				LeagueOverridePath = string.Empty;
+			}
 			
 			DialogResult = DialogResult.OK;
 			Close();
