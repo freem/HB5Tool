@@ -41,6 +41,7 @@ namespace HB5Tool
 			this.cmsMshFiles = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.extractFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tbOutput = new System.Windows.Forms.TextBox();
+			this.exportPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.cmsMshFiles.SuspendLayout();
@@ -113,14 +114,15 @@ namespace HB5Tool
 			// cmsMshFiles
 			// 
 			this.cmsMshFiles.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.extractFilesToolStripMenuItem});
+            this.extractFilesToolStripMenuItem,
+            this.exportPNGToolStripMenuItem});
 			this.cmsMshFiles.Name = "cmsMshFiles";
-			this.cmsMshFiles.Size = new System.Drawing.Size(154, 26);
+			this.cmsMshFiles.Size = new System.Drawing.Size(181, 70);
 			// 
 			// extractFilesToolStripMenuItem
 			// 
 			this.extractFilesToolStripMenuItem.Name = "extractFilesToolStripMenuItem";
-			this.extractFilesToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+			this.extractFilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.extractFilesToolStripMenuItem.Text = "&Extract File(s)...";
 			this.extractFilesToolStripMenuItem.Click += new System.EventHandler(this.extractFilesToolStripMenuItem_Click);
 			// 
@@ -135,6 +137,13 @@ namespace HB5Tool
 			this.tbOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.tbOutput.Size = new System.Drawing.Size(458, 309);
 			this.tbOutput.TabIndex = 4;
+			// 
+			// exportPNGToolStripMenuItem
+			// 
+			this.exportPNGToolStripMenuItem.Name = "exportPNGToolStripMenuItem";
+			this.exportPNGToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.exportPNGToolStripMenuItem.Text = "Export PNG...";
+			this.exportPNGToolStripMenuItem.Click += new System.EventHandler(this.exportPNGToolStripMenuItem_Click);
 			// 
 			// MshEditor
 			// 
@@ -176,5 +185,6 @@ namespace HB5Tool
 		private System.Windows.Forms.TextBox tbOutput;
 		private System.Windows.Forms.ContextMenuStrip cmsMshFiles;
 		private System.Windows.Forms.ToolStripMenuItem extractFilesToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem exportPNGToolStripMenuItem;
 	}
 }

@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
 namespace HB5Tool
 {
@@ -120,6 +121,143 @@ namespace HB5Tool
 		public bool Is4BPP()
 		{
 			return (Flags & 0x4000) != 0;
+		}
+
+		public Bitmap DecodeImage()
+		{
+			// xxx: 8bpp assumption
+			Bitmap outBitmap = new Bitmap(Width, Height, PixelFormat.Format8bppIndexed);
+
+			// palette stuff is tricky; assume player pal for now
+			ColorPalette colPal = outBitmap.Palette;
+			DefaultData.PlayerPicSafePalette.CopyTo(colPal.Entries, 0);
+			outBitmap.Palette = colPal;
+
+			//BitmapData bData = outBitmap.LockBits(new Rectangle(0, 0, Width, Height), ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
+			//IntPtr imageDataPtr = bData.Scan0;
+			//int numBytes = Math.Abs(bData.Stride) * Height;
+			//byte[] bPixels = new byte[numBytes];
+			//Marshal.Copy(imageDataPtr, bPixels, 0, numBytes);
+			//bPixels = pixelData.ToArray();
+			//Marshal.Copy(bPixels, 0, imageDataPtr, numBytes);
+			//saveTarget.UnlockBits(bData);
+
+			if (IsCompressed())
+			{
+				if (Is4BPP())
+				{
+					// compressed 4bpp, idk how to handle these
+				}
+				else
+				{
+					// compressed 8bpp, i only semi-know how to handle these.
+					byte[] rawPixels = new byte[Width * Height];
+
+					MemoryStream inMS = new MemoryStream(ImageData);
+					BinaryReader inBR = new BinaryReader(inMS);
+
+					MemoryStream outMS = new MemoryStream(rawPixels, true);
+					BinaryWriter outBW = new BinaryWriter(outMS);
+
+					int numPixProcessed = 0;
+					bool processEmpty = true;
+					bool rowComplete = false;
+					for (int y = 0; y < Height; y++)
+					{
+						// for each row:
+						// - start with number of empty pixels on left
+						// - alternate between regular runs and empty runs until end of line
+						//   (regular run is length followed by that many bytes).
+						// - end with number of empty pixels on right
+						// need to keep track of the number of pixels processed per row
+
+						// todo: check if an empty run will complete a row.
+
+
+						// todo: below code is not 100% correct, needs better handling
+						while (numPixProcessed < Width)
+						{
+							Console.WriteLine(string.Format("row {0} col {1}/{2}", y, numPixProcessed, Width));
+							if (processEmpty)
+							{
+								// read byte, write out that many transparent pixels
+								int numEmpty = inBR.ReadByte();
+								Console.WriteLine(string.Format("empty pixel run: 0x{0:X2}", numEmpty));
+								if (numEmpty > 0)
+								{
+									for (int i = 0; i < numEmpty; i++)
+									{
+										outBW.Write((byte)0);
+									}
+									numPixProcessed += numEmpty;
+								}
+
+								// flip the switch (though it may get re-flipped if this is the end of the row)
+								processEmpty = false;
+							}
+							else
+							{
+								// read byte, get number of bytes from value, write pixels
+								int numPix = inBR.ReadByte();
+								Console.WriteLine(string.Format("pixel run: 0x{0:X2}", numPix));
+								byte[] pixelRun = inBR.ReadBytes(numPix);
+								
+								outBW.Write(pixelRun);
+								numPixProcessed += numPix;
+
+								for (int i = 0; i < numPix; i++)
+								{
+									Console.Write(string.Format("{0:X2} ",pixelRun[i]));
+								}
+								Console.WriteLine();
+
+								// flip the switch
+								processEmpty = true;
+							}
+						}
+						Console.WriteLine(string.Format("processed pixels: {0}", numPixProcessed));
+
+						// reset values for next row
+						numPixProcessed = 0;
+						processEmpty = true;
+					}
+
+					inBR.Dispose();
+					outBW.Dispose();
+
+					BitmapData bData = outBitmap.LockBits(new Rectangle(0, 0, Width, Height), ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
+					IntPtr imageDataPtr = bData.Scan0;
+					//int numBytes = Math.Abs(bData.Stride) * Height;
+					int numBytes = Width * Height;
+					byte[] bPixels = new byte[numBytes];
+					Marshal.Copy(imageDataPtr, bPixels, 0, numBytes);
+					bPixels = rawPixels;
+					Marshal.Copy(bPixels, 0, imageDataPtr, numBytes);
+					outBitmap.UnlockBits(bData);
+				}
+			}
+			else
+			{
+				if (Is4BPP())
+				{
+					// 4bpp uncompressed. does this even exist?
+				}
+				else
+				{
+					// uncompressed? let's just dump the pixels then.
+					BitmapData bData = outBitmap.LockBits(new Rectangle(0, 0, Width, Height), ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
+					IntPtr imageDataPtr = bData.Scan0;
+					//int numBytes = Math.Abs(bData.Stride) * Height;
+					int numBytes = Width * Height;
+					byte[] bPixels = new byte[numBytes];
+					Marshal.Copy(imageDataPtr, bPixels, 0, numBytes);
+					bPixels = ImageData;
+					Marshal.Copy(bPixels, 0, imageDataPtr, numBytes);
+					outBitmap.UnlockBits(bData);
+				}
+			}
+
+			return outBitmap;
 		}
 	}
 }

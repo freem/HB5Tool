@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -183,6 +184,40 @@ namespace HB5Tool
 		private void MshEditor_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			CloseFormCallback?.Invoke(this, e);
+		}
+
+		private void exportPNGToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (lvMshFiles.SelectedItems.Count <= 0)
+			{
+				return;
+			}
+
+			if (lvMshFiles.SelectedIndices.Count > 1)
+			{
+				MessageBox.Show("maaaaaan, I'm not even sure this is gonna work for ONE file, much less multiple.");
+			}
+			else
+			{
+				SaveFileDialog sfd = new SaveFileDialog();
+				sfd.Title = "Attempt to Export PNG";
+				sfd.Filter = SharedStrings.PngFilter;
+				sfd.FileName = string.Format("{0}.png", lvMshFiles.SelectedItems[0].Text);
+				if (sfd.ShowDialog() == DialogResult.OK)
+				{
+					int entryIndex = int.Parse(lvMshFiles.SelectedItems[0].Tag.ToString());
+					MshEntry entry = CurFile.FileList[entryIndex];
+
+					if (CurFile.Images[entry].Is4BPP())
+					{
+						MessageBox.Show("I haven't written any 4BPP handlers yet sorry");
+						return;
+					}
+
+					Bitmap outBitmap = CurFile.Images[entry].DecodeImage();
+					outBitmap.Save(sfd.FileName, ImageFormat.Png);
+				}
+			}
 		}
 	}
 }
