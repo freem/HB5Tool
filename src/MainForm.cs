@@ -409,7 +409,7 @@ namespace HB5Tool
 							}
 
 							// TEAMS*.BIN // where * is "1" or "2"
-							if (fnNoExt.StartsWith("teams"))
+							if (fnNoExt.StartsWith("teams") && !fnNoExt.Contains("teamsdig"))
 							{
 								MessageBox.Show("TEAMS not yet handled");
 								binFileHandled = true; // don't double msg
