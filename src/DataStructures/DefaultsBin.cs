@@ -54,8 +54,17 @@ namespace HB5Tool
 
 		// controller/joystick inputs are possibly somewhere in here
 
-		// offset 0x48: exhibition team 1?
-		// offset 0x49: exhibition team 2?
+		/// <summary>
+		/// exhibition team 1?
+		/// </summary>
+		/// offset 0x48
+		public byte ExhibitionTeam1;
+
+		/// <summary>
+		/// exhibition team 2?
+		/// </summary>
+		/// offset 0x49
+		public byte ExhibitionTeam2;
 
 		/// <summary>
 		/// Sound volume.
@@ -119,7 +128,11 @@ namespace HB5Tool
 		public short HomeRunDerbyScore_20;
 		#endregion
 
-		// offset 0xFC: team for practice/home run derby
+		/// <summary>
+		/// Team for Practice/Home Run Derby
+		/// </summary>
+		/// offset 0xFC
+		public byte PracticeTeam;
 
 		#region Constructors
 		/// <summary>
@@ -128,6 +141,8 @@ namespace HB5Tool
 		public DefaultsBin()
 		{
 			CurLeagueFile = string.Empty;
+			ExhibitionTeam1 = 0;
+			ExhibitionTeam2 = 0;
 			SoundVolume = 64;
 			MusicVolume = 64;
 			HomeRunDerbyName_3 = string.Empty;
@@ -138,6 +153,7 @@ namespace HB5Tool
 			HomeRunDerbyScore_10 = 0;
 			HomeRunDerbyName_20 = string.Empty;
 			HomeRunDerbyScore_20 = 0;
+			PracticeTeam = 0;
 		}
 
 		public DefaultsBin(BinaryReader br)
@@ -166,6 +182,10 @@ namespace HB5Tool
 			}
 
 			// todo: everything from 0x40-0x9B
+
+			br.BaseStream.Seek(0x48, SeekOrigin.Begin);
+			ExhibitionTeam1 = br.ReadByte();
+			ExhibitionTeam2 = br.ReadByte();
 
 			// skip to next area
 			br.BaseStream.Seek(0x9C,SeekOrigin.Begin);
@@ -250,6 +270,9 @@ namespace HB5Tool
 			// score 20
 			HomeRunDerbyScore_20 = BitConverter.ToInt16(br.ReadBytes(2), 0);
 
+			// todo PracticeTeam at 0xFC
+			br.BaseStream.Seek(0xFC, SeekOrigin.Begin);
+			PracticeTeam = br.ReadByte();
 		}
 	}
 }

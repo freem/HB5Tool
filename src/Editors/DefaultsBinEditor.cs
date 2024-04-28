@@ -40,6 +40,9 @@ namespace HB5Tool
 			StringBuilder sb = new StringBuilder();
 
 			sb.AppendLine(string.Format("Current League File: {0}", CurDefaults.CurLeagueFile));
+			sb.AppendLine(string.Format("Exhibition Team 1: 0x{0:X2}", CurDefaults.ExhibitionTeam1));
+			sb.AppendLine(string.Format("Exhibition Team 2: 0x{0:X2}", CurDefaults.ExhibitionTeam2));
+			sb.AppendLine(string.Format("Practice/HR Derby Team: 0x{0:X2}", CurDefaults.PracticeTeam));
 			sb.AppendLine(string.Format("Sound Volume: {0}", CurDefaults.SoundVolume));
 			sb.AppendLine(string.Format("Music Volume: {0}", CurDefaults.MusicVolume));
 			sb.AppendLine();
