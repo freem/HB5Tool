@@ -12,6 +12,11 @@ namespace HB5Tool
 {
 	public partial class DigsEditor : Form
 	{
+		/// <summary>
+		/// Provided solely so the main form can hide the Window menu if the last form is closed.
+		/// </summary>
+		public event EventHandler CloseFormCallback;
+
 		public DigsFile CurDigsFile;
 
 		public string FilePath;
@@ -56,6 +61,7 @@ namespace HB5Tool
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Close();
+			CloseFormCallback?.Invoke(this, e);
 		}
 
 		private void exportSoundToolStripMenuItem_Click(object sender, EventArgs e)
@@ -86,6 +92,11 @@ namespace HB5Tool
 					}
 				}
 			}
+		}
+
+		private void DigsEditor_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			CloseFormCallback?.Invoke(this, e);
 		}
 	}
 }

@@ -12,6 +12,11 @@ namespace HB5Tool
 {
 	public partial class ScheduleEditor : Form
 	{
+		/// <summary>
+		/// Provided solely so the main form can hide the Window menu if the last form is closed.
+		/// </summary>
+		public event EventHandler CloseFormCallback;
+
 		public ScheduleFile CurSchedule;
 
 		public string FilePath;
@@ -68,6 +73,12 @@ namespace HB5Tool
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Close();
+			CloseFormCallback?.Invoke(this, e);
+		}
+
+		private void ScheduleEditor_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			CloseFormCallback?.Invoke(this, e);
 		}
 	}
 }

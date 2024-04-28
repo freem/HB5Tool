@@ -112,6 +112,7 @@ namespace HB5Tool
 			this.Name = "AnnounceBinEditor";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "ANNOUNCE.BIN Editor";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AnnounceBinEditor_FormClosing);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			this.statusStrip1.ResumeLayout(false);

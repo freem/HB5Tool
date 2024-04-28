@@ -227,6 +227,7 @@ namespace HB5Tool
 							{
 								DefaultsBinEditor dbEd = new DefaultsBinEditor(_filePath);
 								dbEd.MdiParent = this;
+								dbEd.CloseFormCallback += MdiChild_CloseFormCallback;
 								dbEd.Show();
 								UpdateWindowMenu();
 								binFileHandled = true;
@@ -275,7 +276,7 @@ namespace HB5Tool
 							{
 								AnnounceBinEditor abEd = new AnnounceBinEditor(_filePath);
 								abEd.MdiParent = this;
-								//abEd.CloseFormCallback += MdiChild_CloseFormCallback;
+								abEd.CloseFormCallback += MdiChild_CloseFormCallback;
 								abEd.Show();
 								UpdateWindowMenu();
 								binFileHandled = true;
@@ -313,6 +314,7 @@ namespace HB5Tool
 
 									ScheduleEditor schEd = new ScheduleEditor(_filePath, schType, schLength);
 									schEd.MdiParent = this;
+									schEd.CloseFormCallback += MdiChild_CloseFormCallback;
 									schEd.Show();
 									UpdateWindowMenu();
 									binFileHandled = true;

@@ -12,6 +12,11 @@ namespace HB5Tool
 {
 	public partial class AnnounceBinEditor : Form
 	{
+		/// <summary>
+		/// Provided solely so the main form can hide the Window menu if the last form is closed.
+		/// </summary>
+		public event EventHandler CloseFormCallback;
+
 		public AnnounceBin CurAnnounceBin;
 
 		public string FilePath;
@@ -60,6 +65,12 @@ namespace HB5Tool
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Close();
+			CloseFormCallback?.Invoke(this, e);
+		}
+
+		private void AnnounceBinEditor_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			CloseFormCallback?.Invoke(this, e);
 		}
 	}
 }

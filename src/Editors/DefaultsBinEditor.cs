@@ -13,6 +13,11 @@ namespace HB5Tool
 	public partial class DefaultsBinEditor : Form
 	{
 		/// <summary>
+		/// Provided solely so the main form can hide the Window menu if the last form is closed.
+		/// </summary>
+		public event EventHandler CloseFormCallback;
+
+		/// <summary>
 		/// Loaded DEFAULTS.BIN data
 		/// </summary>
 		public DefaultsBin CurDefaults;
@@ -72,6 +77,12 @@ namespace HB5Tool
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Close();
+			CloseFormCallback?.Invoke(this, e);
+		}
+
+		private void DefaultsBinEditor_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			CloseFormCallback?.Invoke(this, e);
 		}
 	}
 }

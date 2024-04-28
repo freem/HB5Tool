@@ -141,6 +141,7 @@ namespace HB5Tool
 			this.Name = "DigsEditor";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Digital Sounds Editor";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DigsEditor_FormClosing);
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
 			this.menuStrip1.ResumeLayout(false);
