@@ -55,35 +55,53 @@ namespace HB5Tool
 		// controller/joystick inputs are possibly somewhere in here
 
 		/// <summary>
-		/// exhibition team 1?
+		/// Exhibition Team 1 (Away)
 		/// </summary>
 		/// offset 0x48
 		public byte ExhibitionTeam1;
 
 		/// <summary>
-		/// exhibition team 2?
+		/// Exhibition Team 2 (Home)
 		/// </summary>
 		/// offset 0x49
 		public byte ExhibitionTeam2;
 
 		// offset 0x4A (short?): large batter (1) and ump/catcher view (2), or 3 for both
 
-		// offset 0x4C (short): team 1 "level of play" settings
+		/// <summary>
+		/// "Level of Play" settings for Team 1.
+		/// </summary>
+		/// offset 0x4C
 		public short PlayLevelSettings_Team1;
 
-		// offset 0x4E (short): team 2 "level of play" settings
+		/// <summary>
+		/// "Level of Play" settings for Team 2.
+		/// </summary>
+		/// offset 0x4E
 		public short PlayLevelSettings_Team2;
 
-		// offset 0x50 (short): team 1 manager settings
+		/// <summary>
+		/// Manager settings for Team 1.
+		/// </summary>
+		/// offset 0x50
 		public short ManagerSettings_Team1;
 
-		// offset 0x52 (short): team 2 manager settings
+		/// <summary>
+		/// Manager settings for Team 2.
+		/// </summary>
+		/// offset 0x52
 		public short ManagerSettings_Team2;
 
-		// offset 0x54 (short?): team 1 skill?
+		/// <summary>
+		/// Team 1 Skill level.
+		/// </summary>
+		/// offset 0x54
 		public short Skill_Team1;
 
-		// offset 0x56 (short?): team 2 skill?
+		/// <summary>
+		/// Team 2 Skill level.
+		/// </summary>
+		/// offset 0x56
 		public short Skill_Team2;
 
 		// offset 0x58 (short?): game speed?
@@ -119,7 +137,15 @@ namespace HB5Tool
 
 		// offset 0x68 (short): if most significant bit is set, One Pitch Mode is enabled
 
-		// offset 0x6A (short?): in-game music volume
+		// offset 0x6A (short?): in-game music volume (different from main music volume for some reason)
+
+		// offset 0x72: something related to audio
+
+		// offset 0x7C (short): sound card port
+
+		// offset 0x80 (short?): sound card IRQ
+
+		// offset 0x84 (short?): sound card DMA
 
 		/// <summary>
 		/// Main Sound volume.
