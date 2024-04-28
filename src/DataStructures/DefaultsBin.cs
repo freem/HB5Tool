@@ -66,14 +66,69 @@ namespace HB5Tool
 		/// offset 0x49
 		public byte ExhibitionTeam2;
 
+		// offset 0x4A (short?): large batter (1) and ump/catcher view (2), or 3 for both
+
+		// offset 0x4C (short): team 1 "level of play" settings
+		public short PlayLevelSettings_Team1;
+
+		// offset 0x4E (short): team 2 "level of play" settings
+		public short PlayLevelSettings_Team2;
+
+		// offset 0x50 (short): team 1 manager settings
+		public short ManagerSettings_Team1;
+
+		// offset 0x52 (short): team 2 manager settings
+		public short ManagerSettings_Team2;
+
+		// offset 0x54 (short?): team 1 skill?
+		public short Skill_Team1;
+
+		// offset 0x56 (short?): team 2 skill?
+		public short Skill_Team2;
+
+		// offset 0x58 (short?): game speed?
+
+		// offset 0x5A (byte? short?): batting practice pitch types
+		// todo: map out values
+
+		// offset 0x5C (byte? short?): batting practice pitch zone (0=center, 1=, 2=, 3=random)
+
+		// offset 0x5E (short?): display mode? 0=pitcher, 1=batter, 2=pitcher/batter
+
+		// offset 0x64: in-game sound options; all disabled = 0xC0, all enabled = 0xFF
+		// 0xC1 = sound effects
+		// 0xC3 = sound effects and crowd
+		// 0xC7 = sound effects, crowd, surround sound
+		// 0xCF = sound effects, crowd, surround sound, al michaels
+		// 0xDF = sound effects, crowd, surround sound, al michaels, pa echo
+		// 0xEF = sound effects, crowd, surround sound, al michaels, background music
+		// 76543210
+		// 11||||||
+		//   |||||+--- sound effects
+		//   ||||+---- crowd
+		//   |||+----- surround sound
+		//   ||+------ Al Michaels
+		//   |+------- PA Echo
+		//   +-------- background music
+
 		/// <summary>
-		/// Sound volume.
+		/// Home Run Derby Pitch Count. (0=3, 1=5, 2=10, 3=20)
+		/// </summary>
+		/// offset 0x66
+		public short HomeRunDerbyPitchCount;
+
+		// offset 0x68 (short): if most significant bit is set, One Pitch Mode is enabled
+
+		// offset 0x6A (short?): in-game music volume
+
+		/// <summary>
+		/// Main Sound volume.
 		/// </summary>
 		/// offset 0x9C
 		public short SoundVolume;
 
 		/// <summary>
-		/// Music volume.
+		/// Main Music volume.
 		/// </summary>
 		/// offset 0x9E
 		public short MusicVolume;
@@ -143,6 +198,13 @@ namespace HB5Tool
 			CurLeagueFile = string.Empty;
 			ExhibitionTeam1 = 0;
 			ExhibitionTeam2 = 0;
+			PlayLevelSettings_Team1 = 0;
+			PlayLevelSettings_Team2 = 0;
+			ManagerSettings_Team1 = 0;
+			ManagerSettings_Team2 = 0;
+			Skill_Team1 = 0;
+			Skill_Team2 = 0;
+			HomeRunDerbyPitchCount = 0;
 			SoundVolume = 64;
 			MusicVolume = 64;
 			HomeRunDerbyName_3 = string.Empty;
@@ -186,6 +248,17 @@ namespace HB5Tool
 			br.BaseStream.Seek(0x48, SeekOrigin.Begin);
 			ExhibitionTeam1 = br.ReadByte();
 			ExhibitionTeam2 = br.ReadByte();
+
+			br.BaseStream.Seek(0x4C, SeekOrigin.Begin);
+			PlayLevelSettings_Team1 = BitConverter.ToInt16(br.ReadBytes(2), 0);
+			PlayLevelSettings_Team2 = BitConverter.ToInt16(br.ReadBytes(2), 0);
+			ManagerSettings_Team1 = BitConverter.ToInt16(br.ReadBytes(2), 0);
+			ManagerSettings_Team2 = BitConverter.ToInt16(br.ReadBytes(2), 0);
+			Skill_Team1 = BitConverter.ToInt16(br.ReadBytes(2), 0);
+			Skill_Team2 = BitConverter.ToInt16(br.ReadBytes(2), 0);
+
+			br.BaseStream.Seek(0x66, SeekOrigin.Begin);
+			HomeRunDerbyPitchCount = BitConverter.ToInt16(br.ReadBytes(2), 0);
 
 			// skip to next area
 			br.BaseStream.Seek(0x9C,SeekOrigin.Begin);

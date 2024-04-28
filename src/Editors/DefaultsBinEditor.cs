@@ -40,9 +40,22 @@ namespace HB5Tool
 			StringBuilder sb = new StringBuilder();
 
 			sb.AppendLine(string.Format("Current League File: {0}", CurDefaults.CurLeagueFile));
+			sb.AppendLine();
+
 			sb.AppendLine(string.Format("Exhibition Team 1: 0x{0:X2}", CurDefaults.ExhibitionTeam1));
 			sb.AppendLine(string.Format("Exhibition Team 2: 0x{0:X2}", CurDefaults.ExhibitionTeam2));
+			sb.AppendLine(string.Format("Team 1 Play Level Settings: 0x{0:X4}", CurDefaults.PlayLevelSettings_Team1));
+			sb.AppendLine(string.Format("Team 2 Play Level Settings: 0x{0:X4}", CurDefaults.PlayLevelSettings_Team2));
+			sb.AppendLine(string.Format("Team 1 Manager Settings: 0x{0:X4}", CurDefaults.ManagerSettings_Team1));
+			sb.AppendLine(string.Format("Team 2 Manager Settings: 0x{0:X4}", CurDefaults.ManagerSettings_Team2));
+			sb.AppendLine(string.Format("Team 1 Skill Level: 0x{0:X4}", CurDefaults.Skill_Team1));
+			sb.AppendLine(string.Format("Team 2 Skill Level: 0x{0:X4}", CurDefaults.Skill_Team2));
+			sb.AppendLine();
+
 			sb.AppendLine(string.Format("Practice/HR Derby Team: 0x{0:X2}", CurDefaults.PracticeTeam));
+			sb.AppendLine(string.Format("HR Derby Pitch Count: 0x{0:X2}", CurDefaults.HomeRunDerbyPitchCount));
+			sb.AppendLine();
+
 			sb.AppendLine(string.Format("Sound Volume: {0}", CurDefaults.SoundVolume));
 			sb.AppendLine(string.Format("Music Volume: {0}", CurDefaults.MusicVolume));
 			sb.AppendLine();
