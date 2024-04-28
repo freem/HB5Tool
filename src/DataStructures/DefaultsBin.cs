@@ -54,6 +54,9 @@ namespace HB5Tool
 
 		// controller/joystick inputs are possibly somewhere in here
 
+		// offset 0x48: exhibition team 1?
+		// offset 0x49: exhibition team 2?
+
 		/// <summary>
 		/// Sound volume.
 		/// </summary>
@@ -115,6 +118,8 @@ namespace HB5Tool
 		/// offset 0xF8
 		public short HomeRunDerbyScore_20;
 		#endregion
+
+		// offset 0xFC: team for practice/home run derby
 
 		#region Constructors
 		/// <summary>
