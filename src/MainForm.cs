@@ -236,7 +236,12 @@ namespace HB5Tool
 							// INSTVARS.BIN
 							if (fnNoExt.Equals("instvars"))
 							{
-								// installation variables
+								InstvarsEditor ivEd = new InstvarsEditor(_filePath);
+								ivEd.MdiParent = this;
+								ivEd.CloseFormCallback += MdiChild_CloseFormCallback;
+								ivEd.Show();
+								UpdateWindowMenu();
+								binFileHandled = true;
 							}
 
 							// GLUELIST.BIN
@@ -427,16 +432,7 @@ namespace HB5Tool
 						string fnNoExt = Path.GetFileNameWithoutExtension(_filePath).ToLower();
 						ArchiveEditor aEd;
 						// the assumption is that all .glu files with "_PSX" in the filename are the PS1 version.
-						if (fnNoExt.Contains("_psx"))
-						{
-							// PS1 .glu file
-							aEd = new ArchiveEditor(_filePath, true);
-						}
-						else
-						{
-							// standard .glu file
-							aEd = new ArchiveEditor(_filePath);
-						}
+						aEd = new ArchiveEditor(_filePath, fnNoExt.Contains("_psx"));
 
 						aEd.MdiParent = this;
 						aEd.CloseFormCallback += MdiChild_CloseFormCallback;

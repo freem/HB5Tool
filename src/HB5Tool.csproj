@@ -71,6 +71,7 @@
     <Compile Include="DataStructures\GlueList.cs" />
     <Compile Include="DataStructures\HmiSound.cs" />
     <Compile Include="DataStructures\ImageMsh.cs" />
+    <Compile Include="DataStructures\InstVars.cs" />
     <Compile Include="DataStructures\MgsFile.cs" />
     <Compile Include="DataStructures\PicsBin.cs" />
     <Compile Include="DataStructures\PlayerStats.cs" />
@@ -136,6 +137,12 @@
     </Compile>
     <Compile Include="Editors\GlueListEditor.Designer.cs">
       <DependentUpon>GlueListEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\InstvarsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\InstvarsEditor.Designer.cs">
+      <DependentUpon>InstvarsEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Editors\LeagueEditor.cs">
       <SubType>Form</SubType>
@@ -227,6 +234,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\GlueListEditor.resx">
       <DependentUpon>GlueListEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\InstvarsEditor.resx">
+      <DependentUpon>InstvarsEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\LeagueEditor.resx">
       <DependentUpon>LeagueEditor.cs</DependentUpon>
