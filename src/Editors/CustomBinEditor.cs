@@ -118,6 +118,7 @@ namespace HB5Tool
 			CustomData.ComputerCanRejectTrades = cbComRejectTrades.Checked;
 
 			// write back whatever changes have been made
+			MessageBox.Show("todo: actually write data back to the file");
 		}
 
 		private TeamLogo GetLogoFromIndex(int _idx)
@@ -228,6 +229,26 @@ namespace HB5Tool
 					GetLogoFromIndex(lvIcons.SelectedIndices[0]).ExportImage(sfd.FileName);
 				}
 			}
+		}
+
+		private void importLogoToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (lvIcons.SelectedIndices.Count <= 0)
+			{
+				return;
+			}
+
+			MessageBox.Show("not implemented yet");
+		}
+
+		private void importPNGToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (lvIcons.SelectedIndices.Count <= 0)
+			{
+				return;
+			}
+
+			MessageBox.Show("not implemented yet");
 		}
 	}
 }

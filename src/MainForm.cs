@@ -361,6 +361,8 @@ namespace HB5Tool
 							// LGINFO*.BIN
 							if (fnNoExt.StartsWith("lginfo"))
 							{
+								MessageBox.Show("LGINFO not yet handled");
+								binFileHandled = true; // don't double msg
 							}
 
 							// BAT*.BIN; this covers BAT1.BIN, BAT2.BIN, BATH1.BIN, BATH2.BIN
@@ -370,10 +372,14 @@ namespace HB5Tool
 								if (fnNoExt.StartsWith("bath"))
 								{
 									// historical batter stats, as found in a league.
+									MessageBox.Show("BATH not yet handled");
+									binFileHandled = true; // don't double msg
 								}
 								else
 								{
 									// regular batter info, as found in a league.
+									MessageBox.Show("BAT not yet handled");
+									binFileHandled = true; // don't double msg
 								}
 							}
 
@@ -384,16 +390,22 @@ namespace HB5Tool
 								if (fnNoExt.StartsWith("pith"))
 								{
 									// historical pitcher stats, as found in a league.
+									MessageBox.Show("PITH not yet handled");
+									binFileHandled = true; // don't double msg
 								}
 								else
 								{
 									// regular pitcher info, as found in a league.
+									MessageBox.Show("PIT not yet handled");
+									binFileHandled = true; // don't double msg
 								}
 							}
 
 							// TEAMS*.BIN // where * is "1" or "2"
 							if (fnNoExt.StartsWith("teams"))
 							{
+								MessageBox.Show("TEAMS not yet handled");
+								binFileHandled = true; // don't double msg
 							}
 							// }
 
@@ -492,10 +504,13 @@ namespace HB5Tool
 				string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
 				if (files.Length > 1)
 				{
-					MessageBox.Show("I'll add opening multiple files later.","HB5Tool");
+					MessageBox.Show("I'll add opening multiple files later.", "HB5Tool");
 					return;
 				}
-				OpenFile(files[0]);
+				else
+				{
+					OpenFile(files[0]);
+				}
 			}
 		}
 

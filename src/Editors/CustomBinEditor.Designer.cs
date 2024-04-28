@@ -39,6 +39,9 @@ namespace HB5Tool
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.lvIcons = new System.Windows.Forms.ListView();
+			this.cmsLogos = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.exportLogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.exportPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.gbNames = new System.Windows.Forms.GroupBox();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.lblStarsGame = new System.Windows.Forms.Label();
@@ -58,16 +61,16 @@ namespace HB5Tool
 			this.cbInjuries = new System.Windows.Forms.CheckBox();
 			this.cbComTrades = new System.Windows.Forms.CheckBox();
 			this.cbComRejectTrades = new System.Windows.Forms.CheckBox();
-			this.cmsLogos = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.exportLogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.exportPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.importLogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.importPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
+			this.cmsLogos.SuspendLayout();
 			this.gbNames.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
 			this.gbOptions.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
-			this.cmsLogos.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// statusStrip1
@@ -139,6 +142,31 @@ namespace HB5Tool
 			this.lvIcons.TileSize = new System.Drawing.Size(168, 32);
 			this.lvIcons.UseCompatibleStateImageBehavior = false;
 			// 
+			// cmsLogos
+			// 
+			this.cmsLogos.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportLogoToolStripMenuItem,
+            this.exportPNGToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.importLogoToolStripMenuItem,
+            this.importPNGToolStripMenuItem});
+			this.cmsLogos.Name = "cmsLogos";
+			this.cmsLogos.Size = new System.Drawing.Size(150, 98);
+			// 
+			// exportLogoToolStripMenuItem
+			// 
+			this.exportLogoToolStripMenuItem.Name = "exportLogoToolStripMenuItem";
+			this.exportLogoToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+			this.exportLogoToolStripMenuItem.Text = "&Export Logo...";
+			this.exportLogoToolStripMenuItem.Click += new System.EventHandler(this.exportLogoToolStripMenuItem_Click);
+			// 
+			// exportPNGToolStripMenuItem
+			// 
+			this.exportPNGToolStripMenuItem.Name = "exportPNGToolStripMenuItem";
+			this.exportPNGToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+			this.exportPNGToolStripMenuItem.Text = "Export &PNG...";
+			this.exportPNGToolStripMenuItem.Click += new System.EventHandler(this.exportPNGToolStripMenuItem_Click);
+			// 
 			// gbNames
 			// 
 			this.gbNames.Controls.Add(this.tableLayoutPanel2);
@@ -177,7 +205,7 @@ namespace HB5Tool
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
 			this.tableLayoutPanel2.Size = new System.Drawing.Size(467, 173);
-			this.tableLayoutPanel2.TabIndex = 0;
+			this.tableLayoutPanel2.TabIndex = 2;
 			// 
 			// lblStarsGame
 			// 
@@ -186,8 +214,8 @@ namespace HB5Tool
 			this.lblStarsGame.Location = new System.Drawing.Point(3, 7);
 			this.lblStarsGame.Name = "lblStarsGame";
 			this.lblStarsGame.Size = new System.Drawing.Size(134, 13);
-			this.lblStarsGame.TabIndex = 2;
-			this.lblStarsGame.Text = "Stars Game";
+			this.lblStarsGame.TabIndex = 3;
+			this.lblStarsGame.Text = "&Stars Game";
 			// 
 			// lblPlayoffs
 			// 
@@ -196,8 +224,8 @@ namespace HB5Tool
 			this.lblPlayoffs.Location = new System.Drawing.Point(3, 35);
 			this.lblPlayoffs.Name = "lblPlayoffs";
 			this.lblPlayoffs.Size = new System.Drawing.Size(134, 13);
-			this.lblPlayoffs.TabIndex = 4;
-			this.lblPlayoffs.Text = "Playoffs";
+			this.lblPlayoffs.TabIndex = 5;
+			this.lblPlayoffs.Text = "&Playoffs";
 			// 
 			// lblLeagueChamp
 			// 
@@ -206,8 +234,8 @@ namespace HB5Tool
 			this.lblLeagueChamp.Location = new System.Drawing.Point(3, 63);
 			this.lblLeagueChamp.Name = "lblLeagueChamp";
 			this.lblLeagueChamp.Size = new System.Drawing.Size(134, 13);
-			this.lblLeagueChamp.TabIndex = 6;
-			this.lblLeagueChamp.Text = "League Championships";
+			this.lblLeagueChamp.TabIndex = 7;
+			this.lblLeagueChamp.Text = "&League Championships";
 			// 
 			// lblWorldChamp
 			// 
@@ -216,8 +244,8 @@ namespace HB5Tool
 			this.lblWorldChamp.Location = new System.Drawing.Point(3, 91);
 			this.lblWorldChamp.Name = "lblWorldChamp";
 			this.lblWorldChamp.Size = new System.Drawing.Size(134, 13);
-			this.lblWorldChamp.TabIndex = 8;
-			this.lblWorldChamp.Text = "World Championship";
+			this.lblWorldChamp.TabIndex = 9;
+			this.lblWorldChamp.Text = "&World Championship";
 			// 
 			// lblLeagueA
 			// 
@@ -226,8 +254,8 @@ namespace HB5Tool
 			this.lblLeagueA.Location = new System.Drawing.Point(3, 119);
 			this.lblLeagueA.Name = "lblLeagueA";
 			this.lblLeagueA.Size = new System.Drawing.Size(134, 13);
-			this.lblLeagueA.TabIndex = 10;
-			this.lblLeagueA.Text = "American League";
+			this.lblLeagueA.TabIndex = 11;
+			this.lblLeagueA.Text = "&American League";
 			// 
 			// lblLeagueL
 			// 
@@ -236,8 +264,8 @@ namespace HB5Tool
 			this.lblLeagueL.Location = new System.Drawing.Point(3, 150);
 			this.lblLeagueL.Name = "lblLeagueL";
 			this.lblLeagueL.Size = new System.Drawing.Size(134, 13);
-			this.lblLeagueL.TabIndex = 12;
-			this.lblLeagueL.Text = "National League";
+			this.lblLeagueL.TabIndex = 13;
+			this.lblLeagueL.Text = "&National League";
 			// 
 			// tbStarsGame
 			// 
@@ -247,7 +275,7 @@ namespace HB5Tool
 			this.tbStarsGame.Name = "tbStarsGame";
 			this.tbStarsGame.ReadOnly = true;
 			this.tbStarsGame.Size = new System.Drawing.Size(321, 20);
-			this.tbStarsGame.TabIndex = 3;
+			this.tbStarsGame.TabIndex = 4;
 			// 
 			// tbPlayoffs
 			// 
@@ -257,7 +285,7 @@ namespace HB5Tool
 			this.tbPlayoffs.Name = "tbPlayoffs";
 			this.tbPlayoffs.ReadOnly = true;
 			this.tbPlayoffs.Size = new System.Drawing.Size(321, 20);
-			this.tbPlayoffs.TabIndex = 5;
+			this.tbPlayoffs.TabIndex = 6;
 			// 
 			// tbLeagueChamp
 			// 
@@ -267,7 +295,7 @@ namespace HB5Tool
 			this.tbLeagueChamp.Name = "tbLeagueChamp";
 			this.tbLeagueChamp.ReadOnly = true;
 			this.tbLeagueChamp.Size = new System.Drawing.Size(321, 20);
-			this.tbLeagueChamp.TabIndex = 7;
+			this.tbLeagueChamp.TabIndex = 8;
 			// 
 			// tbWorldChamp
 			// 
@@ -277,7 +305,7 @@ namespace HB5Tool
 			this.tbWorldChamp.Name = "tbWorldChamp";
 			this.tbWorldChamp.ReadOnly = true;
 			this.tbWorldChamp.Size = new System.Drawing.Size(321, 20);
-			this.tbWorldChamp.TabIndex = 9;
+			this.tbWorldChamp.TabIndex = 10;
 			// 
 			// tbLeagueA
 			// 
@@ -287,7 +315,7 @@ namespace HB5Tool
 			this.tbLeagueA.Name = "tbLeagueA";
 			this.tbLeagueA.ReadOnly = true;
 			this.tbLeagueA.Size = new System.Drawing.Size(321, 20);
-			this.tbLeagueA.TabIndex = 11;
+			this.tbLeagueA.TabIndex = 12;
 			// 
 			// tbLeagueN
 			// 
@@ -297,7 +325,7 @@ namespace HB5Tool
 			this.tbLeagueN.Name = "tbLeagueN";
 			this.tbLeagueN.ReadOnly = true;
 			this.tbLeagueN.Size = new System.Drawing.Size(321, 20);
-			this.tbLeagueN.TabIndex = 13;
+			this.tbLeagueN.TabIndex = 14;
 			// 
 			// gbOptions
 			// 
@@ -305,7 +333,7 @@ namespace HB5Tool
 			this.gbOptions.Location = new System.Drawing.Point(139, 225);
 			this.gbOptions.Name = "gbOptions";
 			this.gbOptions.Size = new System.Drawing.Size(473, 111);
-			this.gbOptions.TabIndex = 14;
+			this.gbOptions.TabIndex = 15;
 			this.gbOptions.TabStop = false;
 			this.gbOptions.Text = "&Options";
 			// 
@@ -334,7 +362,7 @@ namespace HB5Tool
 			this.cbInjuries.Location = new System.Drawing.Point(3, 6);
 			this.cbInjuries.Name = "cbInjuries";
 			this.cbInjuries.Size = new System.Drawing.Size(461, 17);
-			this.cbInjuries.TabIndex = 15;
+			this.cbInjuries.TabIndex = 16;
 			this.cbInjuries.Text = "&Injuries can occur";
 			this.cbInjuries.UseVisualStyleBackColor = true;
 			// 
@@ -346,8 +374,8 @@ namespace HB5Tool
 			this.cbComTrades.Location = new System.Drawing.Point(3, 36);
 			this.cbComTrades.Name = "cbComTrades";
 			this.cbComTrades.Size = new System.Drawing.Size(461, 17);
-			this.cbComTrades.TabIndex = 16;
-			this.cbComTrades.Text = "Computer makes trades";
+			this.cbComTrades.TabIndex = 17;
+			this.cbComTrades.Text = "Computer makes &trades";
 			this.cbComTrades.UseVisualStyleBackColor = true;
 			// 
 			// cbComRejectTrades
@@ -358,31 +386,28 @@ namespace HB5Tool
 			this.cbComRejectTrades.Location = new System.Drawing.Point(3, 67);
 			this.cbComRejectTrades.Name = "cbComRejectTrades";
 			this.cbComRejectTrades.Size = new System.Drawing.Size(461, 17);
-			this.cbComRejectTrades.TabIndex = 17;
+			this.cbComRejectTrades.TabIndex = 18;
 			this.cbComRejectTrades.Text = "Computer can &reject trades";
 			this.cbComRejectTrades.UseVisualStyleBackColor = true;
 			// 
-			// cmsLogos
+			// toolStripSeparator2
 			// 
-			this.cmsLogos.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exportLogoToolStripMenuItem,
-            this.exportPNGToolStripMenuItem});
-			this.cmsLogos.Name = "cmsLogos";
-			this.cmsLogos.Size = new System.Drawing.Size(181, 70);
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(146, 6);
 			// 
-			// exportLogoToolStripMenuItem
+			// importLogoToolStripMenuItem
 			// 
-			this.exportLogoToolStripMenuItem.Name = "exportLogoToolStripMenuItem";
-			this.exportLogoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.exportLogoToolStripMenuItem.Text = "Export &Logo...";
-			this.exportLogoToolStripMenuItem.Click += new System.EventHandler(this.exportLogoToolStripMenuItem_Click);
+			this.importLogoToolStripMenuItem.Name = "importLogoToolStripMenuItem";
+			this.importLogoToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+			this.importLogoToolStripMenuItem.Text = "&Import Logo...";
+			this.importLogoToolStripMenuItem.Click += new System.EventHandler(this.importLogoToolStripMenuItem_Click);
 			// 
-			// exportPNGToolStripMenuItem
+			// importPNGToolStripMenuItem
 			// 
-			this.exportPNGToolStripMenuItem.Name = "exportPNGToolStripMenuItem";
-			this.exportPNGToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.exportPNGToolStripMenuItem.Text = "Export &PNG...";
-			this.exportPNGToolStripMenuItem.Click += new System.EventHandler(this.exportPNGToolStripMenuItem_Click);
+			this.importPNGToolStripMenuItem.Name = "importPNGToolStripMenuItem";
+			this.importPNGToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+			this.importPNGToolStripMenuItem.Text = "Import P&NG...";
+			this.importPNGToolStripMenuItem.Click += new System.EventHandler(this.importPNGToolStripMenuItem_Click);
 			// 
 			// CustomBinEditor
 			// 
@@ -409,13 +434,13 @@ namespace HB5Tool
 			this.statusStrip1.PerformLayout();
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
+			this.cmsLogos.ResumeLayout(false);
 			this.gbNames.ResumeLayout(false);
 			this.tableLayoutPanel2.ResumeLayout(false);
 			this.tableLayoutPanel2.PerformLayout();
 			this.gbOptions.ResumeLayout(false);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
-			this.cmsLogos.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -453,5 +478,8 @@ namespace HB5Tool
 		private System.Windows.Forms.ContextMenuStrip cmsLogos;
 		private System.Windows.Forms.ToolStripMenuItem exportLogoToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exportPNGToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripMenuItem importLogoToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem importPNGToolStripMenuItem;
 	}
 }
