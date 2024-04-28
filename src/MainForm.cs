@@ -37,7 +37,11 @@ namespace HB5Tool
 			ofd.Multiselect = false;
 			if (ofd.ShowDialog() == DialogResult.OK)
 			{
-				OpenFile(ofd.FileName);
+				string errorMsg;
+				if (!OpenFile(ofd.FileName, out errorMsg))
+				{
+					MessageBox.Show(errorMsg, "HB5Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
 			}
 		}
 
@@ -45,8 +49,11 @@ namespace HB5Tool
 		/// The large routine that handles file opening.
 		/// </summary>
 		/// <param name="_filePath">Path to file to open.</param>
-		private void OpenFile(string _filePath)
+		private bool OpenFile(string _filePath, out string errorMsg)
 		{
+			bool openSuccessful = false;
+			errorMsg = string.Empty;
+
 			switch (Path.GetExtension(_filePath).ToLower())
 			{
 				case ".btr":
@@ -58,6 +65,7 @@ namespace HB5Tool
 						pEd.CloseFormCallback += MdiChild_CloseFormCallback;
 						pEd.Show();
 						UpdateWindowMenu();
+						openSuccessful = true;
 					}
 					break;
 
@@ -69,6 +77,7 @@ namespace HB5Tool
 						tEd.CloseFormCallback += MdiChild_CloseFormCallback;
 						tEd.Show();
 						UpdateWindowMenu();
+						openSuccessful = true;
 					}
 					break;
 
@@ -98,10 +107,11 @@ namespace HB5Tool
 							lEd.CloseFormCallback += MdiChild_CloseFormCallback;
 							lEd.Show();
 							UpdateWindowMenu();
+							openSuccessful = true;
 						}
 						else
 						{
-							MessageBox.Show("This does not appear to be a HardBall 5 league file.","HB5Tool",MessageBoxButtons.OK,MessageBoxIcon.Error);
+							errorMsg = "This does not appear to be a HardBall 5 league file.";
 						}
 					}
 					break;
@@ -114,6 +124,7 @@ namespace HB5Tool
 						mEd.CloseFormCallback += MdiChild_CloseFormCallback;
 						mEd.Show();
 						UpdateWindowMenu();
+						openSuccessful = true;
 					}
 					break;
 
@@ -125,6 +136,7 @@ namespace HB5Tool
 						mEd.CloseFormCallback += MdiChild_CloseFormCallback;
 						mEd.Show();
 						UpdateWindowMenu();
+						openSuccessful = true;
 					}
 					break;
 
@@ -137,27 +149,28 @@ namespace HB5Tool
 						fEd.CloseFormCallback += MdiChild_CloseFormCallback;
 						fEd.Show();
 						UpdateWindowMenu();
+						openSuccessful = true;
 					}
 					break;
 
 				case ".hlr":
 					{
 						// .hlr file = highlight reel; not much study on this yet
-						MessageBox.Show("Highlight Reels are not supported at this time.","HB5Tool",MessageBoxButtons.OK,MessageBoxIcon.Error);
+						errorMsg = "Highlight Reels are not supported at this time.";
 					}
 					break;
 
 				case ".sav":
 					{
 						// .sav file = game save; not much study on this yet
-						MessageBox.Show("Saved Games are not supported at this time.", "HB5Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						errorMsg = "Saved Games are not supported at this time.";
 					}
 					break;
 
 				case ".lgr":
 					{
 						// .lgr file = league saved game? saved in a directory matching the league filename
-						MessageBox.Show("LGR files are not supported at this time.", "HB5Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						errorMsg = "LGR files are not supported at this time.";
 					}
 					break;
 
@@ -186,6 +199,7 @@ namespace HB5Tool
 							aEd.CloseFormCallback += MdiChild_CloseFormCallback;
 							aEd.Show();
 							UpdateWindowMenu();
+							openSuccessful = true;
 						}
 						else
 						{
@@ -208,6 +222,7 @@ namespace HB5Tool
 								logoEd.Show();
 								UpdateWindowMenu();
 								binFileHandled = true;
+								openSuccessful = true;
 							}
 
 							// CUSTOM.BIN, CUSTOM_D.BIN
@@ -220,6 +235,7 @@ namespace HB5Tool
 								cbEd.Show();
 								UpdateWindowMenu();
 								binFileHandled = true;
+								openSuccessful = true;
 							}
 
 							// DEFAULTS.BIN, DEF_D.BIN
@@ -231,6 +247,7 @@ namespace HB5Tool
 								dbEd.Show();
 								UpdateWindowMenu();
 								binFileHandled = true;
+								openSuccessful = true;
 							}
 
 							// INSTVARS.BIN
@@ -242,6 +259,7 @@ namespace HB5Tool
 								ivEd.Show();
 								UpdateWindowMenu();
 								binFileHandled = true;
+								openSuccessful = true;
 							}
 
 							// GLUELIST.BIN
@@ -254,7 +272,7 @@ namespace HB5Tool
 								UpdateWindowMenu();
 								binFileHandled = true;
 								*/
-								MessageBox.Show("gluelist handling is broken right now","HB5Tool",MessageBoxButtons.OK,MessageBoxIcon.Error);
+								errorMsg = "gluelist handling is broken right now";
 								binFileHandled = true;
 							}
 
@@ -267,12 +285,15 @@ namespace HB5Tool
 								digEm.Show();
 								UpdateWindowMenu();
 								binFileHandled = true;
+								openSuccessful = true;
 							}
 
 							// WORDS.BIN
 							if (fnNoExt.Equals("words"))
 							{
 								// this one is a pain
+								errorMsg = "WORDS file not yet handled.";
+								binFileHandled = true;
 							}
 							// }
 
@@ -285,11 +306,14 @@ namespace HB5Tool
 								abEd.Show();
 								UpdateWindowMenu();
 								binFileHandled = true;
+								openSuccessful = true;
 							}
 
 							// INFO*.BIN // where * is a number; stadium information
 							if (fnNoExt.StartsWith("info"))
 							{
+								errorMsg = "Stadium Info files not yet handled.";
+								binFileHandled = true;
 							}
 
 							// GRASS0.BIN
@@ -323,6 +347,12 @@ namespace HB5Tool
 									schEd.Show();
 									UpdateWindowMenu();
 									binFileHandled = true;
+									openSuccessful = true;
+								}
+								else
+								{
+									errorMsg = "Invalid schedule type??";
+									binFileHandled = true;
 								}
 							}
 
@@ -335,6 +365,7 @@ namespace HB5Tool
 								pEd.Show();
 								UpdateWindowMenu();
 								binFileHandled = true;
+								openSuccessful = true;
 							}
 
 							// SONG*.BIN // essentially "is this a .wav file or not?"
@@ -361,6 +392,7 @@ namespace HB5Tool
 									MessageBox.Show(string.Format("{0} is a HMI ADPCM file.", _filePath), "HB5Tool", MessageBoxButtons.OK, MessageBoxIcon.Information);
 								}
 								binFileHandled = true;
+								openSuccessful = true;
 							}
 
 							// these files make up a full league:
@@ -368,7 +400,7 @@ namespace HB5Tool
 							// LGINFO*.BIN
 							if (fnNoExt.StartsWith("lginfo"))
 							{
-								MessageBox.Show("LGINFO not yet handled");
+								errorMsg = "LGINFO not yet handled";
 								binFileHandled = true; // don't double msg
 							}
 
@@ -379,13 +411,13 @@ namespace HB5Tool
 								if (fnNoExt.StartsWith("bath"))
 								{
 									// historical batter stats, as found in a league.
-									MessageBox.Show("BATH not yet handled");
+									errorMsg = "BATH not yet handled";
 									binFileHandled = true; // don't double msg
 								}
 								else
 								{
 									// regular batter info, as found in a league.
-									MessageBox.Show("BAT not yet handled");
+									errorMsg = "BAT not yet handled";
 									binFileHandled = true; // don't double msg
 								}
 							}
@@ -397,13 +429,13 @@ namespace HB5Tool
 								if (fnNoExt.StartsWith("pith"))
 								{
 									// historical pitcher stats, as found in a league.
-									MessageBox.Show("PITH not yet handled");
+									errorMsg = "PITH not yet handled";
 									binFileHandled = true; // don't double msg
 								}
 								else
 								{
 									// regular pitcher info, as found in a league.
-									MessageBox.Show("PIT not yet handled");
+									errorMsg = "PIT not yet handled";
 									binFileHandled = true; // don't double msg
 								}
 							}
@@ -411,14 +443,14 @@ namespace HB5Tool
 							// TEAMS*.BIN // where * is "1" or "2"
 							if (fnNoExt.StartsWith("teams") && !fnNoExt.Contains("teamsdig"))
 							{
-								MessageBox.Show("TEAMS not yet handled");
+								errorMsg = "TEAMS not yet handled";
 								binFileHandled = true; // don't double msg
 							}
 							// }
 
 							if (!binFileHandled)
 							{
-								MessageBox.Show("This .bin file is currently unsupported; there are too many files with .bin as the extension, and they all have different formats.", "HB5Tool");
+								errorMsg = "This .bin file is currently unsupported; there are too many files with .bin as the extension, and they all have different formats.";
 							}
 						}
 					}
@@ -438,13 +470,16 @@ namespace HB5Tool
 						aEd.CloseFormCallback += MdiChild_CloseFormCallback;
 						aEd.Show();
 						UpdateWindowMenu();
+						openSuccessful = true;
 					}
 					break;
 
 				default:
-					MessageBox.Show(string.Format("Whatever format this is ({0}), it's currently unsupported.", Path.GetExtension(_filePath).ToLower()), "HB5Tool");
+					errorMsg = string.Format("Whatever format this is ({0}), it's currently unsupported.", Path.GetExtension(_filePath).ToLower());
 					break;
 			}
+
+			return openSuccessful;
 		}
 
 		private void MdiChild_CloseFormCallback(object sender, EventArgs e)
@@ -502,12 +537,34 @@ namespace HB5Tool
 				string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
 				if (files.Length > 1)
 				{
-					MessageBox.Show("I'll add opening multiple files later.", "HB5Tool");
+					List<string> ErrorMessages = new List<string>();
+					string errorMsg = string.Empty;
+					foreach (string _file in files)
+					{
+						if (!OpenFile(_file, out errorMsg))
+						{
+							ErrorMessages.Add(string.Format("{0}: {1}", Path.GetFileName(_file), errorMsg));
+						}
+					}
+					if (ErrorMessages.Count > 0)
+					{
+						StringBuilder sb = new StringBuilder();
+						sb.AppendLine(string.Format("Errors occured when opening {0} file(s):", ErrorMessages.Count));
+						foreach (string err in ErrorMessages)
+						{
+							sb.AppendLine(err);
+						}
+						MessageBox.Show(sb.ToString(),"HB5Tool",MessageBoxButtons.OK,MessageBoxIcon.Error);
+					}
 					return;
 				}
 				else
 				{
-					OpenFile(files[0]);
+					string errorMsg;
+					if (!OpenFile(files[0], out errorMsg))
+					{
+						MessageBox.Show(errorMsg, "HB5Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
 				}
 			}
 		}
