@@ -324,7 +324,7 @@ namespace HB5Tool
 							{
 								PicsEditor pEd = new PicsEditor(_filePath);
 								pEd.MdiParent = this;
-								//pEd.CloseFormCallback += MdiChild_CloseFormCallback;
+								pEd.CloseFormCallback += MdiChild_CloseFormCallback;
 								pEd.Show();
 								UpdateWindowMenu();
 								binFileHandled = true;

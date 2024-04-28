@@ -165,6 +165,7 @@ namespace HB5Tool
 			this.MinimizeBox = false;
 			this.Name = "PicsEditor";
 			this.Text = "Pics Editor";
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PicsEditor_FormClosed);
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
 			this.menuStrip1.ResumeLayout(false);
