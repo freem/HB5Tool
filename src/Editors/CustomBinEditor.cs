@@ -119,5 +119,115 @@ namespace HB5Tool
 
 			// write back whatever changes have been made
 		}
+
+		private TeamLogo GetLogoFromIndex(int _idx)
+		{
+			switch (_idx)
+			{
+				case 0: return CustomData.Logo_AL;
+				case 1: return CustomData.Logo_NL;
+				case 2: return CustomData.Logo_Legends;
+				case 3: return CustomData.Logo_Immortals;
+			}
+			return null;
+		}
+
+		private string[] LogoFilenames =
+		{
+			"AL",
+			"NL",
+			"Legends",
+			"Immortals"
+		};
+
+		private void exportLogoToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (lvIcons.SelectedIndices.Count <= 0)
+			{
+				return;
+			}
+
+			if (lvIcons.SelectedIndices.Count > 1)
+			{
+				// export each selected logo
+				SaveFileDialog sfd = new SaveFileDialog();
+				sfd.Title = "Export Raw Logos";
+				sfd.Filter = SharedStrings.AllFilter;
+				sfd.FileName = "(choose a directory)";
+				sfd.CheckFileExists = false;
+				if (sfd.ShowDialog() == DialogResult.OK)
+				{
+					// root path
+					string exportPath = Path.GetDirectoryName(sfd.FileName);
+
+					foreach (int logoNum in lvIcons.SelectedIndices)
+					{
+						using (FileStream fs = new FileStream(string.Format("{0}\\{1}.hb5logo", exportPath, LogoFilenames[logoNum]), FileMode.Create))
+						{
+							using (BinaryWriter bw = new BinaryWriter(fs))
+							{
+								GetLogoFromIndex(logoNum).WriteData(bw);
+							}
+						}
+					}
+				}
+			}
+			else
+			{
+				SaveFileDialog sfd = new SaveFileDialog();
+				sfd.Title = "Export Raw Logo";
+				sfd.Filter = string.Format("{0}|{1}", SharedStrings.LogoFilter, SharedStrings.AllFilter);
+				sfd.FileName = string.Format("{0}.hb5logo", LogoFilenames[lvIcons.SelectedIndices[0]]);
+				if (sfd.ShowDialog() == DialogResult.OK)
+				{
+					using (FileStream fs = new FileStream(sfd.FileName, FileMode.Create))
+					{
+						using (BinaryWriter bw = new BinaryWriter(fs))
+						{
+							GetLogoFromIndex(lvIcons.SelectedIndices[0]).WriteData(bw);
+						}
+					}
+				}
+			}
+		}
+
+		private void exportPNGToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (lvIcons.SelectedIndices.Count <= 0)
+			{
+				return;
+			}
+
+			if (lvIcons.SelectedIndices.Count > 1)
+			{
+				// export each selected logo
+				SaveFileDialog sfd = new SaveFileDialog();
+				sfd.Title = "Export Logos as PNG";
+				sfd.Filter = SharedStrings.AllFilter;
+				sfd.FileName = "(choose a directory)";
+				sfd.CheckFileExists = false;
+				if (sfd.ShowDialog() == DialogResult.OK)
+				{
+					// root path
+					string exportPath = Path.GetDirectoryName(sfd.FileName);
+
+					foreach (int logoNum in lvIcons.SelectedIndices)
+					{
+						GetLogoFromIndex(logoNum).ExportImage(string.Format("{0}\\{1}.png", exportPath, LogoFilenames[logoNum]));
+					}
+				}
+			}
+			else
+			{
+				SaveFileDialog sfd = new SaveFileDialog();
+				sfd.Title = "Export Logo as PNG";
+				sfd.Filter = string.Format("{0}|{1}", SharedStrings.PngFilter, SharedStrings.AllFilter);
+				sfd.FileName = string.Format("{0}.png", LogoFilenames[lvIcons.SelectedIndices[0]]);
+				if (sfd.ShowDialog() == DialogResult.OK)
+				{
+					GetLogoFromIndex(lvIcons.SelectedIndices[0]).ExportImage(sfd.FileName);
+				}
+			}
+		}
 	}
 }

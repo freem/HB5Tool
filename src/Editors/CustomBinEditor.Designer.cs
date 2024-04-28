@@ -29,11 +29,14 @@ namespace HB5Tool
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomBinEditor));
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.tssLabelFilePath = new System.Windows.Forms.ToolStripStatusLabel();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.customToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveChangesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.lvIcons = new System.Windows.Forms.ListView();
 			this.gbNames = new System.Windows.Forms.GroupBox();
@@ -55,14 +58,16 @@ namespace HB5Tool
 			this.cbInjuries = new System.Windows.Forms.CheckBox();
 			this.cbComTrades = new System.Windows.Forms.CheckBox();
 			this.cbComRejectTrades = new System.Windows.Forms.CheckBox();
-			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.saveChangesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.cmsLogos = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.exportLogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.exportPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.gbNames.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
 			this.gbOptions.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
+			this.cmsLogos.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// statusStrip1
@@ -102,6 +107,18 @@ namespace HB5Tool
 			this.customToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
 			this.customToolStripMenuItem.Text = "&Custom";
 			// 
+			// saveChangesToolStripMenuItem
+			// 
+			this.saveChangesToolStripMenuItem.Name = "saveChangesToolStripMenuItem";
+			this.saveChangesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.saveChangesToolStripMenuItem.Text = "&Save Changes";
+			this.saveChangesToolStripMenuItem.Click += new System.EventHandler(this.saveChangesToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
@@ -112,6 +129,7 @@ namespace HB5Tool
 			// 
 			// lvIcons
 			// 
+			this.lvIcons.ContextMenuStrip = this.cmsLogos;
 			this.lvIcons.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
 			this.lvIcons.HideSelection = false;
 			this.lvIcons.Location = new System.Drawing.Point(12, 27);
@@ -344,17 +362,27 @@ namespace HB5Tool
 			this.cbComRejectTrades.Text = "Computer can &reject trades";
 			this.cbComRejectTrades.UseVisualStyleBackColor = true;
 			// 
-			// toolStripSeparator1
+			// cmsLogos
 			// 
-			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+			this.cmsLogos.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportLogoToolStripMenuItem,
+            this.exportPNGToolStripMenuItem});
+			this.cmsLogos.Name = "cmsLogos";
+			this.cmsLogos.Size = new System.Drawing.Size(181, 70);
 			// 
-			// saveChangesToolStripMenuItem
+			// exportLogoToolStripMenuItem
 			// 
-			this.saveChangesToolStripMenuItem.Name = "saveChangesToolStripMenuItem";
-			this.saveChangesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.saveChangesToolStripMenuItem.Text = "&Save Changes";
-			this.saveChangesToolStripMenuItem.Click += new System.EventHandler(this.saveChangesToolStripMenuItem_Click);
+			this.exportLogoToolStripMenuItem.Name = "exportLogoToolStripMenuItem";
+			this.exportLogoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.exportLogoToolStripMenuItem.Text = "Export &Logo...";
+			this.exportLogoToolStripMenuItem.Click += new System.EventHandler(this.exportLogoToolStripMenuItem_Click);
+			// 
+			// exportPNGToolStripMenuItem
+			// 
+			this.exportPNGToolStripMenuItem.Name = "exportPNGToolStripMenuItem";
+			this.exportPNGToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.exportPNGToolStripMenuItem.Text = "Export &PNG...";
+			this.exportPNGToolStripMenuItem.Click += new System.EventHandler(this.exportPNGToolStripMenuItem_Click);
 			// 
 			// CustomBinEditor
 			// 
@@ -387,6 +415,7 @@ namespace HB5Tool
 			this.gbOptions.ResumeLayout(false);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
+			this.cmsLogos.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -421,5 +450,8 @@ namespace HB5Tool
 		private System.Windows.Forms.TextBox tbLeagueN;
 		private System.Windows.Forms.ToolStripMenuItem saveChangesToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ContextMenuStrip cmsLogos;
+		private System.Windows.Forms.ToolStripMenuItem exportLogoToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem exportPNGToolStripMenuItem;
 	}
 }
