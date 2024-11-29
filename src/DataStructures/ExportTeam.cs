@@ -45,8 +45,6 @@ namespace HB5Tool
 
 		// player data is 0x194 bytes?
 
-		// todo: at least one value determines team "identity" for al michaels/teamsdig
-
 		#region Class Members
 		/// <summary>
 		/// Team name.
@@ -120,7 +118,8 @@ namespace HB5Tool
 		/// offset 0x10C
 		public TeamLogo Logo;
 
-		// offset 0x70C is next after logo
+		// offset 0x70C: team "identity" for al michaels/teamsdig
+		// byte?
 
 		// player type starts at 0x070E? 0x50 bytes maximum, each entry is 2 bytes
 		// team export files: lower byte is always 0x00; upper byte determines batter (0x01) or pitcher (0x02)?
@@ -268,6 +267,7 @@ namespace HB5Tool
 			Logo = new TeamLogo(br);
 
 			// data resumes at 0x70C
+			// 0x70C is team name for Al Michaels's announcing
 
 			// slider values at offset 0x77C
 			br.BaseStream.Seek(TeamBasePos+0x77C, SeekOrigin.Begin);
