@@ -450,7 +450,7 @@ namespace HB5Tool
 
 							if (!binFileHandled)
 							{
-								errorMsg = "This .bin file is currently unsupported; there are too many files with .bin as the extension, and they all have different formats.";
+								errorMsg = "Unsupported .bin file; there are too many files with .bin as the extension, and they all have different formats.";
 							}
 						}
 					}
