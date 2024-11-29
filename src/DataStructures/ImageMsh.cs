@@ -156,7 +156,7 @@ namespace HB5Tool
 					MemoryStream inMS = new MemoryStream(ImageData);
 					BinaryReader inBR = new BinaryReader(inMS);
 
-					MemoryStream outMS = new MemoryStream(rawPixels, true);
+					MemoryStream outMS = new MemoryStream();
 					BinaryWriter outBW = new BinaryWriter(outMS);
 
 					int numPixProcessed = 0;
@@ -221,6 +221,8 @@ namespace HB5Tool
 						numPixProcessed = 0;
 						processEmpty = true;
 					}
+
+					rawPixels = outMS.ToArray();
 
 					inBR.Dispose();
 					outBW.Dispose();
