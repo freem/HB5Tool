@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataStructures\AnnounceBin.cs" />
+    <Compile Include="DataStructures\BatterData.cs" />
     <Compile Include="DataStructures\CustomBin.cs" />
     <Compile Include="DataStructures\DefaultsBin.cs" />
     <Compile Include="DataStructures\DigsFile.cs" />
@@ -74,6 +75,8 @@
     <Compile Include="DataStructures\InstVars.cs" />
     <Compile Include="DataStructures\MgsFile.cs" />
     <Compile Include="DataStructures\PicsBin.cs" />
+    <Compile Include="DataStructures\PitcherData.cs" />
+    <Compile Include="DataStructures\PlayerCommonData.cs" />
     <Compile Include="DataStructures\PlayerStats.cs" />
     <Compile Include="DataStructures\ScheduleFile.cs" />
     <Compile Include="DataStructures\StadiumInfo.cs" />
