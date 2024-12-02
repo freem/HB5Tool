@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace HB5Tool
 {
+	// This class, in its current existence, is deprecated.
 	// todo: rewrite the bulk of this as a new class that doesn't assume we're loading .BTR/.PIT exports
 
 	/// <summary>
@@ -229,7 +230,7 @@ namespace HB5Tool
 		/// <summary>
 		/// Streak value, 0-4.
 		/// </summary>
-		public StreakTypes Streak;
+		public PlayerCommonData.StreakTypes Streak;
 
 		/// <summary>
 		/// Unknown byte at offset 0x21.
@@ -254,7 +255,7 @@ namespace HB5Tool
 		/// <summary>
 		/// Secondary fielding position.
 		/// </summary>
-		public FieldingPositions SecondaryPosition;
+		public BatterData.FieldingPositions SecondaryPosition;
 
 		/// <summary>
 		/// Fielding ability at secondary position, 0-99.
@@ -306,7 +307,7 @@ namespace HB5Tool
 		/// <summary>
 		/// Pitcher type.
 		/// </summary>
-		public PitcherTypes PitcherType;
+		public PitcherData.PitcherTypes PitcherType;
 
 		/// <summary>
 		/// Pitcher stamina, 1-99.
@@ -452,7 +453,7 @@ namespace HB5Tool
 			#endregion
 
 			#region Pitcher-only
-			PitcherType = PitcherTypes.Invalid;
+			PitcherType = PitcherData.PitcherTypes.Invalid;
 			Stamina = 1;
 			Accuracy = 1;
 			Fastball = 50;
@@ -612,7 +613,7 @@ namespace HB5Tool
 			Handedness = br.ReadByte();
 
 			// offset 0x20: streak
-			Streak = (StreakTypes)br.ReadByte();
+			Streak = (PlayerCommonData.StreakTypes)br.ReadByte();
 
 			// offset 0x21: ???? 0x00 for most players
 			Unknown3 = br.ReadByte();
@@ -641,7 +642,7 @@ namespace HB5Tool
 				VersusLefties = br.ReadByte();
 
 				// offset 0x29: batters only: secondary fielding position
-				SecondaryPosition = (FieldingPositions)br.ReadByte();
+				SecondaryPosition = (BatterData.FieldingPositions)br.ReadByte();
 
 				// 0x2A-0x2C ignored by batter; presumed to be 0x00
 				// not stored in league player DB
@@ -685,7 +686,7 @@ namespace HB5Tool
 				HomeAway = br.ReadByte();
 
 				// offset 0x2C: pitchers only: pitcher type
-				PitcherType = (PitcherTypes)br.ReadByte();
+				PitcherType = (PitcherData.PitcherTypes)br.ReadByte();
 
 				// HACK: induce a read that's only required for league player databases
 				if (!parseHeader && !parseStats)
