@@ -19,10 +19,20 @@ namespace HB5Tool
 		/// </summary>
 		public UInt32[] EntryTable;
 
+		/// <summary>
+		/// Total length of ANNOUNCE.BIN file in bytes.
+		/// </summary>
 		public long FileLength;
 
+		/// <summary>
+		/// Sounds in ANNOUNCE.BIN, indexed based on their location in the EntryTable.
+		/// </summary>
 		public Dictionary<int, byte[]> Entries;
 
+		#region Constructors
+		/// <summary>
+		/// Default constructor.
+		/// </summary>
 		public AnnounceBin()
 		{
 			NumEntries = 0;
@@ -31,11 +41,20 @@ namespace HB5Tool
 			Entries = null;
 		}
 
+		/// <summary>
+		/// Constructor using a BinaryReader.
+		/// </summary>
+		/// <param name="br">BinaryReader instance to use.</param>
 		public AnnounceBin(BinaryReader br)
 		{
 			ReadData(br);
 		}
+		#endregion
 
+		/// <summary>
+		/// Read ANNOUNCE.BIN data using a BinaryReader.
+		/// </summary>
+		/// <param name="br">BinaryReader instance to use.</param>
 		public void ReadData(BinaryReader br)
 		{
 			FileLength = br.BaseStream.Length;
