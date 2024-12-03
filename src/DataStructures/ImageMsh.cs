@@ -127,6 +127,13 @@ namespace HB5Tool
 		{
 			// xxx: 8bpp assumption
 			Bitmap outBitmap = new Bitmap(Width, Height, PixelFormat.Format8bppIndexed);
+			BitmapData bData = outBitmap.LockBits(new Rectangle(0, 0, Width, Height), ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
+
+			bool differingStride = false;
+			if (Math.Abs(bData.Stride) != Width)
+			{
+				differingStride = true;
+			}
 
 			// palette stuff is tricky; assume player pal for now
 			ColorPalette colPal = outBitmap.Palette;
@@ -151,7 +158,15 @@ namespace HB5Tool
 				else
 				{
 					// compressed 8bpp, i only semi-know how to handle these.
-					byte[] rawPixels = new byte[Width * Height];
+					byte[] rawPixels;
+					if (differingStride)
+					{
+						rawPixels = new byte[Math.Abs(bData.Stride) * Height];
+					}
+					else
+					{
+						rawPixels = new byte[Width * Height];
+					}
 
 					MemoryStream inMS = new MemoryStream(ImageData);
 					BinaryReader inBR = new BinaryReader(inMS);
@@ -161,7 +176,6 @@ namespace HB5Tool
 
 					int numPixProcessed = 0;
 					bool processEmpty = true;
-					bool rowComplete = false;
 					for (int y = 0; y < Height; y++)
 					{
 						// for each row:
@@ -171,55 +185,90 @@ namespace HB5Tool
 						// - end with number of empty pixels on right
 						// need to keep track of the number of pixels processed per row
 
+						numPixProcessed = 0;
+
+						// left side empty pixels
+						int numEmptyLeftSide = inBR.ReadByte();
+						Console.WriteLine(String.Format("left side empty pixels: {0}",numEmptyLeftSide));
+						if (numEmptyLeftSide > 0)
+						{
+							for (int i = 0; i < numEmptyLeftSide; i++)
+							{
+								outBW.Write((byte)0);
+							}
+							numPixProcessed += numEmptyLeftSide;
+						}
+
+						// then alternate between regular pixel runs and empty pixel runs
 						// todo: check if an empty run will complete a row.
+						processEmpty = false;
 
-
-						// todo: below code is not 100% correct, needs better handling
 						while (numPixProcessed < Width)
 						{
-							Console.WriteLine(string.Format("row {0} col {1}/{2}", y, numPixProcessed, Width));
+							Console.WriteLine(String.Format("pixels processed: {0}/{1}", numPixProcessed, Width));
 							if (processEmpty)
 							{
-								// read byte, write out that many transparent pixels
-								int numEmpty = inBR.ReadByte();
-								Console.WriteLine(string.Format("empty pixel run: 0x{0:X2}", numEmpty));
-								if (numEmpty > 0)
+								// empty pixel run
+								int emptyRunLength = inBR.ReadByte();
+								Console.WriteLine(String.Format("empty run: {0}", emptyRunLength));
+								if (emptyRunLength > 0)
 								{
-									for (int i = 0; i < numEmpty; i++)
+									for (int i = 0; i < emptyRunLength; i++)
 									{
 										outBW.Write((byte)0);
 									}
-									numPixProcessed += numEmpty;
+									numPixProcessed += emptyRunLength;
 								}
 
-								// flip the switch (though it may get re-flipped if this is the end of the row)
+								if (numPixProcessed == Width)
+								{
+									Console.WriteLine("HEY! we're done with this row!");
+									processEmpty = false;
+								}
+
+								// next will be a regular pixel run, unless we've reached the end of the row or image.
 								processEmpty = false;
 							}
 							else
 							{
-								// read byte, get number of bytes from value, write pixels
-								int numPix = inBR.ReadByte();
-								Console.WriteLine(string.Format("pixel run: 0x{0:X2}", numPix));
-								byte[] pixelRun = inBR.ReadBytes(numPix);
+								// pixel data run
+								int runLength = inBR.ReadByte();
+								Console.WriteLine(String.Format("data run: {0}", runLength));
+								byte[] pixelRun = inBR.ReadBytes(runLength);
 								
 								outBW.Write(pixelRun);
-								numPixProcessed += numPix;
+								numPixProcessed += runLength;
 
-								for (int i = 0; i < numPix; i++)
-								{
-									Console.Write(string.Format("{0:X2} ",pixelRun[i]));
-								}
-								Console.WriteLine();
-
-								// flip the switch
+								// next will be an empty pixel data run, even if that length is 0.
 								processEmpty = true;
 							}
 						}
-						Console.WriteLine(string.Format("processed pixels: {0}", numPixProcessed));
 
-						// reset values for next row
-						numPixProcessed = 0;
-						processEmpty = true;
+						if (processEmpty)
+						{
+							Console.WriteLine("still wants to process empty");
+							// the last empty pixel run for this row
+							int emptyRunLength = inBR.ReadByte();
+							Console.WriteLine(String.Format("right side empty pixels: {0}", emptyRunLength));
+							if (emptyRunLength > 0)
+							{
+								for (int i = 0; i < emptyRunLength; i++)
+								{
+									outBW.Write((byte)0);
+								}
+								numPixProcessed += emptyRunLength;
+							}
+						}
+
+						if (numPixProcessed < Math.Abs(bData.Stride))
+						{
+							for (int i = 0; i < Math.Abs(bData.Stride) - numPixProcessed; i++)
+							{
+								outBW.Write((byte)0);
+							}
+						}
+
+						Console.WriteLine(String.Format("pixels processed this row: {0}/{1}", numPixProcessed, Width));
 					}
 
 					rawPixels = outMS.ToArray();
@@ -227,14 +276,15 @@ namespace HB5Tool
 					inBR.Dispose();
 					outBW.Dispose();
 
-					BitmapData bData = outBitmap.LockBits(new Rectangle(0, 0, Width, Height), ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
+					//bData = outBitmap.LockBits(new Rectangle(0, 0, Width, Height), ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
 					IntPtr imageDataPtr = bData.Scan0;
-					//int numBytes = Math.Abs(bData.Stride) * Height;
-					int numBytes = Width * Height;
+					int numBytes = Math.Abs(bData.Stride) * Height;
+					//int numBytes = Width * Height;
 					byte[] bPixels = new byte[numBytes];
 					Marshal.Copy(imageDataPtr, bPixels, 0, numBytes);
 					bPixels = rawPixels;
-					Marshal.Copy(bPixels, 0, imageDataPtr, numBytes);
+					//Marshal.Copy(bPixels, 0, imageDataPtr, numBytes);
+					Marshal.Copy(bPixels, 0, imageDataPtr, bPixels.Length);
 					outBitmap.UnlockBits(bData);
 				}
 			}
@@ -247,10 +297,10 @@ namespace HB5Tool
 				else
 				{
 					// uncompressed? let's just dump the pixels then.
-					BitmapData bData = outBitmap.LockBits(new Rectangle(0, 0, Width, Height), ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
+					//bData = outBitmap.LockBits(new Rectangle(0, 0, Width, Height), ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
 					IntPtr imageDataPtr = bData.Scan0;
-					//int numBytes = Math.Abs(bData.Stride) * Height;
-					int numBytes = Width * Height;
+					int numBytes = Math.Abs(bData.Stride) * Height;
+					//int numBytes = Width * Height;
 					byte[] bPixels = new byte[numBytes];
 					Marshal.Copy(imageDataPtr, bPixels, 0, numBytes);
 					bPixels = ImageData;
