@@ -190,9 +190,9 @@ namespace HB5Tool
 			FieldingAbility = 50;
 			CloseLate = 50;
 			ScoringPosition = 50;
-			Position_SkinColor = ((byte)(FieldingPositions.Catcher) << 4) | (byte)PlayerCommonData.SkinColors.Light;
-			Handedness = (byte)PlayerCommonData.HandTypes.Left;
-			Streak = PlayerCommonData.StreakTypes.Even;
+			Position_SkinColor = ((byte)(BatterData.FieldingPositions.Catcher) << 4) | (byte)SkinColors.Light;
+			Handedness = (byte)HandTypes.Left;
+			Streak = StreakTypes.Even;
 			Unknown3 = 0;
 			SplitUse = 0;
 			HomeAway = 50;
@@ -230,7 +230,7 @@ namespace HB5Tool
 			NameCall = BitConverter.ToInt16(tmp, 0);
 
 			bool nameFinished = false;
-			for (int i = 0; i < PlayerCommonData.PLAYER_NAME_LENGTH; i++)
+			for (int i = 0; i < PLAYER_NAME_LENGTH; i++)
 			{
 				char c = (char)br.ReadByte();
 
@@ -255,7 +255,7 @@ namespace HB5Tool
 			SplitUse = br.ReadByte();
 			Position_SkinColor = br.ReadByte();
 			Handedness = br.ReadByte();
-			Streak = (PlayerCommonData.StreakTypes)br.ReadByte();
+			Streak = (StreakTypes)br.ReadByte();
 
 			// offset 0x21: ???? 0x00 for most players
 			Unknown3 = br.ReadByte();
