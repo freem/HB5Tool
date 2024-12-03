@@ -39,7 +39,8 @@ namespace HB5Tool
 		public ushort Offset;
 
 		/// <summary>
-		/// Character width, which may or may not need to be -1
+		/// Character width.
+		/// If this value is 0, use the fallback character width defined in the font.
 		/// </summary>
 		public byte CharWidth;
 
@@ -109,7 +110,7 @@ namespace HB5Tool
 		public short CharHeight;
 
 		/// <summary>
-		/// Default character width??
+		/// Default character width. If a character's width is 0, use this value instead.
 		/// </summary>
 		/// offset 4
 		public short DefaultWidth;

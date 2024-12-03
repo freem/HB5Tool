@@ -171,6 +171,7 @@ namespace HB5Tool
 		}
 		#endregion
 
+		#region Manager Slider Helpers
 		public int GetManagerSlider_Hook()
 		{
 			return SliderValues[0] & 0x0F;
@@ -205,6 +206,7 @@ namespace HB5Tool
 		{
 			return SliderValues[3] & 0x0F;
 		}
+		#endregion
 
 		/// <summary>
 		/// Read export team data using a BinaryReader.
