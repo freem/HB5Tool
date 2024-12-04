@@ -90,7 +90,7 @@ namespace HB5Tool
 
 					foreach (int picNum in lbPicList.SelectedIndices)
 					{
-						using (FileStream fs = new FileStream(string.Format("{0}\\pic{1}.bin", exportPath, picNum), FileMode.Create))
+						using (FileStream fs = new FileStream(string.Format("{0}\\pic{1:D5}.bin", exportPath, picNum), FileMode.Create))
 						{
 							using (BinaryWriter bw = new BinaryWriter(fs))
 							{
@@ -107,7 +107,7 @@ namespace HB5Tool
 				// single export
 				SaveFileDialog sfd = new SaveFileDialog();
 				sfd.Title = "Export Picture";
-				sfd.FileName = string.Format("pic{0}.bin", lbPicList.SelectedIndex);
+				sfd.FileName = string.Format("pic{0:D5}.bin", lbPicList.SelectedIndex);
 				if (sfd.ShowDialog() == DialogResult.OK)
 				{
 					byte[] picData;
@@ -150,7 +150,7 @@ namespace HB5Tool
 					string exportPath = Path.GetDirectoryName(sfd.FileName);
 					foreach (int picNum in lbPicList.SelectedIndices)
 					{
-						CurPicsFile.RenderedPics[picNum].Save(string.Format("{0}\\pic{1}.png",exportPath,picNum), ImageFormat.Png);
+						CurPicsFile.RenderedPics[picNum].Save(string.Format("{0}\\pic{1:D5}.png",exportPath,picNum), ImageFormat.Png);
 					}
 				}
 			}
@@ -160,7 +160,7 @@ namespace HB5Tool
 				SaveFileDialog sfd = new SaveFileDialog();
 				sfd.Title = "Export Picture as PNG";
 				sfd.Filter = string.Format("{0}|{1}", SharedStrings.PngFilter, SharedStrings.AllFilter);
-				sfd.FileName = string.Format("{0}.png", lbPicList.SelectedIndex);
+				sfd.FileName = string.Format("{0:D5}.png", lbPicList.SelectedIndex);
 				if (sfd.ShowDialog() == DialogResult.OK)
 				{
 					CurPicsFile.ExportPic(sfd.FileName, lbPicList.SelectedIndex);
