@@ -50,11 +50,11 @@ namespace HB5Tool
 		public void ReadData(BinaryReader br)
 		{
 			byte[] tmp = br.ReadBytes(4);
-			Unknown = tmp[0];
+			// most significant byte
+			Unknown = tmp[3];
 
 			// HACK: Zero out topmost value so offset conversion is easier
-			tmp[0] = 0;
-			Offset = BitConverter.ToUInt32(tmp, 0);
+			Offset = BitConverter.ToUInt32(tmp, 0) & 0x00FFFFFF;
 		}
 	}
 
