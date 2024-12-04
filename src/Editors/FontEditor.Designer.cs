@@ -112,6 +112,7 @@ namespace HB5Tool
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(640, 400);
 			this.Name = "FontEditor";
+			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Font Editor";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FontEditor_FormClosed);

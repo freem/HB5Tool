@@ -110,6 +110,7 @@ namespace HB5Tool
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "MgsEditor";
+			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "MGS Editor";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MgsEditor_FormClosed);

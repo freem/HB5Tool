@@ -110,6 +110,7 @@ namespace HB5Tool
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "DefaultsBinEditor";
+			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "DEFAULTS.BIN Editor";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DefaultsBinEditor_FormClosing);

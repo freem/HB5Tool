@@ -110,6 +110,7 @@ namespace HB5Tool
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "InstvarsEditor";
+			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "INSTVARS.BIN Editor";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InstvarsEditor_FormClosing);

@@ -110,6 +110,7 @@ namespace HB5Tool
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "ScheduleEditor";
+			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Schedule Editor";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ScheduleEditor_FormClosing);
