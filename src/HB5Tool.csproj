@@ -81,6 +81,7 @@
     <Compile Include="DataStructures\ScheduleFile.cs" />
     <Compile Include="DataStructures\StadiumInfo.cs" />
     <Compile Include="DataStructures\TeamLogo.cs" />
+    <Compile Include="DataStructures\WordsBin.cs" />
     <Compile Include="Dialogs\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
