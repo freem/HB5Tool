@@ -37,12 +37,12 @@ namespace HB5Tool
 			this.cmsLogoContext = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.exportDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exportPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.importRawLogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.importPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.logoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.importPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.importRawLogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusStrip1.SuspendLayout();
 			this.cmsLogoContext.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
@@ -86,21 +86,40 @@ namespace HB5Tool
             this.importRawLogoToolStripMenuItem,
             this.importPNGToolStripMenuItem});
 			this.cmsLogoContext.Name = "cmsLogoContext";
-			this.cmsLogoContext.Size = new System.Drawing.Size(181, 120);
+			this.cmsLogoContext.Size = new System.Drawing.Size(175, 98);
 			// 
 			// exportDataToolStripMenuItem
 			// 
 			this.exportDataToolStripMenuItem.Name = "exportDataToolStripMenuItem";
-			this.exportDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.exportDataToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
 			this.exportDataToolStripMenuItem.Text = "Export &Raw Logo...";
 			this.exportDataToolStripMenuItem.Click += new System.EventHandler(this.exportDataToolStripMenuItem_Click);
 			// 
 			// exportPNGToolStripMenuItem
 			// 
 			this.exportPNGToolStripMenuItem.Name = "exportPNGToolStripMenuItem";
-			this.exportPNGToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.exportPNGToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
 			this.exportPNGToolStripMenuItem.Text = "Export &PNG...";
 			this.exportPNGToolStripMenuItem.Click += new System.EventHandler(this.exportPNGToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(171, 6);
+			// 
+			// importRawLogoToolStripMenuItem
+			// 
+			this.importRawLogoToolStripMenuItem.Name = "importRawLogoToolStripMenuItem";
+			this.importRawLogoToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+			this.importRawLogoToolStripMenuItem.Text = "Import Raw Logo...";
+			this.importRawLogoToolStripMenuItem.Click += new System.EventHandler(this.importRawLogoToolStripMenuItem_Click);
+			// 
+			// importPNGToolStripMenuItem
+			// 
+			this.importPNGToolStripMenuItem.Name = "importPNGToolStripMenuItem";
+			this.importPNGToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+			this.importPNGToolStripMenuItem.Text = "&Import PNG...";
+			this.importPNGToolStripMenuItem.Click += new System.EventHandler(this.importPNGToolStripMenuItem_Click);
 			// 
 			// menuStrip1
 			// 
@@ -129,25 +148,6 @@ namespace HB5Tool
 			this.exitToolStripMenuItem.Text = "E&xit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
-			// toolStripSeparator1
-			// 
-			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-			// 
-			// importPNGToolStripMenuItem
-			// 
-			this.importPNGToolStripMenuItem.Name = "importPNGToolStripMenuItem";
-			this.importPNGToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.importPNGToolStripMenuItem.Text = "&Import PNG...";
-			this.importPNGToolStripMenuItem.Click += new System.EventHandler(this.importPNGToolStripMenuItem_Click);
-			// 
-			// importRawLogoToolStripMenuItem
-			// 
-			this.importRawLogoToolStripMenuItem.Name = "importRawLogoToolStripMenuItem";
-			this.importRawLogoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.importRawLogoToolStripMenuItem.Text = "Import Raw Logo...";
-			this.importRawLogoToolStripMenuItem.Click += new System.EventHandler(this.importRawLogoToolStripMenuItem_Click);
-			// 
 			// LogoFileEditor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -162,6 +162,7 @@ namespace HB5Tool
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "LogoFileEditor";
+			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Logo File Editor";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LogoFileEditor_FormClosed);

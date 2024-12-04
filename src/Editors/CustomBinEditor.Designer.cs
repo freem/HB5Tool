@@ -42,6 +42,9 @@ namespace HB5Tool
 			this.cmsLogos = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.exportLogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exportPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.importLogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.importPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.gbNames = new System.Windows.Forms.GroupBox();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.lblStarsGame = new System.Windows.Forms.Label();
@@ -61,9 +64,6 @@ namespace HB5Tool
 			this.cbInjuries = new System.Windows.Forms.CheckBox();
 			this.cbComTrades = new System.Windows.Forms.CheckBox();
 			this.cbComRejectTrades = new System.Windows.Forms.CheckBox();
-			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-			this.importLogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.importPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.cmsLogos.SuspendLayout();
@@ -113,20 +113,20 @@ namespace HB5Tool
 			// saveChangesToolStripMenuItem
 			// 
 			this.saveChangesToolStripMenuItem.Name = "saveChangesToolStripMenuItem";
-			this.saveChangesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.saveChangesToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
 			this.saveChangesToolStripMenuItem.Text = "&Save Changes";
 			this.saveChangesToolStripMenuItem.Click += new System.EventHandler(this.saveChangesToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(144, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
 			this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
 			this.exitToolStripMenuItem.Text = "E&xit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -166,6 +166,25 @@ namespace HB5Tool
 			this.exportPNGToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
 			this.exportPNGToolStripMenuItem.Text = "Export &PNG...";
 			this.exportPNGToolStripMenuItem.Click += new System.EventHandler(this.exportPNGToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(146, 6);
+			// 
+			// importLogoToolStripMenuItem
+			// 
+			this.importLogoToolStripMenuItem.Name = "importLogoToolStripMenuItem";
+			this.importLogoToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+			this.importLogoToolStripMenuItem.Text = "&Import Logo...";
+			this.importLogoToolStripMenuItem.Click += new System.EventHandler(this.importLogoToolStripMenuItem_Click);
+			// 
+			// importPNGToolStripMenuItem
+			// 
+			this.importPNGToolStripMenuItem.Name = "importPNGToolStripMenuItem";
+			this.importPNGToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+			this.importPNGToolStripMenuItem.Text = "Import P&NG...";
+			this.importPNGToolStripMenuItem.Click += new System.EventHandler(this.importPNGToolStripMenuItem_Click);
 			// 
 			// gbNames
 			// 
@@ -390,25 +409,6 @@ namespace HB5Tool
 			this.cbComRejectTrades.Text = "Computer can &reject trades";
 			this.cbComRejectTrades.UseVisualStyleBackColor = true;
 			// 
-			// toolStripSeparator2
-			// 
-			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(146, 6);
-			// 
-			// importLogoToolStripMenuItem
-			// 
-			this.importLogoToolStripMenuItem.Name = "importLogoToolStripMenuItem";
-			this.importLogoToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-			this.importLogoToolStripMenuItem.Text = "&Import Logo...";
-			this.importLogoToolStripMenuItem.Click += new System.EventHandler(this.importLogoToolStripMenuItem_Click);
-			// 
-			// importPNGToolStripMenuItem
-			// 
-			this.importPNGToolStripMenuItem.Name = "importPNGToolStripMenuItem";
-			this.importPNGToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-			this.importPNGToolStripMenuItem.Text = "Import P&NG...";
-			this.importPNGToolStripMenuItem.Click += new System.EventHandler(this.importPNGToolStripMenuItem_Click);
-			// 
 			// CustomBinEditor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -427,6 +427,7 @@ namespace HB5Tool
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(640, 400);
 			this.Name = "CustomBinEditor";
+			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "CUSTOM.BIN Editor";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CustomBinEditor_FormClosed);
