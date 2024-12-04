@@ -197,6 +197,12 @@ namespace HB5Tool
 				value = inReader.ReadByte();
 				if ((value & 0xC0) >= 0xC0)
 				{
+					if (inData.Position == inData.Length)
+					{
+						Console.WriteLine(String.Format("[PicsBin.ToBitmap] Unexpected end of data after RLE byte (value 0x{0:X2}, length=0x{1:X2})", value, (value&0x3F)));
+						break;
+					}
+
 					// run of pixels; length is this byte & 0x3F; value is next byte
 					int len = (value & 0x3F);
 					value = inReader.ReadByte();
@@ -225,6 +231,21 @@ namespace HB5Tool
 			int numBytes = Math.Abs(bData.Stride) * PLAYER_PIC_HEIGHT;
 			byte[] bPixels = new byte[numBytes];
 			Marshal.Copy(imageDataPtr, bPixels, 0, numBytes);
+
+			// XXX HACK
+			if (pixelData.Count < numBytes)
+			{
+				for (int i = 0; i < (numBytes - pixelData.Count); i++)
+				{
+					pixelData.Add((byte)0);
+				}
+			}
+			else if(pixelData.Count > numBytes)
+			{
+				// wait, picture is too big??
+				Console.WriteLine(String.Format("[PicsBin.ToBitmap] pixelData.Count {0} > numBytes {1} ???", pixelData.Count, numBytes));
+			}
+
 			bPixels = pixelData.ToArray();
 			Marshal.Copy(bPixels, 0, imageDataPtr, numBytes);
 			saveTarget.UnlockBits(bData);
@@ -293,6 +314,21 @@ namespace HB5Tool
 			int numBytes = Math.Abs(bData.Stride) * PLAYER_PIC_HEIGHT;
 			byte[] bPixels = new byte[numBytes];
 			Marshal.Copy(imageDataPtr, bPixels, 0, numBytes);
+
+			// XXX HACK
+			if (pixelData.Count < numBytes)
+			{
+				for (int i = 0; i < (numBytes - pixelData.Count); i++)
+				{
+					pixelData.Add((byte)0);
+				}
+			}
+			else if (pixelData.Count > numBytes)
+			{
+				// wait, picture is too big??
+				Console.WriteLine(String.Format("[PicsBin.ExportPic] pixelData.Count {0} > numBytes {1} ???", pixelData.Count, numBytes));
+			}
+
 			bPixels = pixelData.ToArray();
 			Marshal.Copy(bPixels, 0, imageDataPtr, numBytes);
 			saveTarget.UnlockBits(bData);
