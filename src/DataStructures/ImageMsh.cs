@@ -157,7 +157,7 @@ namespace HB5Tool
 				}
 				else
 				{
-					// compressed 8bpp, i only semi-know how to handle these.
+					// compressed 8bpp
 					byte[] rawPixels;
 					if (differingStride)
 					{
@@ -279,11 +279,9 @@ namespace HB5Tool
 					//bData = outBitmap.LockBits(new Rectangle(0, 0, Width, Height), ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
 					IntPtr imageDataPtr = bData.Scan0;
 					int numBytes = Math.Abs(bData.Stride) * Height;
-					//int numBytes = Width * Height;
 					byte[] bPixels = new byte[numBytes];
 					Marshal.Copy(imageDataPtr, bPixels, 0, numBytes);
 					bPixels = rawPixels;
-					//Marshal.Copy(bPixels, 0, imageDataPtr, numBytes);
 					Marshal.Copy(bPixels, 0, imageDataPtr, bPixels.Length);
 					outBitmap.UnlockBits(bData);
 				}
