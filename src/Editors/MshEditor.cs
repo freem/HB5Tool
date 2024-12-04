@@ -195,12 +195,26 @@ namespace HB5Tool
 
 			if (lvMshFiles.SelectedIndices.Count > 1)
 			{
-				MessageBox.Show("maaaaaan, I'm not even sure this is gonna work for ONE file, much less multiple.");
+				MessageBox.Show("multiple PNG export is still todo.");
+
+				// figure out which items in the selection can't be dealt with yet (i.e. they're 4BPP)
+
+				/*
+				SaveFileDialog sfd = new SaveFileDialog();
+				sfd.Title = "Export PNG Files";
+				sfd.Filter = SharedStrings.AllFilter;
+				sfd.FileName = "(choose a directory)";
+				sfd.CheckFileExists = false;
+				if (sfd.ShowDialog() == DialogResult.OK)
+				{
+
+				}
+				*/
 			}
 			else
 			{
 				SaveFileDialog sfd = new SaveFileDialog();
-				sfd.Title = "Attempt to Export PNG";
+				sfd.Title = "Export PNG";
 				sfd.Filter = SharedStrings.PngFilter;
 				sfd.FileName = string.Format("{0}.png", lvMshFiles.SelectedItems[0].Text);
 				if (sfd.ShowDialog() == DialogResult.OK)
@@ -210,7 +224,7 @@ namespace HB5Tool
 
 					if (CurFile.Images[entry].Is4BPP())
 					{
-						MessageBox.Show("I haven't written any 4BPP handlers yet sorry");
+						MessageBox.Show("I haven't written any 4BPP handlers yet, sorry");
 						return;
 					}
 
