@@ -291,9 +291,12 @@ namespace HB5Tool
 							// WORDS.BIN
 							if (fnNoExt.Equals("words"))
 							{
-								// this one is a pain
-								errorMsg = "WORDS file not yet handled.";
+								WordsBinEditor wordEd = new WordsBinEditor(_filePath);
+								wordEd.MdiParent = this;
+								wordEd.Show();
+								UpdateWindowMenu();
 								binFileHandled = true;
+								openSuccessful = true;
 							}
 							// }
 

@@ -196,6 +196,12 @@
     <Compile Include="Editors\TeamEditor.Designer.cs">
       <DependentUpon>TeamEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\WordsBinEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\WordsBinEditor.Designer.cs">
+      <DependentUpon>WordsBinEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\TeamEditor.resx">
       <DependentUpon>TeamEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\WordsBinEditor.resx">
+      <DependentUpon>WordsBinEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
