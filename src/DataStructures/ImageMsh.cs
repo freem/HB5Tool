@@ -135,9 +135,9 @@ namespace HB5Tool
 				differingStride = true;
 			}
 
-			// palette stuff is tricky; assume player pal for now
+			// use default palette. it may not be the correct one, however...
 			ColorPalette colPal = outBitmap.Palette;
-			DefaultData.PlayerPicSafePalette.CopyTo(colPal.Entries, 0);
+			DefaultData.DefaultPalette.CopyTo(colPal.Entries, 0);
 			outBitmap.Palette = colPal;
 
 			//BitmapData bData = outBitmap.LockBits(new Rectangle(0, 0, Width, Height), ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
