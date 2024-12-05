@@ -31,16 +31,17 @@ namespace HB5Tool
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutBox));
 			this.okButton = new System.Windows.Forms.Button();
 			this.labelProductName = new System.Windows.Forms.Label();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.pbProgIcon = new System.Windows.Forms.PictureBox();
 			this.lblThanks = new System.Windows.Forms.Label();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			this.llGithub = new System.Windows.Forms.LinkLabel();
+			((System.ComponentModel.ISupportInitialize)(this.pbProgIcon)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.okButton.Location = new System.Drawing.Point(237, 76);
+			this.okButton.Location = new System.Drawing.Point(239, 88);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(75, 23);
 			this.okButton.TabIndex = 24;
@@ -57,24 +58,36 @@ namespace HB5Tool
 			this.labelProductName.Text = "Product Name";
 			this.labelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// pictureBox1
+			// pbProgIcon
 			// 
-			this.pictureBox1.Image = global::HB5Tool.Properties.Resources.hb5ico;
-			this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(36, 36);
-			this.pictureBox1.TabIndex = 26;
-			this.pictureBox1.TabStop = false;
+			this.pbProgIcon.Image = global::HB5Tool.Properties.Resources.hb5ico;
+			this.pbProgIcon.Location = new System.Drawing.Point(12, 12);
+			this.pbProgIcon.Name = "pbProgIcon";
+			this.pbProgIcon.Size = new System.Drawing.Size(36, 36);
+			this.pbProgIcon.TabIndex = 26;
+			this.pbProgIcon.TabStop = false;
 			// 
 			// lblThanks
 			// 
 			this.lblThanks.AutoSize = true;
 			this.lblThanks.Location = new System.Drawing.Point(54, 26);
 			this.lblThanks.Name = "lblThanks";
-			this.lblThanks.Size = new System.Drawing.Size(263, 39);
+			this.lblThanks.Size = new System.Drawing.Size(188, 52);
 			this.lblThanks.TabIndex = 27;
-			this.lblThanks.Text = "EXTREMELY EARLY PROOF OF CONCEPT\r\nDeveloped by freem\r\nSpecial Thanks: MindSpan, f" +
-    "or developing HardBall 5.";
+			this.lblThanks.Text = "VERY EARLY PROOF OF CONCEPT!\r\n\r\nDeveloped by freem\r\nSpecial Thanks: MindSpan, Dev" +
+    "lin";
+			// 
+			// llGithub
+			// 
+			this.llGithub.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.llGithub.AutoSize = true;
+			this.llGithub.Location = new System.Drawing.Point(9, 93);
+			this.llGithub.Name = "llGithub";
+			this.llGithub.Size = new System.Drawing.Size(173, 13);
+			this.llGithub.TabIndex = 28;
+			this.llGithub.TabStop = true;
+			this.llGithub.Text = "https://github.com/freem/HB5Tool";
+			this.llGithub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llGithub_LinkClicked);
 			// 
 			// AboutBox
 			// 
@@ -82,12 +95,13 @@ namespace HB5Tool
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.okButton;
-			this.ClientSize = new System.Drawing.Size(324, 111);
+			this.ClientSize = new System.Drawing.Size(326, 123);
+			this.Controls.Add(this.llGithub);
 			this.Controls.Add(this.lblThanks);
-			this.Controls.Add(this.pictureBox1);
+			this.Controls.Add(this.pbProgIcon);
 			this.Controls.Add(this.labelProductName);
 			this.Controls.Add(this.okButton);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -97,7 +111,7 @@ namespace HB5Tool
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "About HB5Tool";
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbProgIcon)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -106,7 +120,8 @@ namespace HB5Tool
 		#endregion
 		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.Label labelProductName;
-		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.PictureBox pbProgIcon;
 		private System.Windows.Forms.Label lblThanks;
+		private System.Windows.Forms.LinkLabel llGithub;
 	}
 }
