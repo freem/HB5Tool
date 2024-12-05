@@ -209,6 +209,31 @@ namespace HB5Tool
 		}
 		#endregion
 
+		#region Helpers
+		public byte GetHand_Throw()
+		{
+			// should return a value that's 0 or 1
+			return (byte)((Handedness & 0xF0) >> 4);
+		}
+
+		public byte GetHand_Bat()
+		{
+			// should return a value between 0-2
+			return (byte)(Handedness & 0x0F);
+		}
+
+		public byte GetSkinColor()
+		{
+			return (byte)(Position_SkinColor & 0x01);
+		}
+
+		public byte GetPosition()
+		{
+			// todo: return a FieldingPositions value?
+			return (byte)((Position_SkinColor & 0xF0) >> 4);
+		}
+		#endregion
+
 		/// <summary>
 		/// Read data using a BinaryReader.
 		/// </summary>
