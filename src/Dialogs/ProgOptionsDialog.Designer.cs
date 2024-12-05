@@ -38,6 +38,7 @@ namespace HB5Tool
 			this.cbOverrideDefaultLeague = new System.Windows.Forms.CheckBox();
 			this.tbOverrideDefaultLeague = new System.Windows.Forms.TextBox();
 			this.btnOpenLeaguePath = new System.Windows.Forms.Button();
+			this.helpProvider1 = new System.Windows.Forms.HelpProvider();
 			this.SuspendLayout();
 			// 
 			// btnOK
@@ -74,8 +75,10 @@ namespace HB5Tool
 			// 
 			// tbHb5DataPath
 			// 
+			this.helpProvider1.SetHelpString(this.tbHb5DataPath, "Path to a Hardball 5 installation.");
 			this.tbHb5DataPath.Location = new System.Drawing.Point(98, 12);
 			this.tbHb5DataPath.Name = "tbHb5DataPath";
+			this.helpProvider1.SetShowHelp(this.tbHb5DataPath, true);
 			this.tbHb5DataPath.Size = new System.Drawing.Size(273, 20);
 			this.tbHb5DataPath.TabIndex = 1;
 			// 
@@ -95,6 +98,7 @@ namespace HB5Tool
 			this.cbOverrideDefaultLeague.AutoSize = true;
 			this.cbOverrideDefaultLeague.Location = new System.Drawing.Point(12, 45);
 			this.cbOverrideDefaultLeague.Name = "cbOverrideDefaultLeague";
+			this.helpProvider1.SetShowHelp(this.cbOverrideDefaultLeague, false);
 			this.cbOverrideDefaultLeague.Size = new System.Drawing.Size(142, 17);
 			this.cbOverrideDefaultLeague.TabIndex = 5;
 			this.cbOverrideDefaultLeague.Text = "Override Default League";
@@ -134,6 +138,7 @@ namespace HB5Tool
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnOK);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.HelpButton = true;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -155,5 +160,6 @@ namespace HB5Tool
 		private System.Windows.Forms.CheckBox cbOverrideDefaultLeague;
 		private System.Windows.Forms.TextBox tbOverrideDefaultLeague;
 		private System.Windows.Forms.Button btnOpenLeaguePath;
+		private System.Windows.Forms.HelpProvider helpProvider1;
 	}
 }
