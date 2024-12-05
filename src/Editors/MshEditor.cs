@@ -101,11 +101,11 @@ namespace HB5Tool
 			sb.AppendLine(string.Format("Flags: 0x{0:X4}", img.Flags));
 			if ((img.Flags & 0x8000) != 0)
 			{
-				sb.AppendLine("Compression? employed");
+				sb.AppendLine("image uses RLE");
 			}
 			if ((img.Flags & 0x4000) != 0)
 			{
-				sb.AppendLine("4bpp image?");
+				sb.AppendLine("4bpp image");
 			}
 			sb.AppendLine(string.Format("Data Size: 0x{0:X4}", img.DataSize));
 			tbOutput.Text = sb.ToString();
