@@ -195,11 +195,36 @@ namespace HB5Tool
 
 			if (lvMshFiles.SelectedIndices.Count > 1)
 			{
-				MessageBox.Show("multiple PNG export is still todo.");
+				List<int> ConvertIDs = new List<int>();
+				List<int> Unhandled4bpp = new List<int>();
 
 				// figure out which items in the selection can't be dealt with yet (i.e. they're 4BPP)
 
-				/*
+				for (int i = 0; i < lvMshFiles.SelectedItems.Count; i++)
+				{
+					int entryIndex = int.Parse(lvMshFiles.SelectedItems[i].Tag.ToString());
+					MshEntry entry = CurFile.FileList[entryIndex];
+					if (CurFile.Images[entry].Is4BPP())
+					{
+						Unhandled4bpp.Add(entryIndex);
+					}
+					else
+					{
+						ConvertIDs.Add(entryIndex);
+					}
+				}
+
+				if (Unhandled4bpp.Count > 0)
+				{
+					MessageBox.Show(String.Format("{0} selected entries are 4BPP images and cannot currently be exported.",Unhandled4bpp.Count), "HB5Tool", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				}
+
+				if (ConvertIDs.Count <= 0)
+				{
+					MessageBox.Show("None of the selected items are able to be converted at this time.", "HB5Tool", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					return;
+				}
+
 				SaveFileDialog sfd = new SaveFileDialog();
 				sfd.Title = "Export PNG Files";
 				sfd.Filter = SharedStrings.AllFilter;
@@ -207,9 +232,16 @@ namespace HB5Tool
 				sfd.CheckFileExists = false;
 				if (sfd.ShowDialog() == DialogResult.OK)
 				{
+					// root path
+					string exportPath = Path.GetDirectoryName(sfd.FileName);
 
+					foreach (int idx in ConvertIDs)
+					{
+						MshEntry entry = CurFile.FileList[idx];
+						Bitmap outBitmap = CurFile.Images[entry].DecodeImage();
+						outBitmap.Save(string.Format("{0}\\{1}.png", exportPath, entry.Name), ImageFormat.Png);
+					}
 				}
-				*/
 			}
 			else
 			{
