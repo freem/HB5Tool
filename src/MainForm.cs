@@ -282,6 +282,7 @@ namespace HB5Tool
 							{
 								DigsEditor digEm = new DigsEditor(_filePath);
 								digEm.MdiParent = this;
+								digEm.CloseFormCallback += MdiChild_CloseFormCallback;
 								digEm.Show();
 								UpdateWindowMenu();
 								binFileHandled = true;
@@ -293,6 +294,7 @@ namespace HB5Tool
 							{
 								WordsBinEditor wordEd = new WordsBinEditor(_filePath);
 								wordEd.MdiParent = this;
+								wordEd.CloseFormCallback += MdiChild_CloseFormCallback;
 								wordEd.Show();
 								UpdateWindowMenu();
 								binFileHandled = true;
