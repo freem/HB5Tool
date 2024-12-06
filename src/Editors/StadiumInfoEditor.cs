@@ -50,6 +50,39 @@ namespace HB5Tool
 			sb.AppendLine(String.Format("Maximum Attendance: {0} (0x{0:X4})", CurStadiumInfoFile.MaxAttendance));
 			sb.AppendLine(String.Format("Name: {0}", CurStadiumInfoFile.Name));
 			sb.AppendLine(String.Format("Description: {0}", CurStadiumInfoFile.Description));
+			sb.AppendLine();
+
+			sb.AppendLine("Custom Color Set 1 (16 colors at palette index 0x20)");
+			for (int i = 0; i < CurStadiumInfoFile.ColorSet1.Length; i++)
+			{
+				VgaColor c = CurStadiumInfoFile.ColorSet1[i];
+				sb.AppendLine(String.Format("[{0:D2}] 8bpp rgb {1}", i, c.GetColor().ToString()));
+			}
+			sb.AppendLine();
+
+			sb.AppendLine("Custom Color Set 2 (16 colors at palette index 0x30)");
+			for (int i = 0; i < CurStadiumInfoFile.ColorSet2.Length; i++)
+			{
+				VgaColor c = CurStadiumInfoFile.ColorSet2[i];
+				sb.AppendLine(String.Format("[{0:D2}] 8bpp rgb {1}", i, c.GetColor().ToString()));
+			}
+			sb.AppendLine();
+
+			sb.AppendLine("Custom Color Set 3 (12 colors at palette index 0x40)");
+			for (int i = 0; i < CurStadiumInfoFile.ColorSet3.Length; i++)
+			{
+				VgaColor c = CurStadiumInfoFile.ColorSet3[i];
+				sb.AppendLine(String.Format("[{0:D2}] 8bpp rgb {1}", i, c.GetColor().ToString()));
+			}
+			sb.AppendLine();
+
+			sb.AppendLine("Custom Color Set 4 (8 colors at palette index 0xB8)");
+			for (int i = 0; i < CurStadiumInfoFile.ColorSet4.Length; i++)
+			{
+				VgaColor c = CurStadiumInfoFile.ColorSet4[i];
+				sb.AppendLine(String.Format("[{0:D2}] 8bpp rgb {1}", i, c.GetColor().ToString()));
+			}
+			sb.AppendLine();
 
 			tbOutput.Text = sb.ToString();
 		}
