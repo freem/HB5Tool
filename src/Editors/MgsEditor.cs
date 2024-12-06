@@ -52,6 +52,51 @@ namespace HB5Tool
 				sb.AppendLine(string.Format("#{0}: 0x{1:X}",i,CurMgsFile.Offsets[i]));
 			}
 
+			sb.AppendLine();
+
+			// xxx: this breaks on some files
+			/*
+			using (FileStream fs = new FileStream(FilePath, FileMode.Open))
+			{
+				using (BinaryReader br = new BinaryReader(fs))
+				{
+					for (int i = 0; i < CurMgsFile.Offsets.Count; i++)
+					{
+						sb.AppendLine(String.Format("Entry {0}", i));
+
+						// get data
+						byte[] entryData;
+						br.BaseStream.Seek(CurMgsFile.Offsets[i], SeekOrigin.Begin);
+						if (i == CurMgsFile.Offsets.Count - 1)
+						{
+							// use eof as end point
+							entryData = br.ReadBytes((int)br.BaseStream.Length - CurMgsFile.Offsets[i]);
+						}
+						else
+						{
+							// use next entry as end point
+							entryData = br.ReadBytes(CurMgsFile.Offsets[i + 1] - CurMgsFile.Offsets[i]);
+						}
+
+						int newlineCounter = 0;
+						foreach (byte b in entryData)
+						{
+							sb.Append(string.Format("{0:X2} ", b));
+							++newlineCounter;
+							if (newlineCounter == 16)
+							{
+								newlineCounter = 0;
+								sb.AppendLine();
+							}
+						}
+
+						sb.AppendLine();
+						sb.AppendLine();
+					}
+				}
+			}
+			*/
+
 			tbOutput.Text = sb.ToString();
 		}
 
