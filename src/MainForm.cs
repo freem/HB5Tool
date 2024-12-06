@@ -317,8 +317,13 @@ namespace HB5Tool
 							// INFO*.BIN // where * is a number; stadium information
 							if (fnNoExt.StartsWith("info"))
 							{
-								errorMsg = "Stadium Info files not yet handled.";
+								StadiumInfoEditor stadEd = new StadiumInfoEditor(_filePath);
+								stadEd.MdiParent = this;
+								stadEd.CloseFormCallback += MdiChild_CloseFormCallback;
+								stadEd.Show();
+								UpdateWindowMenu();
 								binFileHandled = true;
+								openSuccessful = true;
 							}
 
 							// GRASS0.BIN
