@@ -1,0 +1,33 @@
+HB5Tool changelog
+=================
+
+--------------------------------------------------------------------------------
+v0.1.5.0 - December 6, 2024
+--------------------------------------------------------------------------------
+Still not very usable as an editor, but progress is being made.
+
+- [CUSTOM.BIN] Allow exporting league logos as binary and PNG.
+
+- [DEFAULTS.BIN] More work was done on identifying values.
+
+- Added INSTVARS.BIN viewer.
+
+- Don't pop up unrelated TEAMS*.BIN message when opening TEAMSDIG.BIN.
+
+- Drag and drop now supports multiple files.
+
+- Exporting encoded 8bpp images from MSH files now works properly.
+
+- Added some data checking when loading PICS.BIN.
+
+- Added WORDS.BIN viewer.
+
+- Added default palette, extracted from HB5.EXE.
+
+- Added stadium information viewer.
+
+--------------------------------------------------------------------------------
+v0.1.0.0 - April 26, 2024
+--------------------------------------------------------------------------------
+Initial proof-of-concept release.
+"Doesn't allow for editing; not fully complete, etc. etc."
