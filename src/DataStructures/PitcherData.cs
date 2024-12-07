@@ -85,6 +85,10 @@ namespace HB5Tool
 		public byte Screwball;
 		#endregion // pitch type
 
+		/// <summary>
+		/// Unknown value at .PIT export offset 0x2D.
+		/// </summary>
+		public byte Unknown2D;
 		#endregion
 
 		#region Constructors
@@ -142,7 +146,10 @@ namespace HB5Tool
 
 			PitcherType = (PitcherTypes)br.ReadByte();
 
-			// The extra 3 bytes for .PIT export data (offsets 0x2D-0x2F) need to be handled elsewhere.
+			// unknown value at offset 0x2D; required to read this for pitchers in League data
+			Unknown2D = br.ReadByte();
+
+			// The extra 2 (unused?) bytes for .PIT export data (offsets 0x2E-0x2F) need to be handled elsewhere.
 		}
 	}
 }
