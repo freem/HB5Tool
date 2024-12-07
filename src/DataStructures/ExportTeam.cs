@@ -139,7 +139,7 @@ namespace HB5Tool
 		// offset 0x77F, mask 0x0F: rookies/veterans
 
 		// player data starts at offset 0x780
-		public List<ExportPlayer> PlayerData;
+		//public List<ExportPlayer> PlayerData;
 
 		#endregion
 
