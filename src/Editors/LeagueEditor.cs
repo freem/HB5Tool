@@ -80,16 +80,31 @@ namespace HB5Tool
 			tbLeagueInfo.Text = sb.ToString();
 
 			lbBatters.BeginUpdate();
-			foreach (KeyValuePair<int,ExportPlayer> b in CurLeague.BatterDatabase)
+			foreach (KeyValuePair<int,BatterData> b in CurLeague.BatterDatabase)
 			{
-				lbBatters.Items.Add(b.Value.Name);
+				if (b.Value.CommonData.Name != null)
+				{
+					lbBatters.Items.Add(b.Value.CommonData.Name);
+				}
+				else
+				{
+					lbBatters.Items.Add(String.Format("(batter {0} null)",b.Key));
+				}
+				
 			}
 			lbBatters.EndUpdate();
 
 			lbPitchers.BeginUpdate();
-			foreach (KeyValuePair<int, ExportPlayer> p in CurLeague.PitcherDatabase)
+			foreach (KeyValuePair<int, PitcherData> p in CurLeague.PitcherDatabase)
 			{
-				lbPitchers.Items.Add(p.Value.Name);
+				if (p.Value.CommonData.Name != null)
+				{
+					lbPitchers.Items.Add(p.Value.CommonData.Name);
+				}
+				else
+				{
+					lbPitchers.Items.Add(String.Format("(pitcher {0} null)", p.Key));
+				}
 			}
 			lbPitchers.EndUpdate();
 
