@@ -142,7 +142,7 @@ namespace HB5Tool
 
 			PitcherType = (PitcherTypes)br.ReadByte();
 
-			// extra 3 bytes for player export data needs to be handled elsewhere.
+			// The extra 3 bytes for .PIT export data (offsets 0x2D-0x2F) need to be handled elsewhere.
 		}
 	}
 }

@@ -171,12 +171,12 @@ namespace HB5Tool
 			GroundoutPct = br.ReadByte();
 			PullPct = br.ReadByte();
 
-			// player export data offset 0x28: batters only?: vs. LHP
+			// player export data offset 0x28: batters only: vs. LHP
 			CommonData.VersusLefties = br.ReadByte();
 
 			SecondaryPosition = (FieldingPositions)br.ReadByte();
 
-			// extra 6 bytes for player export data needs to be handled elsewhere.
+			// The extra 6 bytes for .BTR export data (offsets 0x2A-0x2F) need to be handled elsewhere.
 		}
 	}
 }
