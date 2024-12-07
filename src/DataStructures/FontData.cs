@@ -82,6 +82,7 @@ namespace HB5Tool
 	/// </summary>
 	public class FontData
 	{
+		#region Constants
 		/// <summary>
 		/// Header for FT/1bpp format fonts.
 		/// </summary>
@@ -96,6 +97,7 @@ namespace HB5Tool
 		/// Every entry in the character table needs this value added to it for the "real" address.
 		/// </summary>
 		public static readonly int FONT_BASE_OFFSET = 0xA;
+		#endregion
 
 		#region Class Members
 		/// <summary>
