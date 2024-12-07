@@ -180,6 +180,7 @@ namespace HB5Tool
 	/// </summary>
 	public class LeagueData
 	{
+		#region Constants
 		/// <summary>
 		/// Hardball 5 League data header.
 		/// This header makes HB5 leagues distinct from HardBall 4 leagues, which use the same file extension.
@@ -208,6 +209,7 @@ namespace HB5Tool
 		/// Number of bytes a Pitcher uses in the player definition database.
 		/// </summary>
 		public static readonly int PLAYER_DB_LENGTH_PITCHER = 0x2C;
+		#endregion
 
 		#region Class Members
 		/// <summary>
@@ -269,9 +271,8 @@ namespace HB5Tool
 		// batters first, then pitchers
 		// the first set of data corresponds to offsets 0x02-0x29 of the export batter (inclusive).
 
-		// temporary implementation
-		public Dictionary<int,ExportPlayer> BatterDatabase;
-		public Dictionary<int,ExportPlayer> PitcherDatabase;
+		public Dictionary<int, BatterData> BatterDatabase;
+		public Dictionary<int, PitcherData> PitcherDatabase;
 
 		/// <summary>
 		/// Teams in this league.
@@ -379,22 +380,18 @@ namespace HB5Tool
 				NumBatters = BitConverter.ToInt16(br.ReadBytes(2),0);
 
 				// batters
-				BatterDatabase = new Dictionary<int,ExportPlayer>();
+				BatterDatabase = new Dictionary<int,BatterData>();
 				for (int i = 0; i < NumBatters; i++)
 				{
-					ExportPlayer btr = new ExportPlayer();
-					btr.PlayerType = PlayerTypes.Batter;
-					btr.ReadData(br,false,false,false);
+					BatterData btr = new BatterData(br);
 					BatterDatabase.Add(i, btr);
 				}
 
 				// pitchers
-				PitcherDatabase = new Dictionary<int, ExportPlayer>();
+				PitcherDatabase = new Dictionary<int, PitcherData>();
 				for (int i = 0; i < NumPlayers-NumBatters; i++)
 				{
-					ExportPlayer pit = new ExportPlayer();
-					pit.PlayerType = PlayerTypes.Pitcher;
-					pit.ReadData(br, false, false, false);
+					PitcherData pit = new PitcherData(br);
 					PitcherDatabase.Add(i, pit);
 				}
 
