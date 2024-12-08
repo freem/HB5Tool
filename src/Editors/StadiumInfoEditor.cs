@@ -85,6 +85,51 @@ namespace HB5Tool
 			sb.AppendLine();
 
 			tbOutput.Text = sb.ToString();
+
+			// color sets
+			Bitmap ColorSet1 = new Bitmap(pbColorSet1.Width, pbColorSet1.Height);
+			Graphics g = Graphics.FromImage(ColorSet1);
+			Pen curPen;
+
+			int swatchWidth = (pbColorSet1.Width / 16);
+			for (int i = 0; i < CurStadiumInfoFile.ColorSet1.Length; i++)
+			{
+				curPen = new Pen(CurStadiumInfoFile.ColorSet1[i].GetColor());
+				g.FillRectangle(curPen.Brush, new Rectangle(i*swatchWidth, 0, swatchWidth, pbColorSet1.Height));
+			}
+			pbColorSet1.Image = ColorSet1;
+
+			Bitmap ColorSet2 = new Bitmap(pbColorSet2.Width, pbColorSet2.Height);
+			g = Graphics.FromImage(ColorSet2);
+			for (int i = 0; i < CurStadiumInfoFile.ColorSet2.Length; i++)
+			{
+				curPen = new Pen(CurStadiumInfoFile.ColorSet2[i].GetColor());
+				g.FillRectangle(curPen.Brush, new Rectangle(i * swatchWidth, 0, swatchWidth, pbColorSet2.Height));
+			}
+			pbColorSet2.Image = ColorSet2;
+
+			swatchWidth = (pbColorSet3.Width / 12);
+			Bitmap ColorSet3 = new Bitmap(pbColorSet3.Width, pbColorSet3.Height);
+			g = Graphics.FromImage(ColorSet3);
+			for (int i = 0; i < CurStadiumInfoFile.ColorSet3.Length; i++)
+			{
+				curPen = new Pen(CurStadiumInfoFile.ColorSet3[i].GetColor());
+				g.FillRectangle(curPen.Brush, new Rectangle(i * swatchWidth, 0, swatchWidth, pbColorSet3.Height));
+			}
+			pbColorSet3.Image = ColorSet3;
+
+			//CurStadiumInfoFile.ColorSet4
+			swatchWidth = (pbColorSet4.Width / 8);
+			Bitmap ColorSet4 = new Bitmap(pbColorSet4.Width, pbColorSet4.Height);
+			g = Graphics.FromImage(ColorSet4);
+			for (int i = 0; i < CurStadiumInfoFile.ColorSet4.Length; i++)
+			{
+				curPen = new Pen(CurStadiumInfoFile.ColorSet4[i].GetColor());
+				g.FillRectangle(curPen.Brush, new Rectangle(i * swatchWidth, 0, swatchWidth, pbColorSet4.Height));
+			}
+			pbColorSet4.Image = ColorSet4;
+
+			g.Dispose();
 		}
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
