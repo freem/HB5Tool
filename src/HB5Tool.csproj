@@ -215,6 +215,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="ProgStructures\EditorManager.cs" />
     <Compile Include="ProgStructures\ProjectFile.cs" />
     <Compile Include="ProgStructures\VgaColor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
