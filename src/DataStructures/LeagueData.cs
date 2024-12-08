@@ -251,12 +251,14 @@ namespace HB5Tool
 		/// </summary>
 		public int NumDefinedTeams;
 
-		// offset 0xEC: ??? 0x07 for MLBPA, 0x01 for Legends
+		// offset 0xEC: ???
+		// 0x07 for MLBPA, 0x01 for Legends
 		// this could be the schedule type; check again with a started league
 		public byte UnknownEC;
 
 		// todo: last two values of league info
 
+		#region Player Databases
 		/// <summary>
 		/// Total number of players in the league's player database.
 		/// </summary>
@@ -271,8 +273,16 @@ namespace HB5Tool
 		// batters first, then pitchers
 		// the first set of data corresponds to offsets 0x02-0x29 of the export batter (inclusive).
 
+		/// <summary>
+		/// Database of Batters in this league.
+		/// </summary>
 		public Dictionary<int, BatterData> BatterDatabase;
+
+		/// <summary>
+		/// Database of Pitchers in this league.
+		/// </summary>
 		public Dictionary<int, PitcherData> PitcherDatabase;
+		#endregion
 
 		/// <summary>
 		/// Teams in this league.
@@ -353,8 +363,6 @@ namespace HB5Tool
 						DataSections.Add(lde);
 					}
 				}
-
-				// todo: use offsets from LeagueDataEntry combined with LgInfoOffset
 
 				// actual league info (pointed to by LgInfoOffset)
 
