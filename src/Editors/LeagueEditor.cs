@@ -244,8 +244,9 @@ namespace HB5Tool
 
 			pbLogo.Image = tempLogo;
 
-			pHatColor.BackColor = DefaultData.CapTrimColors[CurTeam.CapColor];
-			pTrimColor.BackColor = DefaultData.CapTrimColors[CurTeam.TrimColor];
+			// xxx: assumes MLBPA colors, doesn't handle using 0xC and higher in MLBPA teams
+			pHatColor.BackColor = DefaultData.CapTrimColors_MLBPA[CurTeam.CapColor][4];
+			pTrimColor.BackColor = DefaultData.CapTrimColors_MLBPA[CurTeam.TrimColor][4];
 
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine("[Batting Orders]");

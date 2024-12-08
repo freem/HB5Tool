@@ -938,27 +938,241 @@ namespace HB5Tool
 		#endregion
 
 		/// <summary>
-		/// Team Cap/Trim color database. (Primary shade version)
-		/// Values after 0x0C seem to repeat from 0x01... haven't bothered testing much.
+		/// Cap and Trim colors for teams in MLBPA leagues.
 		/// </summary>
-		/// All color samples taken from the 5th shade out of 8.
-		public static Color[] CapTrimColors =
+		/// Note: You can use the Legends cap and trim colors by using indices 0x0C and above
+		/// 
+		/// Location in each version of the game:
+		///---------+------------------------
+		/// Version | .exe offset
+		///---------+------------------------
+		/// v5.11   | 0xF1FD5
+		/// v5.12   | 0xF1FE1
+		///---------+------------------------
+		/// v5.13   | 0xF10AD
+		/// v5.14LP | 0xEFE4D
+		///---------+------------------------
+		public static Dictionary<int, Color[]> CapTrimColors_MLBPA = new Dictionary<int, Color[]>()
 		{
-			Color.FromArgb(12,12,81),    // 0x00 = Navy Blue
-			Color.FromArgb(211,60,60),   // 0x01 = Dark Red
-			Color.FromArgb(60,154,69),   // 0x02 = Dark Green
-			Color.FromArgb(138,40,195),  // 0x03 = Purple
-			Color.FromArgb(255,128,52),  // 0x04 = Orange
-			Color.FromArgb(219,195,32),  // 0x05 = Yellow
-			Color.FromArgb(113,178,28),  // 0x06 = Green
-			Color.FromArgb(89,89,81),    // 0x07 = Black
-			Color.FromArgb(150,109,73),  // 0x08 = Brown
-			Color.FromArgb(101,113,239), // 0x09 = Blue
-			Color.FromArgb(239,60,60),   // 0x0A = Red
-			Color.FromArgb(56,146,146),  // 0x0B = Teal
-			Color.FromArgb(81,65,178),   // 0x0C = Purplish-blue, not normally selectable
+			// 0x00 = Navy Blue
+			{
+				0,
+				new Color[8]
+				{
+					Color.FromArgb(0,0,44),
+					Color.FromArgb(0,0,52),
+					Color.FromArgb(4,4,60),
+					Color.FromArgb(4,4,68),
+					Color.FromArgb(12,12,80),
+					Color.FromArgb(20,20,89),
+					Color.FromArgb(28,28,97),
+					Color.FromArgb(36,36,109)
+				}
+			},
+
+			// 0x01 = Dark Red
+			{
+				1,
+				new Color[8]
+				{
+					Color.FromArgb(68,16,16),
+					Color.FromArgb(97,16,16),
+					Color.FromArgb(125,32,32),
+					Color.FromArgb(165,40,40),
+					Color.FromArgb(210,60,60),
+					Color.FromArgb(222,85,85),
+					Color.FromArgb(238,113,113),
+					Color.FromArgb(255,145,145)
+				}
+			},
+
+			// 0x02 = Dark Green
+			{
+				2,
+				new Color[8]
+				{
+					Color.FromArgb(8,48,16),
+					Color.FromArgb(16,72,24),
+					Color.FromArgb(28,101,40),
+					Color.FromArgb(44,125,52),
+					Color.FromArgb(60,153,68),
+					Color.FromArgb(85,178,85),
+					Color.FromArgb(105,206,105),
+					Color.FromArgb(137,234,133)
+				}
+			},
+
+			// 0x03 = Purple
+			{
+				3,
+				new Color[8]
+				{
+					Color.FromArgb(36,0,64),
+					Color.FromArgb(60,0,101),
+					Color.FromArgb(85,8,137),
+					Color.FromArgb(113,20,174),
+					Color.FromArgb(137,40,194),
+					Color.FromArgb(161,68,214),
+					Color.FromArgb(190,97,234),
+					Color.FromArgb(218,133,255)
+				}
+			},
+
+			// 0x04 = Orange
+			{
+				4,
+				new Color[8]
+				{
+					Color.FromArgb(109,48,0),
+					Color.FromArgb(157,76,4),
+					Color.FromArgb(206,105,8),
+					Color.FromArgb(255,141,24),
+					Color.FromArgb(255,157,52),
+					Color.FromArgb(255,178,80),
+					Color.FromArgb(255,194,109),
+					Color.FromArgb(255,210,141)
+				}
+			},
+
+			// 0x05 = Yellow
+			{
+				5,
+				new Color[8]
+				{
+					Color.FromArgb(113,76,12),
+					Color.FromArgb(137,101,16),
+					Color.FromArgb(165,129,20),
+					Color.FromArgb(190,161,24),
+					Color.FromArgb(218,194,32),
+					Color.FromArgb(246,230,36),
+					Color.FromArgb(250,234,89),
+					Color.FromArgb(255,242,149)
+				}
+			},
+
+			// 0x06 = Green
+			{
+				6,
+				new Color[8]
+				{
+					Color.FromArgb(48,80,16),
+					Color.FromArgb(60,105,20),
+					Color.FromArgb(76,129,24),
+					Color.FromArgb(97,153,24),
+					Color.FromArgb(113,178,28),
+					Color.FromArgb(137,202,60),
+					Color.FromArgb(170,226,101),
+					Color.FromArgb(206,255,153)
+				}
+			},
+
+			// 0x07 = Black
+			{
+				7,
+				new Color[8]
+				{
+					Color.FromArgb(0,0,0),
+					Color.FromArgb(20,20,16),
+					Color.FromArgb(44,44,40),
+					Color.FromArgb(64,64,60),
+					Color.FromArgb(89,89,80),
+					Color.FromArgb(113,113,105),
+					Color.FromArgb(137,137,125),
+					Color.FromArgb(161,161,149)
+				}
+			},
+
+			// 0x08 = Brown
+			{
+				8,
+				new Color[8]
+				{
+					Color.FromArgb(52,36,20),
+					Color.FromArgb(76,52,28),
+					Color.FromArgb(101,72,44),
+					Color.FromArgb(129,93,56),
+					Color.FromArgb(149,109,72),
+					Color.FromArgb(170,129,93),
+					Color.FromArgb(190,149,113),
+					Color.FromArgb(210,174,137)
+				}
+			},
+
+			// 0x09 = Blue
+			{
+				9,
+				new Color[8]
+				{
+					Color.FromArgb(0,44,105),
+					Color.FromArgb(12,56,145),
+					Color.FromArgb(40,72,190),
+					Color.FromArgb(80,97,234),
+					Color.FromArgb(101,113,238),
+					Color.FromArgb(121,129,242),
+					Color.FromArgb(145,149,246),
+					Color.FromArgb(170,170,255)
+				}
+			},
+
+			// 0x0A = Red
+			{
+				10,
+				new Color[8]
+				{
+					Color.FromArgb(113,0,0),
+					Color.FromArgb(153,4,4),
+					Color.FromArgb(194,16,16),
+					Color.FromArgb(234,36,36),
+					Color.FromArgb(238,60,60),
+					Color.FromArgb(242,89,89),
+					Color.FromArgb(246,117,117),
+					Color.FromArgb(255,149,149)
+				}
+			},
+
+			// 0x0B = Teal
+			{
+				11,
+				new Color[8]
+				{
+					Color.FromArgb(0,64,64),
+					Color.FromArgb(12,85,85),
+					Color.FromArgb(28,105,105),
+					Color.FromArgb(40,125,125),
+					Color.FromArgb(56,145,145),
+					Color.FromArgb(64,153,153),
+					Color.FromArgb(72,165,165),
+					Color.FromArgb(80,178,178)
+				}
+			}
 		};
 
-		// todo: full cap/trim color database using Dictionary<int, Color[]>
+		/// <summary>
+		/// Cap and Trim colors for teams in Legends leagues.
+		/// </summary>
+		public static Dictionary<int, Color[]> CapTrimColors_Legends = new Dictionary<int, Color[]>()
+		{
+			// Note: everything beyond this point is used for Legends league teams.
+			// you can still use them in MLBPA league types by starting from 0x0C.
+
+			// 0x00 (0x0C for MLBPA teams) = Purplish-blue
+			// this is the only significantly different palette in the Legends league type
+			{
+				0,
+				new Color[8]
+				{
+					Color.FromArgb(16,16,68),
+					Color.FromArgb(32,24,97),
+					Color.FromArgb(52,32,125),
+					Color.FromArgb(76,44,153),
+					Color.FromArgb(80,64,178),
+					Color.FromArgb(97,101,202),
+					Color.FromArgb(129,149,226),
+					Color.FromArgb(165,202,255)
+				}
+			},
+
+			// todo: there are another 11 sets of colors after these.
+		};
 	}
 }

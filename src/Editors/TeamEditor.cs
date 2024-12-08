@@ -90,8 +90,10 @@ namespace HB5Tool
 
 			nudHatColor.Value = TeamDataExp.CapColor;
 			nudTrimColor.Value = TeamDataExp.TrimColor;
-			pHatColor.BackColor = DefaultData.CapTrimColors[TeamDataExp.CapColor];
-			pTrimColor.BackColor = DefaultData.CapTrimColors[TeamDataExp.TrimColor];
+
+			// xxx: assumes MLBPA colors, doesn't handle using 0xC and higher in MLBPA teams
+			pHatColor.BackColor = DefaultData.CapTrimColors_MLBPA[TeamDataExp.CapColor][4];
+			pTrimColor.BackColor = DefaultData.CapTrimColors_MLBPA[TeamDataExp.TrimColor][4];
 
 			// transparency hack; avoids modifying TeamLogo's bitmap
 			Bitmap tempLogo = (Bitmap)TeamDataExp.Logo.LogoBitmap.Clone();
@@ -190,12 +192,12 @@ namespace HB5Tool
 
 		private void nudHatColor_ValueChanged(object sender, EventArgs e)
 		{
-			pHatColor.BackColor = DefaultData.CapTrimColors[TeamDataExp.CapColor];
+			pHatColor.BackColor = DefaultData.CapTrimColors_MLBPA[TeamDataExp.CapColor][4];
 		}
 
 		private void nudTrimColor_ValueChanged(object sender, EventArgs e)
 		{
-			pTrimColor.BackColor = DefaultData.CapTrimColors[TeamDataExp.TrimColor];
+			pTrimColor.BackColor = DefaultData.CapTrimColors_MLBPA[TeamDataExp.TrimColor][4];
 		}
 	}
 }
