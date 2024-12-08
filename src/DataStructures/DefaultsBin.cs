@@ -11,6 +11,7 @@ namespace HB5Tool
 	/// </summary>
 	public class DefaultsBin
 	{
+		#region Constants
 		/// <summary>
 		/// Maximum length of path to current league file.
 		/// </summary>
@@ -45,6 +46,7 @@ namespace HB5Tool
 		/// Maximum possible score for Home Run Derby in 20 pitch mode.
 		/// </summary>
 		public static readonly int HOME_RUN_DERBY_MAX_SCORE_20_PITCHES = 20000;
+		#endregion
 
 		/// <summary>
 		/// Path to currently active league file.
