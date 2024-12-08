@@ -13,14 +13,19 @@ namespace HB5Tool
 	public partial class ProgOptionsDialog : Form
 	{
 		/// <summary>
-		/// Path to HardBall 5 installation
+		/// Path to HardBall 5 installation.
 		/// </summary>
 		public string Hb5InstallPath;
 
 		/// <summary>
-		/// Path to a league to load as an override
+		/// Path to a league to load as an override.
 		/// </summary>
 		public string LeagueOverridePath;
+
+		/// <summary>
+		/// Path to default PICS.BIN to use.
+		/// </summary>
+		public string DefaultPicsBinPath;
 
 		public ProgOptionsDialog()
 		{
@@ -28,6 +33,9 @@ namespace HB5Tool
 
 			Hb5InstallPath = Properties.Settings.Default.HB5InstallDir;
 			tbHb5DataPath.Text = Hb5InstallPath;
+
+			DefaultPicsBinPath = Properties.Settings.Default.DefaultPicsBinPath;
+			tbPicsBinPath.Text = DefaultPicsBinPath;
 
 			LeagueOverridePath = Properties.Settings.Default.LeagueOverridePath;
 			tbOverrideDefaultLeague.Text = LeagueOverridePath;
@@ -38,6 +46,7 @@ namespace HB5Tool
 
 		private void btnOK_Click(object sender, EventArgs e)
 		{
+			#region HB5 Install Path
 			// make sure it's a valid path; empty is valid
 			if (!tbHb5DataPath.Text.Equals(string.Empty))
 			{
@@ -48,6 +57,19 @@ namespace HB5Tool
 				}
 			}
 			Hb5InstallPath = tbHb5DataPath.Text;
+			#endregion
+
+			#region Default PICS.BIN
+			if (!tbPicsBinPath.Text.Equals(string.Empty))
+			{
+				if (!File.Exists(Path.GetDirectoryName(tbPicsBinPath.Text)))
+				{
+					MessageBox.Show("If setting a default PICS.BIN, it must exist.", "HB5Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
+				}
+			}
+			DefaultPicsBinPath = tbPicsBinPath.Text;
+			#endregion
 
 			// todo: handle das bullshitten
 			if (cbOverrideDefaultLeague.Checked)
@@ -106,6 +128,23 @@ namespace HB5Tool
 		{
 			tbOverrideDefaultLeague.Enabled = cbOverrideDefaultLeague.Checked;
 			btnOpenLeaguePath.Enabled = cbOverrideDefaultLeague.Checked;
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void btnOpenPicsPath_Click(object sender, EventArgs e)
+		{
+			// open a file
+			OpenFileDialog ofd = new OpenFileDialog();
+			ofd.Title = "Set Default PICS.BIN";
+			ofd.Filter = SharedStrings.AllFilter;
+			if (ofd.ShowDialog() == DialogResult.OK)
+			{
+				tbPicsBinPath.Text = Path.GetFullPath(ofd.FileName);
+			}
 		}
 	}
 }

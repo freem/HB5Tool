@@ -524,6 +524,7 @@ namespace HB5Tool
 			{
 				Properties.Settings.Default.HB5InstallDir = pod.Hb5InstallPath;
 				Properties.Settings.Default.LeagueOverridePath = pod.LeagueOverridePath;
+				Properties.Settings.Default.DefaultPicsBinPath = pod.DefaultPicsBinPath;
 				Properties.Settings.Default.Save();
 			}
 		}
