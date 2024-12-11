@@ -426,7 +426,7 @@ namespace HB5Tool
 				Stats_Season = new List<PlayerStats>();
 				for (int i = 0; i < NumPlayers; i++)
 				{
-					Stats_Season.Add(new PlayerStats(br));
+					Stats_Season.Add(new PlayerStats(br, PlayerStatsType.Season));
 				}
 
 				// player weekly stats
@@ -434,7 +434,7 @@ namespace HB5Tool
 				Stats_Weekly = new List<PlayerStats>();
 				for (int i = 0; i < NumPlayers; i++)
 				{
-					Stats_Weekly.Add(new PlayerStats(br));
+					Stats_Weekly.Add(new PlayerStats(br, PlayerStatsType.Week));
 				}
 
 				// player lifetime stats
@@ -442,7 +442,7 @@ namespace HB5Tool
 				Stats_Lifetime = new List<PlayerStats>();
 				for (int i = 0; i < NumPlayers; i++)
 				{
-					Stats_Lifetime.Add(new PlayerStats(br));
+					Stats_Lifetime.Add(new PlayerStats(br, PlayerStatsType.Lifetime));
 				}
 
 				// schedule data

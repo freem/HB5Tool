@@ -7,6 +7,38 @@ using System.Threading.Tasks;
 namespace HB5Tool
 {
 	/// <summary>
+	/// Player Stats type.
+	/// This is a program-specific value, not used by the game.
+	/// </summary>
+	public enum PlayerStatsType
+	{
+		/// <summary>
+		/// Historical (anything before the first played season)
+		/// </summary>
+		Historical = 0,
+
+		/// <summary>
+		/// Weekly stats.
+		/// </summary>
+		Week,
+
+		/// <summary>
+		/// Season statistics.
+		/// </summary>
+		Season,
+
+		/// <summary>
+		/// Lifetime statistics (culmination of all played seasons)
+		/// </summary>
+		Lifetime,
+
+		/// <summary>
+		/// Current game statistics.
+		/// </summary>
+		Game
+	};
+
+	/// <summary>
 	/// Player statistics. 0x166 bytes in total.
 	/// </summary>
 	public class PlayerStats
@@ -16,6 +48,13 @@ namespace HB5Tool
 		/// </summary>
 		public static readonly int PLAYER_STATS_LENGTH = 0x166;
 
+		/// <summary>
+		/// Stats "type" associated with these values.
+		/// </summary>
+		public PlayerStatsType StatsType;
+
+		// "playr" refers to .BTR/.PIT offsets
+		// "stats" refers to the proper index
 		// playr/stats bt/pi
 		// --------------------------------------------
 		// 0x030/0x000 [B/P] G   - Games Played
@@ -74,14 +113,16 @@ namespace HB5Tool
 		public PlayerStats()
 		{
 			StatsData = null;
+			StatsType = PlayerStatsType.Historical;
 		}
 
 		/// <summary>
 		/// Constructor using a BinaryReader.
 		/// </summary>
 		/// <param name="br">BinaryReader instance to use.</param>
-		public PlayerStats(BinaryReader br)
+		public PlayerStats(BinaryReader br, PlayerStatsType _type = PlayerStatsType.Historical)
 		{
+			StatsType = _type;
 			ReadData(br);
 		}
 		#endregion
