@@ -13,23 +13,33 @@ namespace HB5Tool
 	public enum PlayerStatsType
 	{
 		/// <summary>
-		/// Historical (anything before the first played season)
+		/// Historical stats.
 		/// </summary>
+		/// HardBall 5 manual:
+		/// "1994 performance statistics for the MLBPA League and
+		/// performance statistics based on the team year listed in
+		/// the Legend League. (i.e. 1929 Yankees)."
 		Historical = 0,
 
 		/// <summary>
 		/// Weekly stats.
 		/// </summary>
+		/// HardBall 5 manual:
+		/// "The cumulative week’s totals for an individual in regular and post season play."
 		Week,
 
 		/// <summary>
 		/// Season statistics.
 		/// </summary>
+		/// HardBall 5 manual:
+		/// "The cumulative season-to-date totals for an individual, not including post season play."
 		Season,
 
 		/// <summary>
 		/// Lifetime statistics (culmination of all played seasons)
 		/// </summary>
+		/// HardBall 5 manual:
+		/// "The career totals from initial installation to date."
 		Lifetime,
 
 		/// <summary>
