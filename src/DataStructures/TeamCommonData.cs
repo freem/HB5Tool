@@ -154,11 +154,18 @@ namespace HB5Tool
 		public byte Unknown_70D;
 
 		// player type starts at 0x070E? 0x50 bytes maximum, each entry is 2 bytes
+		// todo: convert this to an array of UInt16
 		// team export files: lower byte is always 0x00; upper byte determines batter (0x01) or pitcher (0x02)?
-		// league files: each value is a player index
+
+		// league files: each value is a player index, with the most significant bit or two having other purposes
+		// Player ID high bytes:
+		// 0x8_ major league
+		// 0x0_ minor league
+
 		public byte[] PlayerIdent;
 
 		// todo: 0x75E-0x77B
+		// 0x768 start of "signed" players list? (league teams only)
 		public byte[] Unknown_75E;
 
 		// manager slider values, offset 0x77C
