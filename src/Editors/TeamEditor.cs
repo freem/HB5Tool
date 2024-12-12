@@ -61,7 +61,9 @@ namespace HB5Tool
 		public bool ChangesMade;
 
 		// temporary
-		public ExportTeam TeamDataExp;
+		//public ExportTeam TeamDataExp;
+
+		public TeamCommonData CommonData;
 		#endregion
 
 		public TeamEditor(TeamDataSources _src, string _filePath, int _idx = -1)
@@ -82,21 +84,21 @@ namespace HB5Tool
 			LoadData_TeamExport();
 
 			UpdateTitle();
-			tbTeamName.Text = TeamDataExp.Name;
-			tbTeamOwner.Text = TeamDataExp.Owner;
-			tbStadium.Text = string.Format("0x{0:X2} ({1})", TeamDataExp.Stadium, DefaultData.StadiumList[TeamDataExp.Stadium]);
-			tbStarPlayerIndex.Text = string.Format("0x{0:X2}", TeamDataExp.StarPlayer);
-			tbSummary.Text = TeamDataExp.Summary;
+			tbTeamName.Text = CommonData.Name;
+			tbTeamOwner.Text = CommonData.Owner;
+			tbStadium.Text = string.Format("0x{0:X2} ({1})", CommonData.Stadium, DefaultData.StadiumList[CommonData.Stadium]);
+			tbStarPlayerIndex.Text = string.Format("0x{0:X2}", CommonData.StarPlayer);
+			tbSummary.Text = CommonData.Summary;
 
-			nudHatColor.Value = TeamDataExp.CapColor;
-			nudTrimColor.Value = TeamDataExp.TrimColor;
+			nudHatColor.Value = CommonData.CapColor;
+			nudTrimColor.Value = CommonData.TrimColor;
 
 			// xxx: assumes MLBPA colors, doesn't handle using 0xC and higher in MLBPA teams
-			pHatColor.BackColor = DefaultData.CapTrimColors_MLBPA[TeamDataExp.CapColor][4];
-			pTrimColor.BackColor = DefaultData.CapTrimColors_MLBPA[TeamDataExp.TrimColor][4];
+			pHatColor.BackColor = DefaultData.CapTrimColors_MLBPA[CommonData.CapColor][4];
+			pTrimColor.BackColor = DefaultData.CapTrimColors_MLBPA[CommonData.TrimColor][4];
 
 			// transparency hack; avoids modifying TeamLogo's bitmap
-			Bitmap tempLogo = (Bitmap)TeamDataExp.Logo.LogoBitmap.Clone();
+			Bitmap tempLogo = (Bitmap)CommonData.Logo.LogoBitmap.Clone();
 
 			ColorPalette cpal = tempLogo.Palette;
 			cpal.Entries[0] = Color.FromArgb(0, 0, 0, 0);
@@ -105,20 +107,20 @@ namespace HB5Tool
 			pbLogo.Image = tempLogo;
 
 			StringBuilder sb = new StringBuilder();
-			sb.AppendLine(string.Format("Value at 0x50: 0x{0:X2}", TeamDataExp.Unknown_50));
+			sb.AppendLine(string.Format("Value at 0x50: 0x{0:X2}", CommonData.Unknown_50));
 			sb.AppendLine();
 
-			sb.AppendLine(string.Format("Number of Starting Pitchers: {0}", TeamDataExp.NumStartingPitchers));
+			sb.AppendLine(string.Format("Number of Starting Pitchers: {0}", CommonData.NumStartingPitchers));
 			sb.AppendLine();
 
 			sb.AppendLine("Slider Values:");
-			sb.AppendLine(string.Format("0x{0:X2} 0x{1:X2} 0x{2:X2} 0x{3:X2}", TeamDataExp.SliderValues[0], TeamDataExp.SliderValues[1], TeamDataExp.SliderValues[2], TeamDataExp.SliderValues[3]));
+			sb.AppendLine(string.Format("0x{0:X2} 0x{1:X2} 0x{2:X2} 0x{3:X2}", CommonData.SliderValues[0], CommonData.SliderValues[1], CommonData.SliderValues[2], CommonData.SliderValues[3]));
 			tbOutput.Text = sb.ToString();
 		}
 
 		private void UpdateTitle()
 		{
-			Text = string.Format("Team Editor{0} - {1}", ChangesMade ? "*" : "", TeamDataExp.Name);
+			Text = string.Format("Team Editor{0} - {1}", ChangesMade ? "*" : "", CommonData.Name);
 		}
 
 		private void LoadData_TeamExport()
@@ -127,7 +129,8 @@ namespace HB5Tool
 			{
 				using (BinaryReader br = new BinaryReader(fs))
 				{
-					TeamDataExp = new ExportTeam(br);
+					//TeamDataExp = new ExportTeam(br);
+					CommonData = new TeamCommonData(br);
 				}
 			}
 		}
@@ -173,7 +176,7 @@ namespace HB5Tool
 				{
 					using (BinaryWriter bw = new BinaryWriter(fs))
 					{
-						TeamDataExp.Logo.WriteData(bw);
+						CommonData.Logo.WriteData(bw);
 					}
 				}
 			}
@@ -186,18 +189,18 @@ namespace HB5Tool
 			sfd.Filter = string.Format("{0}|{1}", SharedStrings.PngFilter, SharedStrings.AllFilter);
 			if (sfd.ShowDialog() == DialogResult.OK)
 			{
-				TeamDataExp.Logo.ExportImage(sfd.FileName);
+				CommonData.Logo.ExportImage(sfd.FileName);
 			}
 		}
 
 		private void nudHatColor_ValueChanged(object sender, EventArgs e)
 		{
-			pHatColor.BackColor = DefaultData.CapTrimColors_MLBPA[TeamDataExp.CapColor][4];
+			pHatColor.BackColor = DefaultData.CapTrimColors_MLBPA[CommonData.CapColor][4];
 		}
 
 		private void nudTrimColor_ValueChanged(object sender, EventArgs e)
 		{
-			pTrimColor.BackColor = DefaultData.CapTrimColors_MLBPA[TeamDataExp.TrimColor][4];
+			pTrimColor.BackColor = DefaultData.CapTrimColors_MLBPA[CommonData.TrimColor][4];
 		}
 	}
 }
