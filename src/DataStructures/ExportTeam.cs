@@ -13,36 +13,6 @@ namespace HB5Tool
 	/// </summary>
 	public class ExportTeam
 	{
-		/// <summary>
-		/// Maximum team name length, not including null terminator.
-		/// </summary>
-		public static readonly int TEAM_NAME_LENGTH = 20;
-
-		/// <summary>
-		/// Maximum owner name length, not including null terminator.
-		/// </summary>
-		public static readonly int OWNER_NAME_LENGTH = 15;
-
-		/// <summary>
-		/// Maximum summary text length.
-		/// </summary>
-		public static readonly int SUMMARY_LENGTH = 160; // including null terminator
-
-		/// <summary>
-		/// Number of slots for batting order storage.
-		/// </summary>
-		public static readonly int BATTING_ORDER_LENGTH = 9;
-
-		/// <summary>
-		/// Number of slots for fielding position storage.
-		/// </summary>
-		public static readonly int FIELDING_POSITION_LENGTH = 10;
-
-		/// <summary>
-		/// Maximum allowed amount of starting pitchers.
-		/// </summary>
-		public static readonly int MAX_STARTING_PITCHERS = 6;
-
 		// player data is 0x194 bytes?
 
 		#region Class Members
@@ -235,15 +205,15 @@ namespace HB5Tool
 			TrimColor = br.ReadByte();
 
 			// batting order vs. RHP at 0x2A
-			BattingOrder_RHP = br.ReadBytes(BATTING_ORDER_LENGTH);
+			BattingOrder_RHP = br.ReadBytes(TeamCommonData.BATTING_ORDER_LENGTH);
 
 			// batting order vs. LHP at 0x33
-			BattingOrder_LHP = br.ReadBytes(BATTING_ORDER_LENGTH);
+			BattingOrder_LHP = br.ReadBytes(TeamCommonData.BATTING_ORDER_LENGTH);
 
 			// fielding positions vs. RHP at 0x3C
-			FieldingPositions_RHP = br.ReadBytes(FIELDING_POSITION_LENGTH);
+			FieldingPositions_RHP = br.ReadBytes(TeamCommonData.FIELDING_POSITION_LENGTH);
 			// fielding positions vs. LHP at 0x46
-			FieldingPositions_LHP = br.ReadBytes(FIELDING_POSITION_LENGTH);
+			FieldingPositions_LHP = br.ReadBytes(TeamCommonData.FIELDING_POSITION_LENGTH);
 
 			// whatever's at 0x50
 			Unknown_50 = br.ReadByte();

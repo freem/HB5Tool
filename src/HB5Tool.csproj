@@ -73,6 +73,7 @@
     <Compile Include="DataStructures\HmiSound.cs" />
     <Compile Include="DataStructures\ImageMsh.cs" />
     <Compile Include="DataStructures\InstVars.cs" />
+    <Compile Include="DataStructures\LeagueTeam.cs" />
     <Compile Include="DataStructures\MgsFile.cs" />
     <Compile Include="DataStructures\PicsBin.cs" />
     <Compile Include="DataStructures\PitcherData.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="DataStructures\PlayerStats.cs" />
     <Compile Include="DataStructures\ScheduleFile.cs" />
     <Compile Include="DataStructures\StadiumInfo.cs" />
+    <Compile Include="DataStructures\TeamCommonData.cs" />
     <Compile Include="DataStructures\TeamLogo.cs" />
     <Compile Include="DataStructures\WordsBin.cs" />
     <Compile Include="Dialogs\AboutBox.cs">
