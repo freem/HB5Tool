@@ -69,6 +69,23 @@ namespace HB5Tool
 		public ExportPlayer PlayerDataExp;
 		#endregion
 
+		/*
+		public PlayerEditor(BatterData _btr, PlayerStats _stats)
+		{
+			CommonInit();
+		}
+
+		public PlayerEditor(PitcherData _pit, PlayerStats _stats)
+		{
+			CommonInit();
+		}
+
+		private void CommonInit()
+		{
+			InitializeComponent();
+		}
+		*/
+
 		/// <summary>
 		/// 
 		/// </summary>

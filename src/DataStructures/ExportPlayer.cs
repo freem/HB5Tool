@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace HB5Tool
 {
 	// This class, in its current existence, is deprecated.
-	// todo: rewrite the bulk of this as a new class that doesn't assume we're loading .BTR/.PIT exports
+	// todo: rewrite this to work with the new split data formats
 
 	/// <summary>
 	/// Possible exported player types.
@@ -26,16 +26,20 @@ namespace HB5Tool
 	/// </summary>
 	public class ExportPlayer
 	{
-		/// <summary>
-		/// Maximum player name length.
-		/// </summary>
-		public static readonly int PLAYER_NAME_LENGTH = 16;
-
 		#region Class Members
 		/// <summary>
-		/// Batter or Pitcher
+		/// Batter or Pitcher.
 		/// </summary>
 		public PlayerTypes PlayerType;
+
+		//public BatterData Batter;
+
+		//public PitcherData Pitcher;
+
+		// [Batter only] unused values at 0x2A-0x2C
+		// [Batter and Pitcher] unused values at 0x2D-0x2F
+
+		//public PlayerStats Stats;
 
 		#region Shared between Batters and Pitchers
 		/// <summary>
@@ -394,6 +398,39 @@ namespace HB5Tool
 		#endregion
 
 		/// <summary>
+		/// Read data from a player export file (.BTR/.PIT) using a BinaryReader.
+		/// </summary>
+		/// <param name="br">BinaryReader instance to use.</param>
+		public void ReadPlayerExportFile(BinaryReader br)
+		{
+			// offset 0 = type
+			PlayerType = (PlayerTypes)br.ReadByte();
+
+			// offset 1 must be 0x00, otherwise this won't work in-game
+			// todo: actually check this value instead of ignoring it
+			br.ReadByte();
+
+			/*
+			if (PlayerType == PlayerTypes.Batter)
+			{
+				Batter = new BatterData(br);
+				Pitcher = null;
+				// skip offsets 0x2A-0x2F
+			}
+			else if (PlayerType == PlayerTypes.Pitcher)
+			{
+				Pitcher = new PitcherData(br);
+				Batter = null;
+				// skip offsets 0x2D-0x2F
+			}
+			else
+			{
+				// neither a batter nor pitcher, so invalid
+			}
+			*/
+		}
+
+		/// <summary>
 		/// Read exported player data with a BinaryReader.
 		/// </summary>
 		/// <param name="br">BinaryReader instance to use.</param>
@@ -431,7 +468,7 @@ namespace HB5Tool
 
 			// offset 6: start of player name (16 chars max)
 			bool nameFinished = false;
-			for (int i = 0; i < PLAYER_NAME_LENGTH; i++)
+			for (int i = 0; i < PlayerCommonData.PLAYER_NAME_LENGTH; i++)
 			{
 				char c = (char)br.ReadByte();
 
