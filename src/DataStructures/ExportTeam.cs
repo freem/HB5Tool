@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HB5Tool
 {
-	// todo: rewrite the bulk of this as a new class that doesn't assume we're loading .HB5 exports
+	// todo: update this class to use TeamCommonData with .HB5 exports
 
 	/// <summary>
 	/// Exported Hardball 5 team (*.hb5)
