@@ -60,9 +60,6 @@ namespace HB5Tool
 		/// </summary>
 		public bool ChangesMade;
 
-		// temporary
-		//public ExportTeam TeamDataExp;
-
 		public TeamCommonData CommonData;
 		#endregion
 
@@ -113,6 +110,23 @@ namespace HB5Tool
 			sb.AppendLine(string.Format("Number of Starting Pitchers: {0}", CommonData.NumStartingPitchers));
 			sb.AppendLine();
 
+			sb.AppendLine("Unknown_5A values:");
+			foreach (byte b in CommonData.Unknown_5A)
+			{
+				sb.Append(string.Format("0x{0:X2} ", b));
+			}
+			sb.AppendLine(Environment.NewLine);
+
+			sb.AppendLine(string.Format("Value at 0x070D: 0x{0:X2}", CommonData.Unknown_70D));
+			sb.AppendLine();
+
+			sb.AppendLine("Unknown_75E values:");
+			foreach (byte b in CommonData.Unknown_75E)
+			{
+				sb.Append(string.Format("0x{0:X2} ", b));
+			}
+			sb.AppendLine(Environment.NewLine);
+
 			sb.AppendLine("Slider Values:");
 			sb.AppendLine(string.Format("0x{0:X2} 0x{1:X2} 0x{2:X2} 0x{3:X2}", CommonData.SliderValues[0], CommonData.SliderValues[1], CommonData.SliderValues[2], CommonData.SliderValues[3]));
 			tbOutput.Text = sb.ToString();
@@ -129,7 +143,6 @@ namespace HB5Tool
 			{
 				using (BinaryReader br = new BinaryReader(fs))
 				{
-					//TeamDataExp = new ExportTeam(br);
 					CommonData = new TeamCommonData(br);
 				}
 			}

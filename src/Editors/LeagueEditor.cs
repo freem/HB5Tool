@@ -74,7 +74,7 @@ namespace HB5Tool
 			sb.AppendLine();
 			for (int i = 0; i < CurLeague.Teams.Count; i++)
 			{
-				sb.AppendLine(string.Format("Team {0}: {1}", i, CurLeague.Teams[i].Name));
+				sb.AppendLine(string.Format("Team {0}: {1}", i, CurLeague.Teams[i].CommonData.Name));
 			}
 
 			tbLeagueInfo.Text = sb.ToString();
@@ -111,7 +111,7 @@ namespace HB5Tool
 			lbTeams.BeginUpdate();
 			for (int i = 0; i < CurLeague.Teams.Count; i++)
 			{
-				lbTeams.Items.Add(CurLeague.Teams[i].Name);
+				lbTeams.Items.Add(CurLeague.Teams[i].CommonData.Name);
 			}
 			lbTeams.EndUpdate();
 
@@ -208,7 +208,7 @@ namespace HB5Tool
 				{
 					using (BinaryWriter bw = new BinaryWriter(fs))
 					{
-						CurLeague.Teams[lbTeams.SelectedIndex].Logo.WriteData(bw);
+						CurLeague.Teams[lbTeams.SelectedIndex].CommonData.Logo.WriteData(bw);
 					}
 				}
 			}
@@ -221,7 +221,7 @@ namespace HB5Tool
 			sfd.Filter = string.Format("{0}|{1}", SharedStrings.PngFilter, SharedStrings.AllFilter);
 			if (sfd.ShowDialog() == DialogResult.OK)
 			{
-				CurLeague.Teams[lbTeams.SelectedIndex].Logo.ExportImage(sfd.FileName);
+				CurLeague.Teams[lbTeams.SelectedIndex].CommonData.Logo.ExportImage(sfd.FileName);
 			}
 		}
 
@@ -233,10 +233,10 @@ namespace HB5Tool
 				return;
 			}
 
-			ExportTeam CurTeam = CurLeague.Teams[lbTeams.SelectedIndex];
+			LeagueTeam CurTeam = CurLeague.Teams[lbTeams.SelectedIndex];
 
 			// transparency hack; avoids modifying TeamLogo's bitmap
-			Bitmap tempLogo = (Bitmap)CurTeam.Logo.LogoBitmap.Clone();
+			Bitmap tempLogo = (Bitmap)CurTeam.CommonData.Logo.LogoBitmap.Clone();
 
 			ColorPalette cpal = tempLogo.Palette;
 			cpal.Entries[0] = Color.FromArgb(0, 0, 0, 0);
@@ -245,43 +245,43 @@ namespace HB5Tool
 			pbLogo.Image = tempLogo;
 
 			// xxx: assumes MLBPA colors, doesn't handle using 0xC and higher in MLBPA teams
-			pHatColor.BackColor = DefaultData.CapTrimColors_MLBPA[CurTeam.CapColor][4];
-			pTrimColor.BackColor = DefaultData.CapTrimColors_MLBPA[CurTeam.TrimColor][4];
+			pHatColor.BackColor = DefaultData.CapTrimColors_MLBPA[CurTeam.CommonData.CapColor][4];
+			pTrimColor.BackColor = DefaultData.CapTrimColors_MLBPA[CurTeam.CommonData.TrimColor][4];
 
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine("[Batting Orders]");
 			sb.Append("vs. RHP: ");
-			for (int i = 0; i < CurTeam.BattingOrder_RHP.Length; i++)
+			for (int i = 0; i < CurTeam.CommonData.BattingOrder_RHP.Length; i++)
 			{
-				sb.Append(string.Format("0x{0:X2} ", CurTeam.BattingOrder_RHP[i]));
+				sb.Append(string.Format("0x{0:X2} ", CurTeam.CommonData.BattingOrder_RHP[i]));
 			}
 			sb.AppendLine();
 
 			sb.Append("vs. LHP: ");
-			for (int i = 0; i < CurTeam.BattingOrder_LHP.Length; i++)
+			for (int i = 0; i < CurTeam.CommonData.BattingOrder_LHP.Length; i++)
 			{
-				sb.Append(string.Format("0x{0:X2} ", CurTeam.BattingOrder_LHP[i]));
+				sb.Append(string.Format("0x{0:X2} ", CurTeam.CommonData.BattingOrder_LHP[i]));
 			}
 			sb.AppendLine();
 			sb.AppendLine();
 
 			sb.AppendLine("[Fielding Positions]");
 			sb.Append("vs. RHP: ");
-			for (int i = 0; i < CurTeam.FieldingPositions_RHP.Length; i++)
+			for (int i = 0; i < CurTeam.CommonData.FieldingPositions_RHP.Length; i++)
 			{
-				sb.Append(string.Format("0x{0:X2} ", CurTeam.FieldingPositions_RHP[i]));
+				sb.Append(string.Format("0x{0:X2} ", CurTeam.CommonData.FieldingPositions_RHP[i]));
 			}
 			sb.AppendLine();
 
 			sb.Append("vs. LHP: ");
-			for (int i = 0; i < CurTeam.FieldingPositions_LHP.Length; i++)
+			for (int i = 0; i < CurTeam.CommonData.FieldingPositions_LHP.Length; i++)
 			{
-				sb.Append(string.Format("0x{0:X2} ", CurTeam.FieldingPositions_LHP[i]));
+				sb.Append(string.Format("0x{0:X2} ", CurTeam.CommonData.FieldingPositions_LHP[i]));
 			}
 			sb.AppendLine();
 			sb.AppendLine();
 
-			sb.AppendLine(string.Format("Number of Pitchers in Starting Rotation: {0}", CurTeam.NumStartingPitchers));
+			sb.AppendLine(string.Format("Number of Pitchers in Starting Rotation: {0}", CurTeam.CommonData.NumStartingPitchers));
 
 			tbTeamOutput.Text = sb.ToString();
 		}

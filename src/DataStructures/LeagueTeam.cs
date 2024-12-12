@@ -20,11 +20,29 @@ namespace HB5Tool
 
 		// the players themselves are found elsewhere in the league file.
 
+		#region Constructors
+		/// <summary>
+		/// Default constructor.
+		/// </summary>
 		public LeagueTeam()
 		{
 			CommonData = new TeamCommonData();
 		}
 
+		/// <summary>
+		/// Constructor using a BinaryReader.
+		/// </summary>
+		/// <param name="br">BinaryReader instance to use.</param>
+		public LeagueTeam(BinaryReader br)
+		{
+			ReadData(br);
+		}
+		#endregion
+
+		/// <summary>
+		/// Read data using a BinaryReader.
+		/// </summary>
+		/// <param name="br">BinaryReader instance to use.</param>
 		public void ReadData(BinaryReader br)
 		{
 			CommonData = new TeamCommonData(br);
