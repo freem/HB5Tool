@@ -19,6 +19,11 @@ namespace HB5Tool
 		public event EventHandler CloseFormCallback;
 
 		/// <summary>
+		/// Performs housekeeping cleanup for ActiveLeagueEditors in MainForm.
+		/// </summary>
+		public event EventHandler LeagueEditorFormCloseCallback;
+
+		/// <summary>
 		/// Path to League file.
 		/// </summary>
 		public string FilePath;
@@ -189,11 +194,13 @@ namespace HB5Tool
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Close();
+			LeagueEditorFormCloseCallback?.Invoke(this, e);
 			CloseFormCallback?.Invoke(this, e);
 		}
 
 		private void LeagueEditor_FormClosed(object sender, FormClosedEventArgs e)
 		{
+			LeagueEditorFormCloseCallback?.Invoke(this, e);
 			CloseFormCallback?.Invoke(this, e);
 		}
 
@@ -262,8 +269,7 @@ namespace HB5Tool
 			{
 				sb.Append(string.Format("0x{0:X2} ", CurTeam.CommonData.BattingOrder_LHP[i]));
 			}
-			sb.AppendLine();
-			sb.AppendLine();
+			sb.AppendLine(Environment.NewLine);
 
 			sb.AppendLine("[Fielding Positions]");
 			sb.Append("vs. RHP: ");
@@ -278,10 +284,37 @@ namespace HB5Tool
 			{
 				sb.Append(string.Format("0x{0:X2} ", CurTeam.CommonData.FieldingPositions_LHP[i]));
 			}
-			sb.AppendLine();
-			sb.AppendLine();
+			sb.AppendLine(Environment.NewLine);
 
 			sb.AppendLine(string.Format("Number of Pitchers in Starting Rotation: {0}", CurTeam.CommonData.NumStartingPitchers));
+			sb.AppendLine();
+
+			sb.AppendLine("Unknown_5A values:");
+			foreach (byte b in CurTeam.CommonData.Unknown_5A)
+			{
+				sb.Append(string.Format("{0:X2} ", b));
+			}
+			sb.AppendLine(Environment.NewLine);
+
+			sb.AppendLine("PlayerIdent values:");
+			int spaceCount = 0;
+			foreach (byte b in CurTeam.CommonData.PlayerIdent)
+			{
+				sb.Append(string.Format("{0:X2}",b));
+				++spaceCount;
+				if (spaceCount % 2 == 0)
+				{
+					sb.Append(" ");
+				}
+			}
+			sb.AppendLine(Environment.NewLine);
+
+			sb.AppendLine("Unknown_75E values:");
+			foreach (byte b in CurTeam.CommonData.Unknown_75E)
+			{
+				sb.Append(string.Format("{0:X2} ", b));
+			}
+			sb.AppendLine(Environment.NewLine);
 
 			tbTeamOutput.Text = sb.ToString();
 		}

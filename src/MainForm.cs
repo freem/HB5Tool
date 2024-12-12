@@ -12,10 +12,18 @@ namespace HB5Tool
 {
 	public partial class MainForm : Form
 	{
+		/// <summary>
+		/// Active League Editors.
+		/// Key = full path to file
+		/// Value = editor form for specified file
+		/// </summary>
+		protected Dictionary<string, LeagueEditor> ActiveLeagueEditors;
+
 		public MainForm()
 		{
 			InitializeComponent();
 			UpdateWindowMenu();
+			ActiveLeagueEditors = new Dictionary<string, LeagueEditor>();
 		}
 
 		public void UpdateWindowMenu()
@@ -102,12 +110,25 @@ namespace HB5Tool
 
 						if (hb5League)
 						{
-							LeagueEditor lEd = new LeagueEditor(_filePath);
-							lEd.MdiParent = this;
-							lEd.CloseFormCallback += MdiChild_CloseFormCallback;
-							lEd.Show();
-							UpdateWindowMenu();
-							openSuccessful = true;
+							// check if this league has already been opened.
+							if (ActiveLeagueEditors.ContainsKey(Path.GetFullPath(_filePath)))
+							{
+								// make the corresponding form the active and topmost
+								ActiveLeagueEditors[Path.GetFullPath(_filePath)].BringToFront();
+								ActiveLeagueEditors[Path.GetFullPath(_filePath)].Activate();
+								openSuccessful = true; // tell program to shut up
+							}
+							else
+							{
+								LeagueEditor lEd = new LeagueEditor(_filePath);
+								lEd.MdiParent = this;
+								lEd.CloseFormCallback += MdiChild_CloseFormCallback;
+								lEd.CloseFormCallback += LeagueEditor_CloseFormCallback;
+								ActiveLeagueEditors.Add(Path.GetFullPath(_filePath), lEd);
+								lEd.Show();
+								UpdateWindowMenu();
+								openSuccessful = true;
+							}
 						}
 						else
 						{
@@ -503,6 +524,16 @@ namespace HB5Tool
 			{
 				UpdateWindowMenu();
 			}
+		}
+
+		/// <summary>
+		/// League Editor-specific form closing callback.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void LeagueEditor_CloseFormCallback(object sender, EventArgs e)
+		{
+			ActiveLeagueEditors.Remove(Path.GetFullPath(((LeagueEditor)sender).FilePath));
 		}
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
