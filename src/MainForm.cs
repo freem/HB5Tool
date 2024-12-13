@@ -110,12 +110,14 @@ namespace HB5Tool
 
 						if (hb5League)
 						{
+							string lgdFullPath = Path.GetFullPath(_filePath);
+
 							// check if this league has already been opened.
-							if (ActiveLeagueEditors.ContainsKey(Path.GetFullPath(_filePath)))
+							if (ActiveLeagueEditors.ContainsKey(lgdFullPath))
 							{
 								// make the corresponding form the active and topmost
-								ActiveLeagueEditors[Path.GetFullPath(_filePath)].BringToFront();
-								ActiveLeagueEditors[Path.GetFullPath(_filePath)].Activate();
+								ActiveLeagueEditors[lgdFullPath].BringToFront();
+								ActiveLeagueEditors[lgdFullPath].Activate();
 								openSuccessful = true; // tell program to shut up
 							}
 							else
@@ -124,7 +126,7 @@ namespace HB5Tool
 								lEd.MdiParent = this;
 								lEd.CloseFormCallback += MdiChild_CloseFormCallback;
 								lEd.CloseFormCallback += LeagueEditor_CloseFormCallback;
-								ActiveLeagueEditors.Add(Path.GetFullPath(_filePath), lEd);
+								ActiveLeagueEditors.Add(lgdFullPath, lEd);
 								lEd.Show();
 								UpdateWindowMenu();
 								openSuccessful = true;
