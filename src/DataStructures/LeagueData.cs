@@ -387,6 +387,8 @@ namespace HB5Tool
 				NumPlayers = BitConverter.ToInt16(br.ReadBytes(2),0);
 				NumBatters = BitConverter.ToInt16(br.ReadBytes(2),0);
 
+				// todo: start player databases at 1
+
 				// batters
 				BatterDatabase = new Dictionary<int,BatterData>();
 				for (int i = 0; i < NumBatters; i++)
