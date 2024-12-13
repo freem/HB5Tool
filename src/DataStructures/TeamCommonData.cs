@@ -45,7 +45,7 @@ namespace HB5Tool
 		/// <summary>
 		/// Maximum amount of roster data.
 		/// </summary>
-		public static readonly int ROSTER_DATA_LENGTH = 40 * 2;
+		public static readonly int ROSTER_DATA_LENGTH = 40;
 		#endregion
 
 		#region Class Members
@@ -154,15 +154,14 @@ namespace HB5Tool
 		public byte Unknown_70D;
 
 		// player type starts at 0x070E? 0x50 bytes maximum, each entry is 2 bytes
-		// todo: convert this to an array of UInt16
 		// team export files: lower byte is always 0x00; upper byte determines batter (0x01) or pitcher (0x02)?
 
 		// league files: each value is a player index, with the most significant bit or two having other purposes
-		// Player ID high bytes:
+		// Player ID high bytes (unconfirmed):
 		// 0x8_ major league
 		// 0x0_ minor league
 
-		public byte[] PlayerIdent;
+		public UInt16[] PlayerIdent;
 
 		// todo: 0x75E-0x77B
 		// 0x768 start of "signed" players list? (league teams only)
@@ -393,7 +392,11 @@ namespace HB5Tool
 			// player type starting at offset 0x70E; 0x50 bytes maximum (40 players), each entry is 2 bytes
 			// team export files: lower byte is always 0x00; upper byte determines batter (0x01) or pitcher (0x02)?
 			// league files: each value is a player index
-			PlayerIdent = br.ReadBytes(ROSTER_DATA_LENGTH);
+			PlayerIdent = new UInt16[ROSTER_DATA_LENGTH];
+			for (int i = 0; i < ROSTER_DATA_LENGTH; i++)
+			{
+				PlayerIdent[i] = BitConverter.ToUInt16(br.ReadBytes(2), 0);
+			}
 
 			// 0x75E to 0x77B unknown
 			Unknown_75E = br.ReadBytes(30);
