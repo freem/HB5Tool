@@ -297,14 +297,27 @@ namespace HB5Tool
 			sb.AppendLine(Environment.NewLine);
 
 			sb.AppendLine("PlayerIdent values:");
-			int spaceCount = 0;
-			foreach (byte b in CurTeam.CommonData.PlayerIdent)
+			foreach (UInt16 s in CurTeam.CommonData.PlayerIdent)
 			{
-				sb.Append(string.Format("{0:X2}",b));
-				++spaceCount;
-				if (spaceCount % 2 == 0)
+				ushort masked = (ushort)(s & 0x0FFF);
+				string pName = string.Empty;
+
+				if (masked > CurLeague.NumBatters)
 				{
-					sb.Append(" ");
+					pName = CurLeague.PitcherDatabase[masked - CurLeague.NumBatters - 1].CommonData.Name;
+				}
+				else if(masked > 0)
+				{
+					pName = CurLeague.BatterDatabase[masked - 1].CommonData.Name;
+				}
+
+				if (masked != 0)
+				{
+					sb.AppendLine(string.Format("{0:X4} ({1:X4}) - {2}", s, masked, pName));
+				}
+				else
+				{
+					sb.AppendLine(string.Format("{0:X4}", s));
 				}
 			}
 			sb.AppendLine(Environment.NewLine);
