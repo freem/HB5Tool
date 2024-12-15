@@ -297,6 +297,7 @@ namespace HB5Tool
 			sb.AppendLine(Environment.NewLine);
 
 			sb.AppendLine("PlayerIdent values:");
+			int playerNum = 1;
 			foreach (UInt16 s in CurTeam.CommonData.PlayerIdent)
 			{
 				ushort masked = (ushort)(s & 0x0FFF);
@@ -313,12 +314,13 @@ namespace HB5Tool
 
 				if (masked != 0)
 				{
-					sb.AppendLine(string.Format("{0:X4} ({1:X4}) - {2}", s, masked, pName));
+					sb.AppendLine(string.Format("0x{0:X2} = {1:X4} ({2:X4}) - {3}", playerNum, s, masked, pName));
 				}
 				else
 				{
-					sb.AppendLine(string.Format("{0:X4}", s));
+					sb.AppendLine(string.Format("0x{0:X2} = {1:X4}", playerNum, s));
 				}
+				playerNum++;
 			}
 			sb.AppendLine(Environment.NewLine);
 
