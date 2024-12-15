@@ -220,9 +220,8 @@ namespace HB5Tool
 			inReader.Dispose();
 
 			Bitmap saveTarget = new Bitmap(PLAYER_PIC_WIDTH, PLAYER_PIC_HEIGHT, PixelFormat.Format8bppIndexed);
-			// enforce pic-safe palette
 			ColorPalette picPal = saveTarget.Palette;
-			DefaultData.PlayerPicSafePalette.CopyTo(picPal.Entries, 0);
+			DefaultData.DefaultPalette.CopyTo(picPal.Entries, 0);
 			saveTarget.Palette = picPal;
 
 			// copy pixels
@@ -303,9 +302,8 @@ namespace HB5Tool
 			inReader.Dispose();
 
 			Bitmap saveTarget = new Bitmap(PLAYER_PIC_WIDTH, PLAYER_PIC_HEIGHT, PixelFormat.Format8bppIndexed);
-			// enforce pic-safe palette
 			ColorPalette picPal = saveTarget.Palette;
-			DefaultData.PlayerPicSafePalette.CopyTo(picPal.Entries, 0);
+			DefaultData.DefaultPalette.CopyTo(picPal.Entries, 0);
 			saveTarget.Palette = picPal;
 
 			// copy pixels
