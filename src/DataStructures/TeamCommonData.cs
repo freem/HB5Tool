@@ -101,6 +101,7 @@ namespace HB5Tool
 
 		/// <summary>
 		/// Unknown value. Some teams have 0x00 here, some have 0x01.
+		/// Possibly related to Designated Hitters and/or American/National league?
 		/// </summary>
 		/// offset 0x50
 		public byte Unknown_50;
