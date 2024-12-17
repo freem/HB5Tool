@@ -1,4 +1,4 @@
-﻿using System;
+﻿	using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,37 +14,11 @@ namespace HB5Tool
 	public partial class TeamEditor : Form
 	{
 		/// <summary>
-		/// Source of the Team's data.
-		/// </summary>
-		public enum TeamDataSources
-		{
-			/// <summary>
-			/// Team export (*.hb5)
-			/// </summary>
-			TeamExport = 0,
-
-			/// <summary>
-			/// League data (*.lgd)
-			/// </summary>
-			League = 1,
-
-			/// <summary>
-			/// Not a valid source
-			/// </summary>
-			Invalid = -1
-		}
-
-		/// <summary>
 		/// Provided solely so the main form can hide the Window menu if the last form is closed.
 		/// </summary>
 		public event EventHandler CloseFormCallback;
 
 		#region Class Members
-		/// <summary>
-		/// Data source for this team.
-		/// </summary>
-		public TeamDataSources DataSource;
-
 		/// <summary>
 		/// Path to file containing this team's data.
 		/// </summary>
@@ -63,12 +37,11 @@ namespace HB5Tool
 		public TeamCommonData CommonData;
 		#endregion
 
-		public TeamEditor(TeamDataSources _src, string _filePath, int _idx = -1)
+		public TeamEditor(string _filePath, int _idx = -1)
 		{
 			InitializeComponent();
 			ChangesMade = false;
 
-			DataSource = _src;
 			FilePath = _filePath;
 			if (_idx != -1)
 			{
