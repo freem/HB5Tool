@@ -197,8 +197,6 @@ namespace HB5Tool
 					}
 					break;
 
-				// todo: handle .bio files? (renamed .bin files)
-
 				case ".bin":
 					// non-obvious, need to see if first two bytes are ASCII "MB"
 					{
@@ -515,6 +513,7 @@ namespace HB5Tool
 			return openSuccessful;
 		}
 
+		#region Form Action-related Callbacks
 		private void MdiChild_CloseFormCallback(object sender, EventArgs e)
 		{
 			if (MdiChildren.Length == 1)
@@ -531,12 +530,19 @@ namespace HB5Tool
 		/// <summary>
 		/// League Editor-specific form closing callback.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
 		private void LeagueEditor_CloseFormCallback(object sender, EventArgs e)
 		{
 			ActiveLeagueEditors.Remove(Path.GetFullPath(((LeagueEditor)sender).FilePath));
 		}
+
+		/// <summary>
+		/// Player Editor-specific form closing callback.
+		/// </summary>
+		private void TeamEditor_CloseFormCallback(object sender, EventArgs e)
+		{
+
+		}
+		#endregion
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
