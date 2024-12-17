@@ -87,6 +87,16 @@ namespace HB5Tool
 		public PlayerStats Stats;
 	}
 
+	/// <summary>
+	/// Team representation for an editor.
+	/// </summary>
+	public struct EditorTeam
+	{
+		public TeamCommonData Data;
+		public List<EditorBatter> Batters;
+		public List<EditorPitcher> Pitchers;
+	};
+
 	// for players:
 	// - data source
 	//   if .BTR/.PIT: filename
