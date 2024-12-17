@@ -54,48 +54,36 @@ namespace HB5Tool
 
 			sb.AppendLine();
 
-			// xxx: this breaks on some files
-			/*
+			// Offsets can be used multiple times, so we need a list of unique offsets
+			// for attempting to figure out where scripts end. (At least, until a proper
+			// command handler is implemented.)
+			HashSet<short> UniqueOffsets = new HashSet<short>(CurMgsFile.Offsets);
+
 			using (FileStream fs = new FileStream(FilePath, FileMode.Open))
 			{
 				using (BinaryReader br = new BinaryReader(fs))
 				{
-					for (int i = 0; i < CurMgsFile.Offsets.Count; i++)
+					br.BaseStream.Seek(CurMgsFile.Offsets[0], SeekOrigin.Begin);
+
+					int newlineCounter = 0;
+					while (br.BaseStream.Position < br.BaseStream.Length)
 					{
-						sb.AppendLine(String.Format("Entry {0}", i));
-
-						// get data
-						byte[] entryData;
-						br.BaseStream.Seek(CurMgsFile.Offsets[i], SeekOrigin.Begin);
-						if (i == CurMgsFile.Offsets.Count - 1)
+						if (UniqueOffsets.Contains((short)br.BaseStream.Position))
 						{
-							// use eof as end point
-							entryData = br.ReadBytes((int)br.BaseStream.Length - CurMgsFile.Offsets[i]);
-						}
-						else
-						{
-							// use next entry as end point
-							entryData = br.ReadBytes(CurMgsFile.Offsets[i + 1] - CurMgsFile.Offsets[i]);
+							newlineCounter = 0;
+							sb.AppendLine(Environment.NewLine);
 						}
 
-						int newlineCounter = 0;
-						foreach (byte b in entryData)
+						sb.Append(string.Format("{0:X2} ", br.ReadByte()));
+						++newlineCounter;
+						if (newlineCounter == 16)
 						{
-							sb.Append(string.Format("{0:X2} ", b));
-							++newlineCounter;
-							if (newlineCounter == 16)
-							{
-								newlineCounter = 0;
-								sb.AppendLine();
-							}
+							newlineCounter = 0;
+							sb.AppendLine();
 						}
-
-						sb.AppendLine();
-						sb.AppendLine();
 					}
 				}
 			}
-			*/
 
 			tbOutput.Text = sb.ToString();
 		}
