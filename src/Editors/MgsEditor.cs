@@ -52,8 +52,6 @@ namespace HB5Tool
 				sb.AppendLine(string.Format("#{0}: 0x{1:X}",i,CurMgsFile.Offsets[i]));
 			}
 
-			sb.AppendLine();
-
 			// Offsets can be used multiple times, so we need a list of unique offsets
 			// for attempting to figure out where scripts end. (At least, until a proper
 			// command handler is implemented.)
@@ -72,6 +70,7 @@ namespace HB5Tool
 						{
 							newlineCounter = 0;
 							sb.AppendLine(Environment.NewLine);
+							sb.AppendLine(string.Format("file offset 0x{0:X}", br.BaseStream.Position));
 						}
 
 						sb.Append(string.Format("{0:X2} ", br.ReadByte()));
