@@ -62,16 +62,16 @@ namespace HB5Tool
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tssLabelFilePath});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 323);
+			this.statusStrip1.Location = new System.Drawing.Point(0, 353);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(496, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(634, 22);
 			this.statusStrip1.TabIndex = 0;
 			this.statusStrip1.Text = "statusStrip1";
 			// 
 			// tssLabelFilePath
 			// 
 			this.tssLabelFilePath.Name = "tssLabelFilePath";
-			this.tssLabelFilePath.Size = new System.Drawing.Size(58, 17);
+			this.tssLabelFilePath.Size = new System.Drawing.Size(54, 17);
 			this.tssLabelFilePath.Text = "[file path]";
 			// 
 			// tbName
@@ -99,7 +99,7 @@ namespace HB5Tool
             this.fileToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(496, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(634, 24);
 			this.menuStrip1.TabIndex = 3;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -113,27 +113,27 @@ namespace HB5Tool
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-			this.fileToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+			this.fileToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
 			this.fileToolStripMenuItem.Text = "&Player";
 			// 
 			// saveToolStripMenuItem
 			// 
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
 			this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-			this.saveToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+			this.saveToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
 			this.saveToolStripMenuItem.Text = "&Save Changes";
 			this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(184, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(178, 6);
 			// 
 			// importToolStripMenuItem
 			// 
 			this.importToolStripMenuItem.Name = "importToolStripMenuItem";
 			this.importToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-			this.importToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+			this.importToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
 			this.importToolStripMenuItem.Text = "&Import...";
 			this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
 			// 
@@ -141,20 +141,20 @@ namespace HB5Tool
 			// 
 			this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
 			this.exportToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-			this.exportToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+			this.exportToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
 			this.exportToolStripMenuItem.Text = "&Export...";
 			this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(184, 6);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(178, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
 			this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
 			this.exitToolStripMenuItem.Text = "E&xit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -197,7 +197,7 @@ namespace HB5Tool
 			this.gbRatings.Controls.Add(this.tbRatings);
 			this.gbRatings.Location = new System.Drawing.Point(12, 52);
 			this.gbRatings.Name = "gbRatings";
-			this.gbRatings.Size = new System.Drawing.Size(472, 119);
+			this.gbRatings.Size = new System.Drawing.Size(610, 149);
 			this.gbRatings.TabIndex = 7;
 			this.gbRatings.TabStop = false;
 			this.gbRatings.Text = "Ratings";
@@ -211,7 +211,7 @@ namespace HB5Tool
 			this.tbRatings.Name = "tbRatings";
 			this.tbRatings.ReadOnly = true;
 			this.tbRatings.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.tbRatings.Size = new System.Drawing.Size(466, 100);
+			this.tbRatings.Size = new System.Drawing.Size(604, 130);
 			this.tbRatings.TabIndex = 0;
 			// 
 			// gbStats
@@ -219,9 +219,9 @@ namespace HB5Tool
 			this.gbStats.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.gbStats.Controls.Add(this.tbStats);
-			this.gbStats.Location = new System.Drawing.Point(12, 177);
+			this.gbStats.Location = new System.Drawing.Point(12, 207);
 			this.gbStats.Name = "gbStats";
-			this.gbStats.Size = new System.Drawing.Size(472, 143);
+			this.gbStats.Size = new System.Drawing.Size(610, 143);
 			this.gbStats.TabIndex = 8;
 			this.gbStats.TabStop = false;
 			this.gbStats.Text = "Statistics";
@@ -235,14 +235,14 @@ namespace HB5Tool
 			this.tbStats.Name = "tbStats";
 			this.tbStats.ReadOnly = true;
 			this.tbStats.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.tbStats.Size = new System.Drawing.Size(466, 124);
+			this.tbStats.Size = new System.Drawing.Size(604, 124);
 			this.tbStats.TabIndex = 0;
 			// 
 			// PlayerEditor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(496, 345);
+			this.ClientSize = new System.Drawing.Size(634, 375);
 			this.Controls.Add(this.gbStats);
 			this.Controls.Add(this.gbRatings);
 			this.Controls.Add(this.lblPlayerType);
