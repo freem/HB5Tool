@@ -51,7 +51,7 @@ namespace HB5Tool
 		/// <summary>
 		/// Player/Team index if applicable, or -1 otherwise.
 		/// </summary>
-		public int index;
+		public int Index;
 
 		/// <summary>
 		/// Editor form associated with these params.
@@ -62,10 +62,37 @@ namespace HB5Tool
 		{
 			Source = _src;
 			Filename = _file;
-			index = _idx;
+			Index = _idx;
 			EditorForm = _form;
 		}
+
+		/// <summary>
+		/// how the hell should I be hashing this
+		/// </summary>
+		/// <returns></returns>
+		public override int GetHashCode()
+		{
+			// todo: see summary comment
+			return Filename.GetHashCode() + Index.GetHashCode() + Source.GetHashCode();
+		}
+
+		/// <summary>
+		/// Equality check for EditorParams.
+		/// </summary>
+		/// <param name="obj">Something that can be cast to EditorParams!</param>
+		/// <returns>True if the source, filename, and index match.</returns>
+		public override bool Equals(object obj)
+		{
+			EditorParams other = (EditorParams)obj;
+			return (Source == other.Source) && (Filename == other.Filename) && (Index == other.Index);
+		}
 	}
+
+	// for players:
+	// - data source
+	//   if .BTR/.PIT: filename
+	//   if .HB5: team player index
+	//   if .LGD: global player index
 
 	/// <summary>
 	/// Batter representation for an editor.
@@ -87,6 +114,11 @@ namespace HB5Tool
 		public PlayerStats Stats;
 	}
 
+	// for teams:
+	// - data source
+	//   if .HB5: filename
+	//   if .LGD: team index
+
 	/// <summary>
 	/// Team representation for an editor.
 	/// </summary>
@@ -97,24 +129,24 @@ namespace HB5Tool
 		public List<EditorPitcher> Pitchers;
 	};
 
-	// for players:
-	// - data source
-	//   if .BTR/.PIT: filename
-	//   if .HB5: team player index
-	//   if .LGD: global player index
-
-	// for teams:
-	// - data source
-	//   if .HB5: filename
-	//   if .LGD: team index
-
 	/// <summary>
-	/// Manager for various dialogs.
+	/// Manager for various editor dialogs.
 	/// </summary>
 	public static class EditorManager
 	{
+		/// <summary>
+		/// Active Batter editors.
+		/// </summary>
 		public static Dictionary<EditorParams, EditorBatter> Batters = new Dictionary<EditorParams, EditorBatter>();
 
+		/// <summary>
+		/// Active Pitcher editors.
+		/// </summary>
 		public static Dictionary<EditorParams, EditorPitcher> Pitchers = new Dictionary<EditorParams, EditorPitcher>();
+
+		/// <summary>
+		/// Active Team editors.
+		/// </summary>
+		public static Dictionary<EditorParams, EditorTeam> Teams = new Dictionary<EditorParams, EditorTeam>();
 	}
 }
