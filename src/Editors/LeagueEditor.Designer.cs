@@ -93,16 +93,16 @@ namespace HB5Tool
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tssLabelFilePath});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 339);
+			this.statusStrip1.Location = new System.Drawing.Point(0, 353);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(624, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(634, 22);
 			this.statusStrip1.TabIndex = 1;
 			this.statusStrip1.Text = "statusStrip1";
 			// 
 			// tssLabelFilePath
 			// 
 			this.tssLabelFilePath.Name = "tssLabelFilePath";
-			this.tssLabelFilePath.Size = new System.Drawing.Size(58, 17);
+			this.tssLabelFilePath.Size = new System.Drawing.Size(54, 17);
 			this.tssLabelFilePath.Text = "[file path]";
 			// 
 			// leagueToolStripMenuItem
@@ -110,14 +110,14 @@ namespace HB5Tool
 			this.leagueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem});
 			this.leagueToolStripMenuItem.Name = "leagueToolStripMenuItem";
-			this.leagueToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+			this.leagueToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
 			this.leagueToolStripMenuItem.Text = "&League";
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
 			this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
 			this.exitToolStripMenuItem.Text = "E&xit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -128,7 +128,7 @@ namespace HB5Tool
             this.leagueToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(624, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(634, 24);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -160,7 +160,7 @@ namespace HB5Tool
 			this.tabControl1.Location = new System.Drawing.Point(0, 24);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(624, 315);
+			this.tabControl1.Size = new System.Drawing.Size(634, 329);
 			this.tabControl1.TabIndex = 3;
 			// 
 			// tpGeneral
@@ -296,7 +296,7 @@ namespace HB5Tool
 			this.tpTeams.Controls.Add(this.lbTeams);
 			this.tpTeams.Location = new System.Drawing.Point(4, 22);
 			this.tpTeams.Name = "tpTeams";
-			this.tpTeams.Size = new System.Drawing.Size(616, 289);
+			this.tpTeams.Size = new System.Drawing.Size(626, 303);
 			this.tpTeams.TabIndex = 2;
 			this.tpTeams.Text = "Teams";
 			this.tpTeams.UseVisualStyleBackColor = true;
@@ -304,13 +304,13 @@ namespace HB5Tool
 			// tbTeamOutput
 			// 
 			this.tbTeamOutput.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tbTeamOutput.Location = new System.Drawing.Point(169, 111);
+			this.tbTeamOutput.Location = new System.Drawing.Point(169, 131);
 			this.tbTeamOutput.MaxLength = 65535;
 			this.tbTeamOutput.Multiline = true;
 			this.tbTeamOutput.Name = "tbTeamOutput";
 			this.tbTeamOutput.ReadOnly = true;
 			this.tbTeamOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.tbTeamOutput.Size = new System.Drawing.Size(439, 169);
+			this.tbTeamOutput.Size = new System.Drawing.Size(449, 169);
 			this.tbTeamOutput.TabIndex = 22;
 			// 
 			// lblTrimColor
@@ -362,19 +362,19 @@ namespace HB5Tool
             this.exportRawLogoToolStripMenuItem,
             this.exportPNGToolStripMenuItem});
 			this.cmsLogo.Name = "cmsLogo";
-			this.cmsLogo.Size = new System.Drawing.Size(173, 48);
+			this.cmsLogo.Size = new System.Drawing.Size(169, 48);
 			// 
 			// exportRawLogoToolStripMenuItem
 			// 
 			this.exportRawLogoToolStripMenuItem.Name = "exportRawLogoToolStripMenuItem";
-			this.exportRawLogoToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+			this.exportRawLogoToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
 			this.exportRawLogoToolStripMenuItem.Text = "Export &Raw Logo...";
 			this.exportRawLogoToolStripMenuItem.Click += new System.EventHandler(this.exportRawLogoToolStripMenuItem_Click);
 			// 
 			// exportPNGToolStripMenuItem
 			// 
 			this.exportPNGToolStripMenuItem.Name = "exportPNGToolStripMenuItem";
-			this.exportPNGToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+			this.exportPNGToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
 			this.exportPNGToolStripMenuItem.Text = "Export &PNG...";
 			this.exportPNGToolStripMenuItem.Click += new System.EventHandler(this.exportPNGToolStripMenuItem_Click);
 			// 
@@ -384,7 +384,7 @@ namespace HB5Tool
 			this.lbTeams.Location = new System.Drawing.Point(8, 3);
 			this.lbTeams.Name = "lbTeams";
 			this.lbTeams.ScrollAlwaysVisible = true;
-			this.lbTeams.Size = new System.Drawing.Size(155, 277);
+			this.lbTeams.Size = new System.Drawing.Size(155, 290);
 			this.lbTeams.TabIndex = 0;
 			this.lbTeams.SelectedIndexChanged += new System.EventHandler(this.lbTeams_SelectedIndexChanged);
 			// 
@@ -512,7 +512,7 @@ namespace HB5Tool
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(624, 361);
+			this.ClientSize = new System.Drawing.Size(634, 375);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.menuStrip1);

@@ -256,6 +256,7 @@ namespace HB5Tool
 			pTrimColor.BackColor = DefaultData.CapTrimColors_MLBPA[CurTeam.CommonData.TrimColor][4];
 
 			StringBuilder sb = new StringBuilder();
+
 			sb.AppendLine("[Batting Orders]");
 			sb.Append("vs. RHP: ");
 			for (int i = 0; i < CurTeam.CommonData.BattingOrder_RHP.Length; i++)
@@ -286,6 +287,9 @@ namespace HB5Tool
 			}
 			sb.AppendLine(Environment.NewLine);
 
+			sb.AppendLine(string.Format("Unknown_50 value: 0x{0:X2}", CurTeam.CommonData.Unknown_50));
+			sb.AppendLine(string.Format("Stadium: 0x{0:X2} ({1})", CurTeam.CommonData.Stadium, DefaultData.StadiumList[CurTeam.CommonData.Stadium]));
+
 			sb.AppendLine(string.Format("Number of Pitchers in Starting Rotation: {0}", CurTeam.CommonData.NumStartingPitchers));
 			sb.AppendLine();
 
@@ -295,6 +299,8 @@ namespace HB5Tool
 				sb.Append(string.Format("{0:X2} ", b));
 			}
 			sb.AppendLine(Environment.NewLine);
+
+			sb.AppendLine(string.Format("Unknown_70D value: 0x{0:X2}", CurTeam.CommonData.Unknown_70D));
 
 			sb.AppendLine("PlayerIdent values:");
 			int playerNum = 1;
@@ -314,7 +320,7 @@ namespace HB5Tool
 
 				if (masked != 0)
 				{
-					sb.AppendLine(string.Format("0x{0:X2} = {1:X4} ({2:X4}) - {3}", playerNum, s, masked, pName));
+					sb.AppendLine(string.Format("0x{0:X2} = {1:X4} ({2:X4}) - {3}{4}", playerNum, s, masked, pName, CurTeam.CommonData.StarPlayer == playerNum-1 ? "*" : ""));
 				}
 				else
 				{
