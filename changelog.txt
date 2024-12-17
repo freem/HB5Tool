@@ -4,7 +4,26 @@ HB5Tool changelog
 --------------------------------------------------------------------------------
 (next version) - (n/a)
 --------------------------------------------------------------------------------
-- [Stadium INFO.BIN Editor] Add visual representation of custom color sets.
+- Various internal changes to player and team data structures, to allow better
+  support for modifying data from multiple sources.
+  (i.e. player/team exports and league files. Internal data found in
+  HARDBALL.BIN/HB5CDROM.BIN is still not supported.)
+
+- Added "Default PICS.BIN Path" to program settings.
+  (Not used yet, much like the other program settings.)
+
+- [Stadium INFO*.BIN Editor] Add visual representation of custom color sets.
+
+- [League Editor] Display more info in the team data dump section,
+  including the players on the roster.
+
+- [PICS.BIN] Now uses default palette instead of "pics-safe" palette.
+
+- [DEFAULTS.BIN] More values identified and displayed in the editor.
+
+- [MGS Editor] Now displays hex dumps for each segment.
+
+- Added DRVRLIST.BIN viewer. There are no plans to make this editable.
 
 --------------------------------------------------------------------------------
 v0.1.5.0 - December 6, 2024
