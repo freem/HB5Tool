@@ -68,6 +68,7 @@
     <Compile Include="DataStructures\CustomBin.cs" />
     <Compile Include="DataStructures\DefaultsBin.cs" />
     <Compile Include="DataStructures\DigsFile.cs" />
+    <Compile Include="DataStructures\DriverList.cs" />
     <Compile Include="DataStructures\FontData.cs" />
     <Compile Include="DataStructures\GlueList.cs" />
     <Compile Include="DataStructures\HmiSound.cs" />
