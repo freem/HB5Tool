@@ -479,6 +479,16 @@ namespace HB5Tool
 							}
 							// }
 
+							// DRVRLIST.BIN
+							if (fnNoExt.Equals("drvrlist"))
+							{
+								DriverListViewer dlv = new DriverListViewer(_filePath);
+								dlv.MdiParent = this;
+								dlv.Show();
+								binFileHandled = true;
+								openSuccessful = true;
+							}
+
 							if (!binFileHandled)
 							{
 								errorMsg = "Unsupported .bin file; there are too many files with .bin as the extension, and they all have different formats.";
