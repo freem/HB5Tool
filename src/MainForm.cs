@@ -80,7 +80,7 @@ namespace HB5Tool
 				case ".hb5":
 					{
 						// exported team
-						TeamEditor tEd = new TeamEditor(TeamEditor.TeamDataSources.TeamExport, _filePath);
+						TeamEditor tEd = new TeamEditor(_filePath);
 						tEd.MdiParent = this;
 						tEd.CloseFormCallback += MdiChild_CloseFormCallback;
 						tEd.Show();
