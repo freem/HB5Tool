@@ -1172,7 +1172,181 @@ namespace HB5Tool
 				}
 			},
 
-			// todo: there are another 11 sets of colors after these.
+			// 0x01 = Dark Red
+			{
+				1,
+				new Color[8]
+				{
+					Color.FromArgb(68,16,16),
+					Color.FromArgb(97,16,16),
+					Color.FromArgb(125,32,32),
+					Color.FromArgb(165,40,40),
+					Color.FromArgb(210,60,60),
+					Color.FromArgb(222,85,85),
+					Color.FromArgb(238,113,113),
+					Color.FromArgb(255,145,145)
+				}
+			},
+
+			// 0x02 = Dark Green
+			{
+				2,
+				new Color[8]
+				{
+					Color.FromArgb(8,48,16),
+					Color.FromArgb(16,72,24),
+					Color.FromArgb(28,101,40),
+					Color.FromArgb(44,125,52),
+					Color.FromArgb(60,153,68),
+					Color.FromArgb(85,178,85),
+					Color.FromArgb(105,206,105),
+					Color.FromArgb(137,234,133)
+				}
+			},
+
+			// 0x03 = Purple
+			{
+				3,
+				new Color[8]
+				{
+					Color.FromArgb(36,0,64),
+					Color.FromArgb(60,0,101),
+					Color.FromArgb(85,8,137),
+					Color.FromArgb(113,20,174),
+					Color.FromArgb(137,40,194),
+					Color.FromArgb(161,68,214),
+					Color.FromArgb(190,97,234),
+					Color.FromArgb(218,133,255)
+				}
+			},
+
+			// 0x04 = Orange
+			{
+				4,
+				new Color[8]
+				{
+					Color.FromArgb(109,48,0),
+					Color.FromArgb(157,76,4),
+					Color.FromArgb(206,105,8),
+					Color.FromArgb(255,141,24),
+					Color.FromArgb(255,157,52),
+					Color.FromArgb(255,178,80),
+					Color.FromArgb(255,194,109),
+					Color.FromArgb(255,210,141)
+				}
+			},
+
+			// 0x05 = Yellow
+			{
+				5,
+				new Color[8]
+				{
+					Color.FromArgb(113,76,12),
+					Color.FromArgb(137,101,16),
+					Color.FromArgb(165,129,20),
+					Color.FromArgb(190,161,24),
+					Color.FromArgb(218,194,32),
+					Color.FromArgb(246,230,36),
+					Color.FromArgb(250,234,89),
+					Color.FromArgb(255,242,149)
+				}
+			},
+
+			// 0x06 = Green
+			{
+				6,
+				new Color[8]
+				{
+					Color.FromArgb(48,80,16),
+					Color.FromArgb(60,105,20),
+					Color.FromArgb(76,129,24),
+					Color.FromArgb(97,153,24),
+					Color.FromArgb(113,178,28),
+					Color.FromArgb(137,202,60),
+					Color.FromArgb(170,226,101),
+					Color.FromArgb(206,255,153)
+				}
+			},
+
+			// 0x07 = Black
+			{
+				7,
+				new Color[8]
+				{
+					Color.FromArgb(0,0,0),
+					Color.FromArgb(20,20,16),
+					Color.FromArgb(44,44,40),
+					Color.FromArgb(64,64,60),
+					Color.FromArgb(89,89,80),
+					Color.FromArgb(113,113,105),
+					Color.FromArgb(137,137,125),
+					Color.FromArgb(161,161,149)
+				}
+			},
+
+			// 0x08 = Brown
+			{
+				8,
+				new Color[8]
+				{
+					Color.FromArgb(52,36,20),
+					Color.FromArgb(76,52,28),
+					Color.FromArgb(101,72,44),
+					Color.FromArgb(129,93,56),
+					Color.FromArgb(149,109,72),
+					Color.FromArgb(170,129,93),
+					Color.FromArgb(190,149,113),
+					Color.FromArgb(210,174,137)
+				}
+			},
+
+			// 0x09 = Blue
+			{
+				9,
+				new Color[8]
+				{
+					Color.FromArgb(0,44,105),
+					Color.FromArgb(12,56,145),
+					Color.FromArgb(40,72,190),
+					Color.FromArgb(80,97,234),
+					Color.FromArgb(101,113,238),
+					Color.FromArgb(121,129,242),
+					Color.FromArgb(145,149,246),
+					Color.FromArgb(170,170,255)
+				}
+			},
+
+			// 0x0A = Red
+			{
+				10,
+				new Color[8]
+				{
+					Color.FromArgb(113,0,0),
+					Color.FromArgb(153,4,4),
+					Color.FromArgb(194,16,16),
+					Color.FromArgb(234,36,36),
+					Color.FromArgb(238,60,60),
+					Color.FromArgb(242,89,89),
+					Color.FromArgb(246,117,117),
+					Color.FromArgb(255,149,149)
+				}
+			},
+
+			// 0x0B = Teal
+			{
+				11,
+				new Color[8]
+				{
+					Color.FromArgb(0,64,64),
+					Color.FromArgb(12,85,85),
+					Color.FromArgb(28,105,105),
+					Color.FromArgb(40,125,125),
+					Color.FromArgb(56,145,145),
+					Color.FromArgb(64,153,153),
+					Color.FromArgb(72,165,165),
+					Color.FromArgb(80,178,178)
+				}
+			}
 		};
 	}
 }
