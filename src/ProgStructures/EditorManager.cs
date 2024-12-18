@@ -67,13 +67,12 @@ namespace HB5Tool
 		}
 
 		/// <summary>
-		/// how the hell should I be hashing this
+		/// 
 		/// </summary>
 		/// <returns></returns>
 		public override int GetHashCode()
 		{
-			// todo: see summary comment
-			return Filename.GetHashCode() + Index.GetHashCode() + Source.GetHashCode();
+			return (Filename, Index, Source).GetHashCode();
 		}
 
 		/// <summary>
@@ -83,8 +82,7 @@ namespace HB5Tool
 		/// <returns>True if the source, filename, and index match.</returns>
 		public override bool Equals(object obj)
 		{
-			EditorParams other = (EditorParams)obj;
-			return (Source == other.Source) && (Filename == other.Filename) && (Index == other.Index);
+			return obj is EditorParams other && (other.Source, other.Filename, other.Index).Equals((Source, Filename, Index));
 		}
 	}
 
