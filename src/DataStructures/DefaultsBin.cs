@@ -58,6 +58,168 @@ namespace HB5Tool
 		public static readonly int HOME_RUN_DERBY_MAX_SCORE_20_PITCHES = 20000;
 		#endregion
 
+		#region Bitfield Masks
+
+		#region Level of Play
+		/// <summary>
+		/// Level of Play mask for Designated Hitter.
+		/// </summary>
+		public readonly short LevelOfPlay_DesignatedHitter = 1;
+
+		/// <summary>
+		/// Level of Play mask for Fielding Errors.
+		/// </summary>
+		public readonly short LevelOfPlay_FieldingErrors = 2;
+
+		/// <summary>
+		/// Level of Play mask for Injuries.
+		/// </summary>
+		public readonly short LevelOfPlay_Injuries = 4;
+
+		/// <summary>
+		/// Level of Play mask for Pitch to Center.
+		/// </summary>
+		public readonly short LevelOfPlay_PitchToCenter = 8;
+
+		/// <summary>
+		/// Level of Play mask for Pitching Crosshair.
+		/// </summary>
+		public readonly short LevelOfPlay_PitchingCrosshair = 0x10;
+
+		/// <summary>
+		/// Level of Play mask for Pitching Fatigue.
+		/// </summary>
+		public readonly short LevelOfPlay_PitchingFatigue = 0x20;
+
+		/// <summary>
+		/// Level of Play mask for Fielding Marker.
+		/// </summary>
+		public readonly short LevelOfPlay_FieldingMarker = 0x40;
+
+		/// <summary>
+		/// Level of Play mask for Base Stealing.
+		/// </summary>
+		public readonly short LevelOfPlay_BaseStealing = 0x80;
+
+		/// <summary>
+		/// Level of Play mask for Player Ratings.
+		/// </summary>
+		public readonly short LevelOfPlay_PlayerRatings = 0x100;
+		#endregion
+
+		#region Manager Options
+		/// <summary>
+		/// Manager Options mask for Pitching. (Disabled in One Pitch Mode.)
+		/// </summary>
+		public readonly short ManagerOptions_Pitching = 1;
+
+		/// <summary>
+		/// Manager Options mask for Batting. (Disabled in One Pitch Mode.)
+		/// </summary>
+		public readonly short ManagerOptions_Batting = 2;
+
+		/// <summary>
+		/// Manager Options mask for Fielding.
+		/// </summary>
+		public readonly short ManagerOptions_Fielding = 4;
+
+		/// <summary>
+		/// Manager Options mask for Throwing.
+		/// </summary>
+		public readonly short ManagerOptions_Throwing = 8;
+
+		/// <summary>
+		/// Manager Options mask for Base Running.
+		/// </summary>
+		public readonly short ManagerOptions_BaseRunning = 0x10;
+
+		/// <summary>
+		/// Manager Options mask for Substitutions.
+		/// </summary>
+		public readonly short ManagerOptions_Substitutions = 0x20;
+
+		/// <summary>
+		/// Manager Options mask for setting/changing Fielder Positions.
+		/// </summary>
+		public readonly short ManagerOptions_FielderPositions = 0x40;
+		#endregion
+
+		#region Batting Practice Pitches
+		/// <summary>
+		/// Batting Practice Pitch mask for Offspeed.
+		/// </summary>
+		public readonly short BattingPracticePitch_Offspeed = 1;
+
+		/// <summary>
+		/// Batting Practice Pitch mask for Curveball.
+		/// </summary>
+		public readonly short BattingPracticePitch_Curveball = 2;
+
+		/// <summary>
+		/// Batting Practice Pitch mask for Fastball.
+		/// </summary>
+		public readonly short BattingPracticePitch_Fastball = 4;
+
+		/// <summary>
+		/// Batting Practice Pitch mask for Screwball.
+		/// </summary>
+		public readonly short BattingPracticePitch_Screwball = 8;
+
+		/// <summary>
+		/// Batting Practice Pitch mask for Sinker.
+		/// </summary>
+		public readonly short BattingPracticePitch_Sinker = 0x10;
+
+		/// <summary>
+		/// Batting Practice Pitch mask for Fastball! (the exclamation point matters)
+		/// </summary>
+		public readonly short BattingPracticePitch_FastballExc = 0x20;
+
+		/// <summary>
+		/// Batting Practice Pitch mask for Slider.
+		/// </summary>
+		public readonly short BattingPracticePitch_Slider = 0x40;
+
+		/// <summary>
+		/// Batting Practice Pitch mask for Knuckleball.
+		/// </summary>
+		public readonly short BattingPracticePitch_Knuckleball = 0x80;
+		#endregion
+
+		#region Sound Toggle Options
+		/// <summary>
+		/// Sound Toggle mask for Sound Effects.
+		/// </summary>
+		public readonly short SoundToggle_Effects = 1;
+
+		/// <summary>
+		/// Sound Toggle mask for Crowd sounds.
+		/// </summary>
+		public readonly short SoundToggle_Crowd = 2;
+
+		/// <summary>
+		/// Sound Toggle mask for Surround Sound mode.
+		/// </summary>
+		public readonly short SoundToggle_SurroundSound = 4;
+
+		/// <summary>
+		/// Welcome back to the game. I'm (the Sound Toggle mask for) Al Michaels.
+		/// </summary>
+		public readonly short SoundToggle_AlMichaels = 8;
+
+		/// <summary>
+		/// Sound Toggle mask for PA Echo effect.
+		/// </summary>
+		public readonly short SoundToggle_PaEcho = 0x10;
+
+		/// <summary>
+		/// Sound Toggle mask for Background Music.
+		/// </summary>
+		public readonly short SoundToggle_BGM = 0x20;
+		#endregion
+
+		#endregion
+
 		/// <summary>
 		/// Path to currently active league file.
 		/// </summary>
@@ -102,17 +264,25 @@ namespace HB5Tool
 		/// offset 0x49
 		public byte ExhibitionTeam2;
 
-		// offset 0x4A (short): large batter (1) and ump/catcher view (2), or 3 for both
 		/// <summary>
-		/// View options. (1 = Large Batter; 2 = Catcher + Umpire; 3 = both)
+		/// View options. (0 = none; 1 = Large Batter; 2 = Catcher + Umpire; 3 = both)
 		/// </summary>
 		/// offset 0x4A
 		public short ViewOptions;
 
 		// Level of Play values:
+		// 0x4C/4E  0x4D/4F
 		// FEDCBA98 76543210
-		// ???????? ????????
-		// DH, Fielding Errors, Injuries, Pitch to Center, Pitching Crosshair, Pitcher Fatigue, Fielding Marker, Base Stealing, Player Ratings
+		// |||||||| xxxxxxx|
+		// ||||||||        +-- Player Ratings (0=off, 1=on)
+		// |||||||+----------- Designated Hitter (0=off, 1=on)
+		// ||||||+------------ Fielding Errors (0=off, 1=on)
+		// |||||+------------- Injuries (0=off, 1=on)
+		// ||||+-------------- Pitch to Center (0=off, 1=on)
+		// |||+--------------- Pitching Crosshair (0=off, 1=on)
+		// ||+---------------- Pitcher Fatigue (0=off, 1=on)
+		// |+----------------- Fielding Marker (0=off, 1=on)
+		// +------------------ Base Stealing (0=off, 1=on)
 
 		/// <summary>
 		/// "Level of Play" settings for Team 1.
@@ -127,9 +297,16 @@ namespace HB5Tool
 		public short PlayLevelSettings_Team2;
 
 		// Manager Options values:
+		// 0x50/52  0x51/53
 		// FEDCBA98 76543210
-		// ???????? ????????
-		// Pitching, Batting, Fielding, Throwing, Base Running, Substitutions, Fielder Positions
+		// x||||||| xxxxxxxx
+		//  ||||||+----------- Pitching (disabled in one pitch mode)
+		//  |||||+------------ Batting (disabled in one pitch mode)
+		//  ||||+------------- Fielding
+		//  |||+-------------- Throwing
+		//  ||+--------------- Base Running
+		//  |+---------------- Substitutions
+		//  +----------------- Fielder Positions
 
 		/// <summary>
 		/// Manager Options for Team 1.
@@ -167,14 +344,23 @@ namespace HB5Tool
 		/// Batting Practice pitch types.
 		/// </summary>
 		/// offset 0x5A
-		/// todo: map out values
+		/// 0x5A     0x5B
+		/// FEDCBA98 76543210
+		/// |||||||| xxxxxxxx
+		/// |||||||+----------- Offspeed
+		/// ||||||+------------ Curveball
+		/// |||||+------------- Fastball
+		/// ||||+-------------- Screwball
+		/// |||+--------------- Sinker
+		/// ||+---------------- Fastball!
+		/// |+----------------- Slider
+		/// +------------------ Knuckleball
 		public short BattingPractice_Pitches;
 
 		/// <summary>
-		/// Batting Practice pitch zone. (0=Center, 1=, 2=, 3=Random)
+		/// Batting Practice pitch zone. (0=Center, 1=High/Low, 2=Inside/Outside, 3=Random)
 		/// </summary>
 		/// offset 0x5C
-		/// todo: finish mapping out values
 		public short BattingPractice_PitchZone;
 
 		/// <summary>

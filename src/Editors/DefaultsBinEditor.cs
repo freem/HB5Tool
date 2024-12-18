@@ -16,6 +16,14 @@ namespace HB5Tool
 		public readonly string[] HomeRunDerbyPitchCounts = { "3", "5", "10", "20" };
 
 		public readonly string[] DisplayModes = { "Pitcher", "Batter", "Pitcher/Batter" };
+
+		public readonly string[] BattingPractice_PitchZones =
+		{
+			"Center",
+			"High/Low",
+			"Inside/Outside",
+			"Random"
+		};
 		#endregion
 
 		/// <summary>
@@ -75,10 +83,11 @@ namespace HB5Tool
 			sb.AppendLine();
 
 			sb.AppendLine(string.Format("Game Speed: 0x{0:X4}", CurDefaults.GameSpeed));
+			sb.AppendLine(string.Format("One Pitch Mode: {0}", (CurDefaults.OnePitchMode & 0x8000) != 0 ? "On" : "Off"));
 			sb.AppendLine();
 
 			sb.AppendLine(string.Format("Batting Practice Pitches: 0x{0:X4}", CurDefaults.BattingPractice_Pitches));
-			sb.AppendLine(string.Format("Batting Practice Pitch Zone: 0x{0:X4}", CurDefaults.BattingPractice_PitchZone));
+			sb.AppendLine(string.Format("Batting Practice Pitch Zone: 0x{0:X4} ({1})", CurDefaults.BattingPractice_PitchZone, BattingPractice_PitchZones[CurDefaults.BattingPractice_PitchZone]));
 			sb.AppendLine();
 
 			sb.AppendLine(string.Format("Practice/HR Derby Team: 0x{0:X2}", CurDefaults.PracticeTeam));
@@ -88,7 +97,10 @@ namespace HB5Tool
 			sb.AppendLine(string.Format("Sound Volume: {0} ({1}%)", CurDefaults.SoundVolume, ((float)CurDefaults.SoundVolume/DefaultsBin.VOLUME_MAX)*100));
 			sb.AppendLine(string.Format("Music Volume: {0} ({1}%)", CurDefaults.MusicVolume, ((float)CurDefaults.MusicVolume/DefaultsBin.VOLUME_MAX)*100));
 			sb.AppendLine(string.Format("Game Music Volume: {0} ({1}%)", CurDefaults.GameMusicVolume, ((float)CurDefaults.GameMusicVolume / DefaultsBin.VOLUME_MAX)*100));
-			sb.AppendLine(string.Format("Sound Toggles: 0x{0:X2}", CurDefaults.SoundToggles));
+			sb.AppendLine(string.Format("Sound Toggles: 0x{0:X4}", CurDefaults.SoundToggles));
+			sb.AppendLine();
+
+			sb.AppendLine(string.Format("Initial Setup Value: 0x{0:X4}", CurDefaults.InitialSetup));
 			sb.AppendLine();
 
 			sb.AppendLine("Sound Card Settings");
