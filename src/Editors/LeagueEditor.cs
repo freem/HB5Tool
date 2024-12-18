@@ -140,7 +140,7 @@ namespace HB5Tool
 			{
 				sb.Append(string.Format("{0:X2} ", b));
 				++lineCounter;
-				if (lineCounter > 0 && lineCounter % 16 == 0)
+				if (lineCounter > 0 && lineCounter % 24 == 0)
 				{
 					sb.AppendLine();
 					lineCounter = 0;
