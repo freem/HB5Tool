@@ -58,6 +58,11 @@ namespace HB5Tool
 		public string Name;
 
 		/// <summary>
+		/// Unknown values at offset 0x14, usually filled with 0.
+		/// </summary>
+		public byte[] Unknown14;
+
+		/// <summary>
 		/// Team owner's name.
 		/// </summary>
 		/// offset 0x18; active if first character is not null/0x00
@@ -189,6 +194,7 @@ namespace HB5Tool
 		public TeamCommonData()
 		{
 			Name = String.Empty;
+			Unknown14 = null;
 			Owner = String.Empty;
 			CapColor = 0;
 			TrimColor = 0;
@@ -323,8 +329,8 @@ namespace HB5Tool
 				}
 			}
 
-			// todo: this is usually 0x00 filled
-			br.ReadBytes(4);
+			// unknown values at offset 0x14, often zero-filled.
+			Unknown14 = br.ReadBytes(4);
 
 			// owner
 			strFinished = false;
