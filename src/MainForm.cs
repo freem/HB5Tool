@@ -17,6 +17,8 @@ namespace HB5Tool
 		/// Key = full path to file
 		/// Value = editor form for specified file
 		/// </summary>
+		/// Since this is easier to deal with (compared to Batters, Pitchers, and Teams),
+		/// it doesn't need to be in the EditorManager class.
 		protected Dictionary<string, LeagueEditor> ActiveLeagueEditors;
 
 		public MainForm()
@@ -26,17 +28,26 @@ namespace HB5Tool
 			ActiveLeagueEditors = new Dictionary<string, LeagueEditor>();
 		}
 
+		/// <summary>
+		/// Update the visibility of the Window menu.
+		/// </summary>
 		public void UpdateWindowMenu()
 		{
 			windowToolStripMenuItem.Visible = MdiChildren.Length > 0;
 		}
 
+		/// <summary>
+		/// Help -> About
+		/// </summary>
 		private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			AboutBox a = new AboutBox();
 			a.ShowDialog();
 		}
 
+		/// <summary>
+		/// File -> Open
+		/// </summary>
 		private void openToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			OpenFileDialog ofd = new OpenFileDialog();
@@ -548,12 +559,23 @@ namespace HB5Tool
 		/// <summary>
 		/// Player Editor-specific form closing callback.
 		/// </summary>
+		private void PlayerEditor_CloseFormCallback(object sender, EventArgs e)
+		{
+			// todo: determine if this was a Batter or Pitcher
+		}
+
+		/// <summary>
+		/// Team Editor-specific form closing callback.
+		/// </summary>
 		private void TeamEditor_CloseFormCallback(object sender, EventArgs e)
 		{
-
+			//EditorManager.Teams.Remove();
 		}
 		#endregion
 
+		/// <summary>
+		/// File -> Exit
+		/// </summary>
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Close();
@@ -650,6 +672,9 @@ namespace HB5Tool
 			}
 		}
 
+		/// <summary>
+		/// Help -> Manual
+		/// </summary>
 		private void manualToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			MessageBox.Show("Manual has not yet been written, mainly because the program is not that useful for people who aren't freem.");
