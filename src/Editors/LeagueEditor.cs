@@ -311,11 +311,11 @@ namespace HB5Tool
 
 				if (masked > CurLeague.NumBatters)
 				{
-					pName = CurLeague.PitcherDatabase[masked - CurLeague.NumBatters - 1].CommonData.Name;
+					pName = CurLeague.PitcherDatabase[masked - CurLeague.NumBatters].CommonData.Name;
 				}
 				else if(masked > 0)
 				{
-					pName = CurLeague.BatterDatabase[masked - 1].CommonData.Name;
+					pName = CurLeague.BatterDatabase[masked].CommonData.Name;
 				}
 
 				if (masked != 0)
