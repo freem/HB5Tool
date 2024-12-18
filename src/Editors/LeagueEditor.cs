@@ -251,9 +251,27 @@ namespace HB5Tool
 
 			pbLogo.Image = tempLogo;
 
-			// xxx: assumes MLBPA colors, doesn't handle using 0xC and higher in MLBPA teams
-			pHatColor.BackColor = DefaultData.CapTrimColors_MLBPA[CurTeam.CommonData.CapColor][4];
-			pTrimColor.BackColor = DefaultData.CapTrimColors_MLBPA[CurTeam.CommonData.TrimColor][4];
+			// Hat and Trim colors depend on league type.
+			if (CurLeague.LeagueType == LeagueTypes.MLBPA)
+			{
+				// It is possible to use the Legends colors in a MLBPA league, but this requires hacking.
+				// I am unsure if the reverse is possible (not likely).
+				if (CurTeam.CommonData.CapColor >= DefaultData.CapTrimColors_MLBPA.Count)
+				{
+					pHatColor.BackColor = DefaultData.CapTrimColors_Legends[CurTeam.CommonData.CapColor - DefaultData.CapTrimColors_MLBPA.Count][4];
+					pTrimColor.BackColor = DefaultData.CapTrimColors_Legends[CurTeam.CommonData.TrimColor - DefaultData.CapTrimColors_MLBPA.Count][4];
+				}
+				else
+				{
+					pHatColor.BackColor = DefaultData.CapTrimColors_MLBPA[CurTeam.CommonData.CapColor][4];
+					pTrimColor.BackColor = DefaultData.CapTrimColors_MLBPA[CurTeam.CommonData.TrimColor][4];
+				}
+			}
+			else if (CurLeague.LeagueType == LeagueTypes.Legends)
+			{
+				pHatColor.BackColor = DefaultData.CapTrimColors_Legends[CurTeam.CommonData.CapColor][4];
+				pTrimColor.BackColor = DefaultData.CapTrimColors_Legends[CurTeam.CommonData.TrimColor][4];
+			}
 
 			StringBuilder sb = new StringBuilder();
 
