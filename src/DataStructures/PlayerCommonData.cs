@@ -73,13 +73,13 @@ namespace HB5Tool
 		/// 0x4000: "no picture, picture option disabled"
 		/// 0x8000: "has a picture, but is not used"
 		/// "real" pictures start at index 0x0014
-		public short PictureIndex;
+		public ushort PictureIndex;
 
 		/// <summary>
 		/// Name call
 		/// </summary>
 		/// offset 4
-		public short NameCall;
+		public ushort NameCall;
 
 		/// <summary>
 		/// Jersey number, 0-99.
@@ -245,14 +245,14 @@ namespace HB5Tool
 			{
 				Array.Reverse(tmp);
 			}
-			PictureIndex = BitConverter.ToInt16(tmp, 0);
+			PictureIndex = BitConverter.ToUInt16(tmp, 0);
 
 			tmp = br.ReadBytes(2);
 			if (!BitConverter.IsLittleEndian)
 			{
 				Array.Reverse(tmp);
 			}
-			NameCall = BitConverter.ToInt16(tmp, 0);
+			NameCall = BitConverter.ToUInt16(tmp, 0);
 
 			bool nameFinished = false;
 			for (int i = 0; i < PLAYER_NAME_LENGTH; i++)
