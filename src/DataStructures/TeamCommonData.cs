@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HB5Tool
 {
@@ -397,7 +395,7 @@ namespace HB5Tool
 			Unknown_70D = br.ReadByte();
 
 			// player type starting at offset 0x70E; 0x50 bytes maximum (40 players), each entry is 2 bytes
-			// team export files: lower byte is always 0x00; upper byte determines batter (0x01) or pitcher (0x02)?
+			// team export files: high/second byte is always 0x00; lower/first byte determines batter (0x01) or pitcher (0x02)?
 			// league files: each value is a player index
 			PlayerIdent = new UInt16[ROSTER_DATA_LENGTH];
 			for (int i = 0; i < ROSTER_DATA_LENGTH; i++)
