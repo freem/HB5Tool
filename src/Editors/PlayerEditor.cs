@@ -179,16 +179,16 @@ namespace HB5Tool
 			sb.AppendLine(string.Format("Close/Late: {0}", PlayerDataExp.CloseLate));
 			sb.AppendLine(string.Format("Runners in Scoring Position: {0}", PlayerDataExp.ScoringPosition));
 			sb.AppendLine(string.Format("Unknown 3: 0x{0:X2}", PlayerDataExp.Unknown3));
-			sb.AppendLine(string.Format("Throws: {0}", (PlayerCommonData.HandTypes)PlayerDataExp.GetHand_Throw()));
-			sb.AppendLine(string.Format("Bats: {0}", (PlayerCommonData.HandTypes)PlayerDataExp.GetHand_Bat()));
+			//sb.AppendLine(string.Format("Throws: {0}", (PlayerCommonData.HandTypes)PlayerDataExp.GetHand_Throw()));
+			//sb.AppendLine(string.Format("Bats: {0}", (PlayerCommonData.HandTypes)PlayerDataExp.GetHand_Bat()));
 			sb.AppendLine(string.Format("Streak: {0}", PlayerDataExp.Streak));
-			sb.AppendLine(string.Format("Skin Color: {0}", (PlayerCommonData.SkinColors)PlayerDataExp.GetSkinColor()));
+			//sb.AppendLine(string.Format("Skin Color: {0}", (PlayerCommonData.SkinColors)PlayerDataExp.GetSkinColor()));
 
 			// [position-specific rating values]
 			if (PlayerDataExp.PlayerType == PlayerTypes.Batter)
 			{
 				// at the plate
-				sb.AppendLine(string.Format("Position: {0}", (BatterData.FieldingPositions)(PlayerDataExp.GetPosition())));
+				//sb.AppendLine(string.Format("Position: {0}", (BatterData.FieldingPositions)(PlayerDataExp.GetPosition())));
 				sb.AppendLine(string.Format("Home/Away: {0}", PlayerDataExp.HomeAway));
 				sb.AppendLine(string.Format("Contact: {0}", PlayerDataExp.ContactHit));
 				sb.AppendLine(string.Format("Power: {0}", PlayerDataExp.PowerHit));
