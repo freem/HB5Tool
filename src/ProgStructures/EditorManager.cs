@@ -53,17 +53,11 @@ namespace HB5Tool
 		/// </summary>
 		public int Index;
 
-		/// <summary>
-		/// Editor form associated with these params.
-		/// </summary>
-		public Form EditorForm;
-
-		public EditorParams(EditorDataSources _src, string _file, int _idx, Form _form)
+		public EditorParams(EditorDataSources _src, string _file, int _idx)
 		{
 			Source = _src;
 			Filename = _file;
 			Index = _idx;
-			EditorForm = _form;
 		}
 
 		/// <summary>
@@ -72,7 +66,7 @@ namespace HB5Tool
 		/// <returns></returns>
 		public override int GetHashCode()
 		{
-			return (Filename, Index, Source).GetHashCode();
+			return (Source, Filename, Index).GetHashCode();
 		}
 
 		/// <summary>
@@ -86,47 +80,6 @@ namespace HB5Tool
 		}
 	}
 
-	// for players:
-	// - data source
-	//   if .BTR/.PIT: filename
-	//   if .HB5: team player index
-	//   if .LGD: global player index
-
-	/// <summary>
-	/// Batter representation for an editor.
-	/// </summary>
-	public struct EditorBatter
-	{
-		public BatterData Data;
-		// todo: does not handle anything but historical stats at the moment
-		public PlayerStats Stats;
-	}
-
-	/// <summary>
-	/// Pitcher representation for an editor.
-	/// </summary>
-	public struct EditorPitcher
-	{
-		public PitcherData Data;
-		// todo: does not handle anything but historical stats at the moment
-		public PlayerStats Stats;
-	}
-
-	// for teams:
-	// - data source
-	//   if .HB5: filename
-	//   if .LGD: team index
-
-	/// <summary>
-	/// Team representation for an editor.
-	/// </summary>
-	public struct EditorTeam
-	{
-		public TeamCommonData Data;
-		public List<EditorBatter> Batters;
-		public List<EditorPitcher> Pitchers;
-	};
-
 	/// <summary>
 	/// Manager for various editor dialogs.
 	/// </summary>
@@ -135,16 +88,16 @@ namespace HB5Tool
 		/// <summary>
 		/// Active Batter editors.
 		/// </summary>
-		public static Dictionary<EditorParams, EditorBatter> Batters = new Dictionary<EditorParams, EditorBatter>();
+		public static Dictionary<EditorParams, Form> Batters = new Dictionary<EditorParams, Form>();
 
 		/// <summary>
 		/// Active Pitcher editors.
 		/// </summary>
-		public static Dictionary<EditorParams, EditorPitcher> Pitchers = new Dictionary<EditorParams, EditorPitcher>();
+		public static Dictionary<EditorParams, Form> Pitchers = new Dictionary<EditorParams, Form>();
 
 		/// <summary>
 		/// Active Team editors.
 		/// </summary>
-		public static Dictionary<EditorParams, EditorTeam> Teams = new Dictionary<EditorParams, EditorTeam>();
+		public static Dictionary<EditorParams, Form> Teams = new Dictionary<EditorParams, Form>();
 	}
 }
