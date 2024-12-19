@@ -70,6 +70,7 @@ namespace HB5Tool
 			this.tbUnkB = new System.Windows.Forms.TextBox();
 			this.tpUnknownC = new System.Windows.Forms.TabPage();
 			this.tbUnkC = new System.Windows.Forms.TextBox();
+			this.pbStarPlayer = new System.Windows.Forms.PictureBox();
 			this.statusStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -87,6 +88,7 @@ namespace HB5Tool
 			this.tpUnknown6.SuspendLayout();
 			this.tpUnknownB.SuspendLayout();
 			this.tpUnknownC.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbStarPlayer)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// statusStrip1
@@ -142,7 +144,7 @@ namespace HB5Tool
 			this.tbOutput.Name = "tbOutput";
 			this.tbOutput.ReadOnly = true;
 			this.tbOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.tbOutput.Size = new System.Drawing.Size(610, 283);
+			this.tbOutput.Size = new System.Drawing.Size(620, 297);
 			this.tbOutput.TabIndex = 2;
 			// 
 			// tabControl1
@@ -169,7 +171,7 @@ namespace HB5Tool
 			this.tpGeneral.Location = new System.Drawing.Point(4, 22);
 			this.tpGeneral.Name = "tpGeneral";
 			this.tpGeneral.Padding = new System.Windows.Forms.Padding(3);
-			this.tpGeneral.Size = new System.Drawing.Size(616, 289);
+			this.tpGeneral.Size = new System.Drawing.Size(626, 303);
 			this.tpGeneral.TabIndex = 0;
 			this.tpGeneral.Text = "General";
 			this.tpGeneral.UseVisualStyleBackColor = true;
@@ -179,7 +181,7 @@ namespace HB5Tool
 			this.tpLeagueInfo.Controls.Add(this.tbLeagueInfo);
 			this.tpLeagueInfo.Location = new System.Drawing.Point(4, 22);
 			this.tpLeagueInfo.Name = "tpLeagueInfo";
-			this.tpLeagueInfo.Size = new System.Drawing.Size(616, 289);
+			this.tpLeagueInfo.Size = new System.Drawing.Size(626, 303);
 			this.tpLeagueInfo.TabIndex = 3;
 			this.tpLeagueInfo.Text = "Info";
 			this.tpLeagueInfo.UseVisualStyleBackColor = true;
@@ -194,7 +196,7 @@ namespace HB5Tool
 			this.tbLeagueInfo.Name = "tbLeagueInfo";
 			this.tbLeagueInfo.ReadOnly = true;
 			this.tbLeagueInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.tbLeagueInfo.Size = new System.Drawing.Size(616, 289);
+			this.tbLeagueInfo.Size = new System.Drawing.Size(626, 303);
 			this.tbLeagueInfo.TabIndex = 3;
 			// 
 			// tpPlayers
@@ -203,7 +205,7 @@ namespace HB5Tool
 			this.tpPlayers.Location = new System.Drawing.Point(4, 22);
 			this.tpPlayers.Name = "tpPlayers";
 			this.tpPlayers.Padding = new System.Windows.Forms.Padding(3);
-			this.tpPlayers.Size = new System.Drawing.Size(616, 289);
+			this.tpPlayers.Size = new System.Drawing.Size(626, 303);
 			this.tpPlayers.TabIndex = 1;
 			this.tpPlayers.Text = "Players";
 			this.tpPlayers.UseVisualStyleBackColor = true;
@@ -220,7 +222,7 @@ namespace HB5Tool
 			this.tlpPlayers.Name = "tlpPlayers";
 			this.tlpPlayers.RowCount = 1;
 			this.tlpPlayers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tlpPlayers.Size = new System.Drawing.Size(610, 283);
+			this.tlpPlayers.Size = new System.Drawing.Size(620, 297);
 			this.tlpPlayers.TabIndex = 4;
 			// 
 			// gbBatters
@@ -230,7 +232,7 @@ namespace HB5Tool
 			this.gbBatters.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gbBatters.Location = new System.Drawing.Point(3, 3);
 			this.gbBatters.Name = "gbBatters";
-			this.gbBatters.Size = new System.Drawing.Size(299, 277);
+			this.gbBatters.Size = new System.Drawing.Size(304, 291);
 			this.gbBatters.TabIndex = 2;
 			this.gbBatters.TabStop = false;
 			this.gbBatters.Text = "&Batters";
@@ -259,9 +261,9 @@ namespace HB5Tool
 			this.gbPitchers.Controls.Add(this.lblPitcherID);
 			this.gbPitchers.Controls.Add(this.lbPitchers);
 			this.gbPitchers.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gbPitchers.Location = new System.Drawing.Point(308, 3);
+			this.gbPitchers.Location = new System.Drawing.Point(313, 3);
 			this.gbPitchers.Name = "gbPitchers";
-			this.gbPitchers.Size = new System.Drawing.Size(299, 277);
+			this.gbPitchers.Size = new System.Drawing.Size(304, 291);
 			this.gbPitchers.TabIndex = 3;
 			this.gbPitchers.TabStop = false;
 			this.gbPitchers.Text = "&Pitchers";
@@ -287,6 +289,7 @@ namespace HB5Tool
 			// 
 			// tpTeams
 			// 
+			this.tpTeams.Controls.Add(this.pbStarPlayer);
 			this.tpTeams.Controls.Add(this.tbTeamOutput);
 			this.tpTeams.Controls.Add(this.lblTrimColor);
 			this.tpTeams.Controls.Add(this.lblHatColor);
@@ -394,7 +397,7 @@ namespace HB5Tool
 			this.tpSchedule.Location = new System.Drawing.Point(4, 22);
 			this.tpSchedule.Name = "tpSchedule";
 			this.tpSchedule.Padding = new System.Windows.Forms.Padding(3);
-			this.tpSchedule.Size = new System.Drawing.Size(616, 289);
+			this.tpSchedule.Size = new System.Drawing.Size(626, 303);
 			this.tpSchedule.TabIndex = 4;
 			this.tpSchedule.Text = "Schedule";
 			this.tpSchedule.UseVisualStyleBackColor = true;
@@ -409,7 +412,7 @@ namespace HB5Tool
 			this.tbSchedule.Name = "tbSchedule";
 			this.tbSchedule.ReadOnly = true;
 			this.tbSchedule.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.tbSchedule.Size = new System.Drawing.Size(610, 283);
+			this.tbSchedule.Size = new System.Drawing.Size(620, 297);
 			this.tbSchedule.TabIndex = 3;
 			// 
 			// tpUnknown4
@@ -418,7 +421,7 @@ namespace HB5Tool
 			this.tpUnknown4.Location = new System.Drawing.Point(4, 22);
 			this.tpUnknown4.Name = "tpUnknown4";
 			this.tpUnknown4.Padding = new System.Windows.Forms.Padding(3);
-			this.tpUnknown4.Size = new System.Drawing.Size(616, 289);
+			this.tpUnknown4.Size = new System.Drawing.Size(626, 303);
 			this.tpUnknown4.TabIndex = 5;
 			this.tpUnknown4.Text = "Unknown4";
 			this.tpUnknown4.UseVisualStyleBackColor = true;
@@ -433,7 +436,7 @@ namespace HB5Tool
 			this.tbUnk4.Name = "tbUnk4";
 			this.tbUnk4.ReadOnly = true;
 			this.tbUnk4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.tbUnk4.Size = new System.Drawing.Size(610, 283);
+			this.tbUnk4.Size = new System.Drawing.Size(620, 297);
 			this.tbUnk4.TabIndex = 4;
 			// 
 			// tpUnknown6
@@ -442,7 +445,7 @@ namespace HB5Tool
 			this.tpUnknown6.Location = new System.Drawing.Point(4, 22);
 			this.tpUnknown6.Name = "tpUnknown6";
 			this.tpUnknown6.Padding = new System.Windows.Forms.Padding(3);
-			this.tpUnknown6.Size = new System.Drawing.Size(616, 289);
+			this.tpUnknown6.Size = new System.Drawing.Size(626, 303);
 			this.tpUnknown6.TabIndex = 8;
 			this.tpUnknown6.Text = "Unknown6";
 			this.tpUnknown6.UseVisualStyleBackColor = true;
@@ -457,7 +460,7 @@ namespace HB5Tool
 			this.tbUnk6.Name = "tbUnk6";
 			this.tbUnk6.ReadOnly = true;
 			this.tbUnk6.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.tbUnk6.Size = new System.Drawing.Size(610, 283);
+			this.tbUnk6.Size = new System.Drawing.Size(620, 297);
 			this.tbUnk6.TabIndex = 5;
 			// 
 			// tpUnknownB
@@ -466,7 +469,7 @@ namespace HB5Tool
 			this.tpUnknownB.Location = new System.Drawing.Point(4, 22);
 			this.tpUnknownB.Name = "tpUnknownB";
 			this.tpUnknownB.Padding = new System.Windows.Forms.Padding(3);
-			this.tpUnknownB.Size = new System.Drawing.Size(616, 289);
+			this.tpUnknownB.Size = new System.Drawing.Size(626, 303);
 			this.tpUnknownB.TabIndex = 6;
 			this.tpUnknownB.Text = "UnknownB";
 			this.tpUnknownB.UseVisualStyleBackColor = true;
@@ -481,7 +484,7 @@ namespace HB5Tool
 			this.tbUnkB.Name = "tbUnkB";
 			this.tbUnkB.ReadOnly = true;
 			this.tbUnkB.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.tbUnkB.Size = new System.Drawing.Size(610, 283);
+			this.tbUnkB.Size = new System.Drawing.Size(620, 297);
 			this.tbUnkB.TabIndex = 4;
 			// 
 			// tpUnknownC
@@ -490,7 +493,7 @@ namespace HB5Tool
 			this.tpUnknownC.Location = new System.Drawing.Point(4, 22);
 			this.tpUnknownC.Name = "tpUnknownC";
 			this.tpUnknownC.Padding = new System.Windows.Forms.Padding(3);
-			this.tpUnknownC.Size = new System.Drawing.Size(616, 289);
+			this.tpUnknownC.Size = new System.Drawing.Size(626, 303);
 			this.tpUnknownC.TabIndex = 7;
 			this.tpUnknownC.Text = "UnknownC";
 			this.tpUnknownC.UseVisualStyleBackColor = true;
@@ -505,8 +508,18 @@ namespace HB5Tool
 			this.tbUnkC.Name = "tbUnkC";
 			this.tbUnkC.ReadOnly = true;
 			this.tbUnkC.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.tbUnkC.Size = new System.Drawing.Size(610, 283);
+			this.tbUnkC.Size = new System.Drawing.Size(620, 297);
 			this.tbUnkC.TabIndex = 4;
+			// 
+			// pbStarPlayer
+			// 
+			this.pbStarPlayer.Location = new System.Drawing.Point(490, 5);
+			this.pbStarPlayer.MaximumSize = new System.Drawing.Size(128, 120);
+			this.pbStarPlayer.MinimumSize = new System.Drawing.Size(128, 120);
+			this.pbStarPlayer.Name = "pbStarPlayer";
+			this.pbStarPlayer.Size = new System.Drawing.Size(128, 120);
+			this.pbStarPlayer.TabIndex = 23;
+			this.pbStarPlayer.TabStop = false;
 			// 
 			// LeagueEditor
 			// 
@@ -555,6 +568,7 @@ namespace HB5Tool
 			this.tpUnknownB.PerformLayout();
 			this.tpUnknownC.ResumeLayout(false);
 			this.tpUnknownC.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbStarPlayer)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -600,5 +614,6 @@ namespace HB5Tool
 		private System.Windows.Forms.TextBox tbUnk6;
 		private System.Windows.Forms.Label lblBatterID;
 		private System.Windows.Forms.Label lblPitcherID;
+		private System.Windows.Forms.PictureBox pbStarPlayer;
 	}
 }

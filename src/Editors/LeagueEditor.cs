@@ -52,7 +52,7 @@ namespace HB5Tool
 			sb.AppendLine("Entries");
 			foreach (LeagueDataEntry lde in CurLeague.DataSections)
 			{
-				sb.AppendLine("----------------");
+				sb.AppendLine("------------------------");
 				sb.AppendLine(string.Format("Data Type: 0x{0:X2} ({1})",lde.DataType, (LeagueDataTypes)lde.DataType));
 				sb.AppendLine(string.Format("Unknowns: 0x{0:X2}, 0x{1:X2}, 0x{2:X2}",lde.Unknown1, lde.Unknown2, lde.Unknown3));
 				sb.AppendLine(string.Format("Offset 0x{0:X} (0x{1:X})",lde.Offset, lde.Offset + CurLeague.LgInfoOffset));
@@ -60,8 +60,8 @@ namespace HB5Tool
 			}
 			sb.AppendLine();
 
-			sb.AppendLine(string.Format("Number of Players: {0}", CurLeague.NumPlayers));
-			sb.AppendLine(string.Format("Number of Batters: {0}", CurLeague.NumBatters));
+			sb.AppendLine(string.Format("Number of Players:  {0}", CurLeague.NumPlayers));
+			sb.AppendLine(string.Format("Number of Batters:  {0}", CurLeague.NumBatters));
 			sb.AppendLine(string.Format("Number of Pitchers: {0}", CurLeague.NumPlayers-CurLeague.NumBatters));
 			tbOutput.Text = sb.ToString();
 
@@ -273,6 +273,40 @@ namespace HB5Tool
 				pTrimColor.BackColor = DefaultData.CapTrimColors_Legends[CurTeam.CommonData.TrimColor][4];
 			}
 
+			// handle star player image
+			if (Program.GlobalPicsBin != null)
+			{
+				byte starPlayer = CurTeam.CommonData.StarPlayer;
+				ushort starID = (ushort)(CurTeam.CommonData.PlayerIdent[starPlayer] & 0x3FFF);
+				int picNum = 0;
+				if (starID > 0)
+				{
+					if (starID > CurLeague.NumBatters)
+					{
+						if ((CurLeague.PitcherDatabase[starID - CurLeague.NumBatters].CommonData.PictureIndex & 0x3FFF) == 0)
+						{
+							picNum = 1;
+						}
+						else
+						{
+							picNum = (CurLeague.PitcherDatabase[starID - CurLeague.NumBatters].CommonData.PictureIndex - 1) & 0x3FFF;
+						}
+					}
+					else
+					{
+						if ((CurLeague.BatterDatabase[starID].CommonData.PictureIndex & 0x3FFF) == 0)
+						{
+							picNum = 0;
+						}
+						else
+						{
+							picNum = (CurLeague.BatterDatabase[starID].CommonData.PictureIndex - 1) & 0x3FFF;
+						}
+					}
+				}
+				pbStarPlayer.Image = Program.GlobalPicsBin.RenderedPics[picNum];
+			}
+
 			StringBuilder sb = new StringBuilder();
 
 			sb.AppendLine("[Batting Orders]");
@@ -307,6 +341,7 @@ namespace HB5Tool
 
 			sb.AppendLine(string.Format("Unknown_50 value: 0x{0:X2}", CurTeam.CommonData.Unknown_50));
 			sb.AppendLine(string.Format("Stadium: 0x{0:X2} ({1})", CurTeam.CommonData.Stadium, DefaultData.StadiumList[CurTeam.CommonData.Stadium]));
+			sb.AppendLine(string.Format("Star Player index: 0x{0:X2}", CurTeam.CommonData.StarPlayer));
 
 			sb.AppendLine(string.Format("Number of Pitchers in Starting Rotation: {0}", CurTeam.CommonData.NumStartingPitchers));
 			sb.AppendLine();
@@ -324,7 +359,7 @@ namespace HB5Tool
 			int playerNum = 1;
 			foreach (UInt16 s in CurTeam.CommonData.PlayerIdent)
 			{
-				ushort masked = (ushort)(s & 0x0FFF);
+				ushort masked = (ushort)(s & 0x3FFF);
 				string pName = string.Empty;
 
 				if (masked > CurLeague.NumBatters)
@@ -342,7 +377,7 @@ namespace HB5Tool
 				}
 				else
 				{
-					sb.AppendLine(string.Format("0x{0:X2} = {1:X4}", playerNum, s));
+					sb.AppendLine(string.Format("0x{0:X2} = {1:X4}{2}", playerNum, s, CurTeam.CommonData.StarPlayer == playerNum-1 ? "*" : ""));
 				}
 				playerNum++;
 			}
