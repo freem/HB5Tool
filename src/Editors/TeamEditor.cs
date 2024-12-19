@@ -34,6 +34,8 @@ namespace HB5Tool
 		/// </summary>
 		public bool ChangesMade;
 
+		public ExportTeam TeamData;
+
 		public TeamCommonData CommonData;
 		#endregion
 
@@ -76,6 +78,14 @@ namespace HB5Tool
 
 			pbLogo.Image = tempLogo;
 
+			tbPitcherHook.Value = CommonData.GetManagerSlider_Hook();
+			tbStealBases.Value = CommonData.GetManagerSlider_Steal();
+			tbRunners.Value = CommonData.GetManagerSlider_Runners();
+			tbSacrifice.Value = CommonData.GetManagerSlider_Sacrifice();
+			tbOffenseDefense.Value = CommonData.GetManagerSlider_OffenseDefense();
+			tbSpeedPower.Value = CommonData.GetManagerSlider_SpeedPower();
+			tbRookieVeteran.Value = CommonData.GetManagerSlider_RookieVeteran();
+
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine(string.Format("Value at 0x50: 0x{0:X2}", CommonData.Unknown_50));
 			sb.AppendLine();
@@ -116,7 +126,9 @@ namespace HB5Tool
 			{
 				using (BinaryReader br = new BinaryReader(fs))
 				{
-					CommonData = new TeamCommonData(br);
+					//CommonData = new TeamCommonData(br);
+					TeamData = new ExportTeam(br);
+					CommonData = TeamData.CommonData;
 				}
 			}
 		}
