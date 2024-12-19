@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HB5Tool
 {
@@ -22,7 +20,8 @@ namespace HB5Tool
 	}
 
 	/// <summary>
-	/// Represents a Hardball 5 baseball player from a .PIT or .BTR file.
+	/// Represents an exported Hardball 5 baseball player.
+	/// Common sources are .PIT, .BTR, and .HB5 (team export) files.
 	/// </summary>
 	public class ExportPlayer
 	{
@@ -32,12 +31,21 @@ namespace HB5Tool
 		/// </summary>
 		public PlayerTypes PlayerType;
 
-		//public BatterData Batter;
+		/// <summary>
+		/// Batter data.
+		/// </summary>
+		public BatterData Batter;
 
-		//public PitcherData Pitcher;
+		/// <summary>
+		/// Pitcher data.
+		/// </summary>
+		public PitcherData Pitcher;
 
 		// [Batter only] unused values at 0x2A-0x2C
+		// Batter includes Batter_Unused2A to Batter_Unused2C
+
 		// [Batter and Pitcher] unused values at 0x2D-0x2F
+		// Pitcher includes Unknown2D
 
 		//public PlayerStats Stats;
 
@@ -313,47 +321,8 @@ namespace HB5Tool
 			// values here are arbitrary
 
 			PlayerType = PlayerTypes.Invalid;
-			PictureIndex = 0;
-			NameCall = 0;
-			JerseyNum = 0;
-			Name = String.Empty;
-			Age = 20;
-			Experience = 0;
-			RunSpeed = 50;
-			FieldingAbility = 50;
-			CloseLate = 50;
-			Handedness = 0;
-			Streak = 0;
-			Unknown3 = 0;
-			Unused2D = 0;
-			Unused2E = 0;
-			Unused2F = 0;
-
-			#region Batter-only
-			Arm = 50;
-			PowerHit = 50;
-			ContactHit = 50;
-			GroundoutPct = 0;
-			PullPct = 0;
-			SecondaryFieldingAbility = 50;
-			Batter_Unused2A = 0;
-			Batter_Unused2B = 0;
-			Batter_Unused2C = 0;
-			#endregion
-
-			#region Pitcher-only
-			PitcherType = PitcherData.PitcherTypes.Invalid;
-			Stamina = 1;
-			Accuracy = 1;
-			Fastball = 50;
-			Curveball = 50;
-			ChangeUp = 50;
-			Slider = 20;
-			Sinker = 20;
-			Knuckleball = 20;
-			Screwball = 20;
-			#endregion
-
+			Batter = null;
+			Pitcher = null;
 			StatDump = null;
 		}
 
@@ -369,31 +338,6 @@ namespace HB5Tool
 		public ExportPlayer(BinaryReader br, bool _header, bool _ignored, bool _stats)
 		{
 			ReadData(br, _header, _ignored, _stats);
-		}
-		#endregion
-
-		#region Helpers
-		public byte GetHand_Throw()
-		{
-			// should return a value that's 0 or 1
-			return (byte)((Handedness & 0xF0)>>4);
-		}
-
-		public byte GetHand_Bat()
-		{
-			// should return a value between 0-2
-			return (byte)(Handedness & 0x0F);
-		}
-
-		public byte GetSkinColor()
-		{
-			return (byte)(Position_SkinColor & 0x01);
-		}
-
-		public byte GetPosition()
-		{
-			// todo: return a FieldingPositions value?
-			return (byte)((Position_SkinColor & 0xF0)>>4);
 		}
 		#endregion
 
@@ -415,19 +359,44 @@ namespace HB5Tool
 			{
 				Batter = new BatterData(br);
 				Pitcher = null;
-				// skip offsets 0x2A-0x2F
+				// skip offsets 0x2D-0x2F
 			}
 			else if (PlayerType == PlayerTypes.Pitcher)
 			{
 				Pitcher = new PitcherData(br);
 				Batter = null;
-				// skip offsets 0x2D-0x2F
+				// skip offsets 0x2E-0x2F
 			}
 			else
 			{
 				// neither a batter nor pitcher, so invalid
 			}
 			*/
+		}
+
+		/// <summary>
+		/// Read data from a team export file (.HB5) using a BinaryReader.
+		/// </summary>
+		/// <param name="br">BinaryReader instance to use.</param>
+		/// <param name="_type">Player type (Batter or Pitcher).</param>
+		public void ReadTeamExportPlayer(BinaryReader br, PlayerTypes _type)
+		{
+			PlayerType = _type;
+
+			if (PlayerType == PlayerTypes.Batter)
+			{
+				//Batter = new BatterData(br);
+				//Pitcher = null;
+			}
+			else if (PlayerType == PlayerTypes.Pitcher)
+			{
+				//Pitcher = new PitcherData(br);
+				//Batter = null;
+			}
+			else
+			{
+				// invalid
+			}
 		}
 
 		/// <summary>

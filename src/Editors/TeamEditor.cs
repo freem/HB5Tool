@@ -20,13 +20,20 @@ namespace HB5Tool
 
 		#region Class Members
 		/// <summary>
+		/// Editor parameters.
+		/// </summary>
+		public EditorParams Params;
+
+		/// <summary>
 		/// Path to file containing this team's data.
 		/// </summary>
+		/// deprecated, to be replaced with Params.Filename
 		public string FilePath;
 
 		/// <summary>
 		/// Team index, only used if the source is League.
 		/// </summary>
+		/// deprecated, to be replaced with Params.Index
 		public int TeamIndex = -1;
 
 		/// <summary>
@@ -38,6 +45,37 @@ namespace HB5Tool
 
 		public TeamCommonData CommonData;
 		#endregion
+
+		/*
+		public TeamEditor(EditorParams _params)
+		{
+			InitializeComponent();
+			Params = _params;
+			ChangesMade = false;
+
+			tssLabelFilePath.Text = Params.Filename;
+
+			// load team data based on params
+			switch (Params.Source)
+			{
+				case EditorDataSources.TeamExport:
+					{
+
+					}
+					break;
+
+				case EditorDataSources.League:
+					{
+
+					}
+					break;
+
+				default:
+					// anything else is invalid
+					break;
+			}
+		}
+		*/
 
 		public TeamEditor(string _filePath, int _idx = -1)
 		{
