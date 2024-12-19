@@ -130,11 +130,6 @@ namespace HB5Tool
 			btnOpenLeaguePath.Enabled = cbOverrideDefaultLeague.Checked;
 		}
 
-		private void button1_Click(object sender, EventArgs e)
-		{
-
-		}
-
 		private void btnOpenPicsPath_Click(object sender, EventArgs e)
 		{
 			// open a file
