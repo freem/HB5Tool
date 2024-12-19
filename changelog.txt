@@ -10,7 +10,6 @@ HB5Tool changelog
   HARDBALL.BIN/HB5CDROM.BIN is still not supported.)
 
 - Added "Default PICS.BIN Path" to program settings.
-  (Not used yet, much like the other program settings.)
 
 - [Stadium INFO*.BIN Editor] Add visual representation of custom color sets.
 
@@ -24,6 +23,9 @@ HB5Tool changelog
 - [MGS Editor] Now displays hex dumps for each segment.
 
 - Added DRVRLIST.BIN viewer. There are no plans to make this editable.
+
+- [League Editor] When a default PICS.BIN is set, the Star Player's picture
+  will be displayed.
 
 --------------------------------------------------------------------------------
 v0.1.5.0 - December 6, 2024
