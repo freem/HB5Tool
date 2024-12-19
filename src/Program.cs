@@ -8,6 +8,11 @@ namespace HB5Tool
 	static class Program
 	{
 		/// <summary>
+		/// Default PICS.BIN instance, if enabled.
+		/// </summary>
+		public static PicsBin GlobalPicsBin;
+
+		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
 		[STAThread]
