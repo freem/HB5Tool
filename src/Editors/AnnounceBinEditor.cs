@@ -55,8 +55,7 @@ namespace HB5Tool
 				{
 					sb.Append(string.Format("{0:X2} ",b));
 				}
-				sb.AppendLine();
-				sb.AppendLine();
+				sb.AppendLine(Environment.NewLine);
 			}
 
 			tbOutput.Text = sb.ToString();
