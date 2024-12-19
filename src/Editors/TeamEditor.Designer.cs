@@ -63,7 +63,7 @@ namespace HB5Tool
 			this.nudTrimColor = new System.Windows.Forms.NumericUpDown();
 			this.pTrimColor = new System.Windows.Forms.Panel();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.tpSummary = new System.Windows.Forms.TabPage();
+			this.tpMain = new System.Windows.Forms.TabPage();
 			this.gbManagerSliders = new System.Windows.Forms.GroupBox();
 			this.tpRoster = new System.Windows.Forms.TabPage();
 			this.tlpManagerSliders = new System.Windows.Forms.TableLayoutPanel();
@@ -96,7 +96,7 @@ namespace HB5Tool
 			((System.ComponentModel.ISupportInitialize)(this.nudHatColor)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudTrimColor)).BeginInit();
 			this.tabControl1.SuspendLayout();
-			this.tpSummary.SuspendLayout();
+			this.tpMain.SuspendLayout();
 			this.gbManagerSliders.SuspendLayout();
 			this.tlpManagerSliders.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.tbPitcherHook)).BeginInit();
@@ -395,7 +395,7 @@ namespace HB5Tool
 			// 
 			// tabControl1
 			// 
-			this.tabControl1.Controls.Add(this.tpSummary);
+			this.tabControl1.Controls.Add(this.tpMain);
 			this.tabControl1.Controls.Add(this.tpRoster);
 			this.tabControl1.Location = new System.Drawing.Point(12, 65);
 			this.tabControl1.Name = "tabControl1";
@@ -403,27 +403,27 @@ namespace HB5Tool
 			this.tabControl1.Size = new System.Drawing.Size(600, 286);
 			this.tabControl1.TabIndex = 1;
 			// 
-			// tpSummary
+			// tpMain
 			// 
-			this.tpSummary.Controls.Add(this.gbManagerSliders);
-			this.tpSummary.Controls.Add(this.gbSummary);
-			this.tpSummary.Controls.Add(this.tbStadium);
-			this.tpSummary.Controls.Add(this.pTrimColor);
-			this.tpSummary.Controls.Add(this.nudTrimColor);
-			this.tpSummary.Controls.Add(this.lblHomeStadium);
-			this.tpSummary.Controls.Add(this.lblTrimColor);
-			this.tpSummary.Controls.Add(this.lblStarPlayer);
-			this.tpSummary.Controls.Add(this.tbStarPlayerIndex);
-			this.tpSummary.Controls.Add(this.pHatColor);
-			this.tpSummary.Controls.Add(this.lblHatColor);
-			this.tpSummary.Controls.Add(this.nudHatColor);
-			this.tpSummary.Location = new System.Drawing.Point(4, 22);
-			this.tpSummary.Name = "tpSummary";
-			this.tpSummary.Padding = new System.Windows.Forms.Padding(3);
-			this.tpSummary.Size = new System.Drawing.Size(592, 260);
-			this.tpSummary.TabIndex = 0;
-			this.tpSummary.Text = "Summary";
-			this.tpSummary.UseVisualStyleBackColor = true;
+			this.tpMain.Controls.Add(this.gbManagerSliders);
+			this.tpMain.Controls.Add(this.gbSummary);
+			this.tpMain.Controls.Add(this.tbStadium);
+			this.tpMain.Controls.Add(this.pTrimColor);
+			this.tpMain.Controls.Add(this.nudTrimColor);
+			this.tpMain.Controls.Add(this.lblHomeStadium);
+			this.tpMain.Controls.Add(this.lblTrimColor);
+			this.tpMain.Controls.Add(this.lblStarPlayer);
+			this.tpMain.Controls.Add(this.tbStarPlayerIndex);
+			this.tpMain.Controls.Add(this.pHatColor);
+			this.tpMain.Controls.Add(this.lblHatColor);
+			this.tpMain.Controls.Add(this.nudHatColor);
+			this.tpMain.Location = new System.Drawing.Point(4, 22);
+			this.tpMain.Name = "tpMain";
+			this.tpMain.Padding = new System.Windows.Forms.Padding(3);
+			this.tpMain.Size = new System.Drawing.Size(592, 260);
+			this.tpMain.TabIndex = 0;
+			this.tpMain.Text = "Main";
+			this.tpMain.UseVisualStyleBackColor = true;
 			// 
 			// gbManagerSliders
 			// 
@@ -489,6 +489,8 @@ namespace HB5Tool
 			// tbPitcherHook
 			// 
 			this.tbPitcherHook.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tbPitcherHook.Enabled = false;
+			this.tbPitcherHook.LargeChange = 4;
 			this.tbPitcherHook.Location = new System.Drawing.Point(87, 3);
 			this.tbPitcherHook.Maximum = 15;
 			this.tbPitcherHook.Name = "tbPitcherHook";
@@ -498,6 +500,8 @@ namespace HB5Tool
 			// tbStealBases
 			// 
 			this.tbStealBases.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tbStealBases.Enabled = false;
+			this.tbStealBases.LargeChange = 4;
 			this.tbStealBases.Location = new System.Drawing.Point(87, 35);
 			this.tbStealBases.Maximum = 15;
 			this.tbStealBases.Name = "tbStealBases";
@@ -507,6 +511,8 @@ namespace HB5Tool
 			// tbRunners
 			// 
 			this.tbRunners.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tbRunners.Enabled = false;
+			this.tbRunners.LargeChange = 4;
 			this.tbRunners.Location = new System.Drawing.Point(87, 67);
 			this.tbRunners.Maximum = 15;
 			this.tbRunners.Name = "tbRunners";
@@ -516,6 +522,8 @@ namespace HB5Tool
 			// tbSacrifice
 			// 
 			this.tbSacrifice.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tbSacrifice.Enabled = false;
+			this.tbSacrifice.LargeChange = 4;
 			this.tbSacrifice.Location = new System.Drawing.Point(87, 99);
 			this.tbSacrifice.Maximum = 15;
 			this.tbSacrifice.Name = "tbSacrifice";
@@ -525,6 +533,8 @@ namespace HB5Tool
 			// tbOffenseDefense
 			// 
 			this.tbOffenseDefense.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tbOffenseDefense.Enabled = false;
+			this.tbOffenseDefense.LargeChange = 4;
 			this.tbOffenseDefense.Location = new System.Drawing.Point(87, 131);
 			this.tbOffenseDefense.Maximum = 15;
 			this.tbOffenseDefense.Name = "tbOffenseDefense";
@@ -534,6 +544,8 @@ namespace HB5Tool
 			// tbSpeedPower
 			// 
 			this.tbSpeedPower.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tbSpeedPower.Enabled = false;
+			this.tbSpeedPower.LargeChange = 4;
 			this.tbSpeedPower.Location = new System.Drawing.Point(87, 163);
 			this.tbSpeedPower.Maximum = 15;
 			this.tbSpeedPower.Name = "tbSpeedPower";
@@ -543,6 +555,8 @@ namespace HB5Tool
 			// tbRookieVeteran
 			// 
 			this.tbRookieVeteran.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tbRookieVeteran.Enabled = false;
+			this.tbRookieVeteran.LargeChange = 4;
 			this.tbRookieVeteran.Location = new System.Drawing.Point(87, 195);
 			this.tbRookieVeteran.Maximum = 15;
 			this.tbRookieVeteran.Name = "tbRookieVeteran";
@@ -731,8 +745,8 @@ namespace HB5Tool
 			((System.ComponentModel.ISupportInitialize)(this.nudHatColor)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudTrimColor)).EndInit();
 			this.tabControl1.ResumeLayout(false);
-			this.tpSummary.ResumeLayout(false);
-			this.tpSummary.PerformLayout();
+			this.tpMain.ResumeLayout(false);
+			this.tpMain.PerformLayout();
 			this.gbManagerSliders.ResumeLayout(false);
 			this.tlpManagerSliders.ResumeLayout(false);
 			this.tlpManagerSliders.PerformLayout();
@@ -782,7 +796,7 @@ namespace HB5Tool
 		private System.Windows.Forms.NumericUpDown nudTrimColor;
 		private System.Windows.Forms.Panel pTrimColor;
 		private System.Windows.Forms.TabControl tabControl1;
-		private System.Windows.Forms.TabPage tpSummary;
+		private System.Windows.Forms.TabPage tpMain;
 		private System.Windows.Forms.TabPage tpRoster;
 		private System.Windows.Forms.GroupBox gbManagerSliders;
 		private System.Windows.Forms.TableLayoutPanel tlpManagerSliders;
