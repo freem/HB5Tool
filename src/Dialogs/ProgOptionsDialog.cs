@@ -62,7 +62,7 @@ namespace HB5Tool
 			#region Default PICS.BIN
 			if (!tbPicsBinPath.Text.Equals(string.Empty))
 			{
-				if (!File.Exists(Path.GetDirectoryName(tbPicsBinPath.Text)))
+				if (!File.Exists(Path.GetFullPath(tbPicsBinPath.Text)))
 				{
 					MessageBox.Show("If setting a default PICS.BIN, it must exist.", "HB5Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return;
