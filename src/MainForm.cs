@@ -26,6 +26,7 @@ namespace HB5Tool
 			InitializeComponent();
 			UpdateWindowMenu();
 			ActiveLeagueEditors = new Dictionary<string, LeagueEditor>();
+			LoadGlobalPicsBin();
 		}
 
 		/// <summary>
@@ -37,6 +38,34 @@ namespace HB5Tool
 		}
 
 		/// <summary>
+		/// Load the Default/Global PICS.BIN, if one is defined in the program options.
+		/// </summary>
+		private void LoadGlobalPicsBin()
+		{
+			if (!string.IsNullOrEmpty(Properties.Settings.Default.DefaultPicsBinPath))
+			{
+				string fullPicsPath = Path.GetFullPath(Properties.Settings.Default.DefaultPicsBinPath);
+				// make sure this exists
+				if (File.Exists(fullPicsPath))
+				{
+					using (FileStream fs = new FileStream(fullPicsPath, FileMode.Open))
+					{
+						using (BinaryReader br = new BinaryReader(fs))
+						{
+							Program.GlobalPicsBin = new PicsBin(br);
+						}
+					}
+				}
+				else
+				{
+					MessageBox.Show(string.Format("Error opening default PICS.BIN path '{0}'.", fullPicsPath), "HB5Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					Program.GlobalPicsBin = null;
+				}
+			}
+		}
+
+		#region Help Menu
+		/// <summary>
 		/// Help -> About
 		/// </summary>
 		private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -44,6 +73,75 @@ namespace HB5Tool
 			AboutBox a = new AboutBox();
 			a.ShowDialog();
 		}
+
+		/// <summary>
+		/// Help -> Manual
+		/// </summary>
+		private void manualToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			MessageBox.Show("Manual has not yet been written, mainly because the program is not that useful for people who aren't freem.");
+		}
+		#endregion
+
+		#region Tools Menu
+		/// <summary>
+		/// Tools -> Filename Decode
+		/// </summary>
+		private void filenameDecodeToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			QuickDecode qd = new QuickDecode();
+			qd.MdiParent = this;
+			qd.Show();
+		}
+
+		/// <summary>
+		/// Tools -> Convert PNG to Team Logo
+		/// </summary>
+		private void imageTestToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			OpenFileDialog ofd = new OpenFileDialog();
+			ofd.Title = "Convert PNG to Team Logo";
+			ofd.Filter = SharedStrings.PngFilter;
+			ofd.Multiselect = false;
+			if (ofd.ShowDialog() == DialogResult.OK)
+			{
+				TeamLogo tempLogo = new TeamLogo();
+				tempLogo.PixelData = new byte[TeamLogo.LOGO_WIDTH * TeamLogo.LOGO_HEIGHT];
+				tempLogo.ImportImage(ofd.FileName);
+				using (FileStream fs = new FileStream(string.Format("{0}.hb5logo", Path.GetFileNameWithoutExtension(ofd.FileName)), FileMode.Create))
+				{
+					using (BinaryWriter bw = new BinaryWriter(fs))
+					{
+						tempLogo.WriteData(bw);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Tools -> Program Options
+		/// </summary>
+		private void programOptionsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			ProgOptionsDialog pod = new ProgOptionsDialog();
+
+			string curPicsPath = Properties.Settings.Default.DefaultPicsBinPath;
+
+			if (pod.ShowDialog() == DialogResult.OK)
+			{
+				Properties.Settings.Default.HB5InstallDir = pod.Hb5InstallPath;
+				Properties.Settings.Default.LeagueOverridePath = pod.LeagueOverridePath;
+				Properties.Settings.Default.DefaultPicsBinPath = pod.DefaultPicsBinPath;
+				Properties.Settings.Default.Save();
+
+				if (!curPicsPath.Equals(Properties.Settings.Default.DefaultPicsBinPath))
+				{
+					// need to reload (or unload?) global pics bin
+					LoadGlobalPicsBin(); // temporary
+				}
+			}
+		}
+		#endregion
 
 		/// <summary>
 		/// File -> Open
@@ -91,9 +189,27 @@ namespace HB5Tool
 				case ".hb5":
 					{
 						// exported team
+
+						/*
+						EditorParams teamEdParams = new EditorParams(EditorDataSources.TeamExport, _filePath, -1);
+
+						if (EditorManager.Teams.ContainsKey(teamEdParams))
+						{
+							// bring editor to front
+							EditorManager.Teams[teamEdParams].BringToFront();
+							EditorManager.Teams[teamEdParams].Activate();
+							openSuccessful = true; // tell program to shut up
+						}
+						else
+						{
+							// open new editor
+						}
+						*/
+
 						TeamEditor tEd = new TeamEditor(_filePath);
 						tEd.MdiParent = this;
 						tEd.CloseFormCallback += MdiChild_CloseFormCallback;
+						//tEd.CloseFormCallback += TeamEditor_CloseFormCallback;
 						tEd.Show();
 						UpdateWindowMenu();
 						openSuccessful = true;
@@ -569,7 +685,24 @@ namespace HB5Tool
 		/// </summary>
 		private void TeamEditor_CloseFormCallback(object sender, EventArgs e)
 		{
-			//EditorManager.Teams.Remove();
+			EditorParams toRemove = new EditorParams();
+			TeamEditor editor = sender as TeamEditor;
+			bool foundMatch = false;
+
+			foreach (KeyValuePair<EditorParams,Form> kv in EditorManager.Teams)
+			{
+				if (kv.Value.Equals(editor))
+				{
+					toRemove = kv.Key;
+					foundMatch = true;
+					break;
+				}
+			}
+
+			if (foundMatch)
+			{
+				EditorManager.Teams.Remove(toRemove);
+			}
 		}
 		#endregion
 
@@ -581,24 +714,6 @@ namespace HB5Tool
 			Close();
 		}
 
-		private void filenameDecodeToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			QuickDecode qd = new QuickDecode();
-			qd.MdiParent = this;
-			qd.Show();
-		}
-
-		private void programOptionsToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			ProgOptionsDialog pod = new ProgOptionsDialog();
-			if (pod.ShowDialog() == DialogResult.OK)
-			{
-				Properties.Settings.Default.HB5InstallDir = pod.Hb5InstallPath;
-				Properties.Settings.Default.LeagueOverridePath = pod.LeagueOverridePath;
-				Properties.Settings.Default.DefaultPicsBinPath = pod.DefaultPicsBinPath;
-				Properties.Settings.Default.Save();
-			}
-		}
 
 		private void MainForm_DragEnter(object sender, DragEventArgs e)
 		{
@@ -649,35 +764,6 @@ namespace HB5Tool
 					}
 				}
 			}
-		}
-
-		private void imageTestToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			OpenFileDialog ofd = new OpenFileDialog();
-			ofd.Title = "Convert PNG to Team Logo";
-			ofd.Filter = SharedStrings.PngFilter;
-			ofd.Multiselect = false;
-			if (ofd.ShowDialog() == DialogResult.OK)
-			{
-				TeamLogo tempLogo = new TeamLogo();
-				tempLogo.PixelData = new byte[TeamLogo.LOGO_WIDTH*TeamLogo.LOGO_HEIGHT];
-				tempLogo.ImportImage(ofd.FileName);
-				using (FileStream fs = new FileStream(string.Format("{0}.hb5logo", Path.GetFileNameWithoutExtension(ofd.FileName)),FileMode.Create))
-				{
-					using (BinaryWriter bw = new BinaryWriter(fs))
-					{
-						tempLogo.WriteData(bw);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// Help -> Manual
-		/// </summary>
-		private void manualToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			MessageBox.Show("Manual has not yet been written, mainly because the program is not that useful for people who aren't freem.");
 		}
 	}
 }
