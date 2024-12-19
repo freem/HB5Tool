@@ -140,8 +140,8 @@ namespace HB5Tool
 		/// 76543210
 		/// |__||__|
 		///   |   |
-		///   |   +--- Batting (0=R, 1=L, 2=Switch)
-		///   +------- Throwing (0=R, 1=L)
+		///   |   +--- Batting (0=Right, 1=Left, 2=Switch)
+		///   +------- Throwing (0=Right, 1=Left)
 		/// </summary>
 		public byte Handedness;
 
