@@ -189,8 +189,6 @@ namespace HB5Tool
 				case ".hb5":
 					{
 						// exported team
-
-						/*
 						EditorParams teamEdParams = new EditorParams(EditorDataSources.TeamExport, _filePath, -1);
 
 						if (EditorManager.Teams.ContainsKey(teamEdParams))
@@ -203,16 +201,15 @@ namespace HB5Tool
 						else
 						{
 							// open new editor
+							TeamEditor tEd = new TeamEditor(teamEdParams);
+							tEd.MdiParent = this;
+							tEd.CloseFormCallback += MdiChild_CloseFormCallback;
+							tEd.CloseFormCallback += TeamEditor_CloseFormCallback;
+							EditorManager.Teams.Add(teamEdParams, tEd);
+							tEd.Show();
+							UpdateWindowMenu();
+							openSuccessful = true;
 						}
-						*/
-
-						TeamEditor tEd = new TeamEditor(_filePath);
-						tEd.MdiParent = this;
-						tEd.CloseFormCallback += MdiChild_CloseFormCallback;
-						//tEd.CloseFormCallback += TeamEditor_CloseFormCallback;
-						tEd.Show();
-						UpdateWindowMenu();
-						openSuccessful = true;
 					}
 					break;
 
@@ -669,7 +666,8 @@ namespace HB5Tool
 		/// </summary>
 		private void LeagueEditor_CloseFormCallback(object sender, EventArgs e)
 		{
-			ActiveLeagueEditors.Remove(Path.GetFullPath(((LeagueEditor)sender).FilePath));
+			LeagueEditor editor = sender as LeagueEditor;
+			ActiveLeagueEditors.Remove(Path.GetFullPath(editor.FilePath));
 		}
 
 		/// <summary>
@@ -685,24 +683,8 @@ namespace HB5Tool
 		/// </summary>
 		private void TeamEditor_CloseFormCallback(object sender, EventArgs e)
 		{
-			EditorParams toRemove = new EditorParams();
 			TeamEditor editor = sender as TeamEditor;
-			bool foundMatch = false;
-
-			foreach (KeyValuePair<EditorParams,Form> kv in EditorManager.Teams)
-			{
-				if (kv.Value.Equals(editor))
-				{
-					toRemove = kv.Key;
-					foundMatch = true;
-					break;
-				}
-			}
-
-			if (foundMatch)
-			{
-				EditorManager.Teams.Remove(toRemove);
-			}
+			EditorManager.Teams.Remove(editor.Params);
 		}
 		#endregion
 
