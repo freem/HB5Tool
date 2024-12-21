@@ -25,28 +25,17 @@ namespace HB5Tool
 		public EditorParams Params;
 
 		/// <summary>
-		/// Path to file containing this team's data.
-		/// </summary>
-		/// deprecated, to be replaced with Params.Filename
-		public string FilePath;
-
-		/// <summary>
-		/// Team index, only used if the source is League.
-		/// </summary>
-		/// deprecated, to be replaced with Params.Index
-		public int TeamIndex = -1;
-
-		/// <summary>
 		/// Have any changes been made?
 		/// </summary>
 		public bool ChangesMade;
 
-		public ExportTeam TeamData;
+		public TeamCommonData TeamData;
 
-		public TeamCommonData CommonData;
+		//public ExportTeam ExportTeamData;
+		//public LeagueTeam LeagueTeamData;
+
 		#endregion
-
-		/*
+		
 		public TeamEditor(EditorParams _params)
 		{
 			InitializeComponent();
@@ -60,13 +49,28 @@ namespace HB5Tool
 			{
 				case EditorDataSources.TeamExport:
 					{
-
+						using (FileStream fs = new FileStream(Params.Filename, FileMode.Open))
+						{
+							using (BinaryReader br = new BinaryReader(fs))
+							{
+								TeamData = new TeamCommonData(br);
+							}
+						}
 					}
 					break;
 
 				case EditorDataSources.League:
 					{
-
+						/*
+						using (FileStream fs = new FileStream(Params.Filename, FileMode.Open))
+						{
+							using (BinaryReader br = new BinaryReader(fs))
+							{
+								LeagueData l = new LeagueData(br);
+								l.Teams[Params.Index];
+							}
+						}
+						*/
 					}
 					break;
 
@@ -74,41 +78,28 @@ namespace HB5Tool
 					// anything else is invalid
 					break;
 			}
-		}
-		*/
-
-		public TeamEditor(string _filePath, int _idx = -1)
-		{
-			InitializeComponent();
-			ChangesMade = false;
-
-			FilePath = _filePath;
-			if (_idx != -1)
-			{
-				TeamIndex = _idx;
-			}
-
-			tssLabelFilePath.Text = FilePath;
-
-			// xxx temporary
-			LoadData_TeamExport();
 
 			UpdateTitle();
-			tbTeamName.Text = CommonData.Name;
-			tbTeamOwner.Text = CommonData.Owner;
-			tbStadium.Text = string.Format("0x{0:X2} ({1})", CommonData.Stadium, DefaultData.StadiumList[CommonData.Stadium]);
-			tbStarPlayerIndex.Text = string.Format("0x{0:X2}", CommonData.StarPlayer);
-			tbSummary.Text = CommonData.Summary;
+			SetupData();
+		}
+	
+		private void SetupData()
+		{
+			tbTeamName.Text = TeamData.Name;
+			tbTeamOwner.Text = TeamData.Owner;
+			tbStadium.Text = string.Format("0x{0:X2} ({1})", TeamData.Stadium, DefaultData.StadiumList[TeamData.Stadium]);
+			tbStarPlayerIndex.Text = string.Format("0x{0:X2}", TeamData.StarPlayer);
+			tbSummary.Text = TeamData.Summary;
 
-			nudHatColor.Value = CommonData.CapColor;
-			nudTrimColor.Value = CommonData.TrimColor;
+			nudHatColor.Value = TeamData.CapColor;
+			nudTrimColor.Value = TeamData.TrimColor;
 
 			// xxx: assumes MLBPA colors, doesn't handle using 0xC and higher in MLBPA teams
-			pHatColor.BackColor = DefaultData.CapTrimColors_MLBPA[CommonData.CapColor][4];
-			pTrimColor.BackColor = DefaultData.CapTrimColors_MLBPA[CommonData.TrimColor][4];
+			pHatColor.BackColor = DefaultData.CapTrimColors_MLBPA[TeamData.CapColor][4];
+			pTrimColor.BackColor = DefaultData.CapTrimColors_MLBPA[TeamData.TrimColor][4];
 
 			// transparency hack; avoids modifying TeamLogo's bitmap
-			Bitmap tempLogo = (Bitmap)CommonData.Logo.LogoBitmap.Clone();
+			Bitmap tempLogo = (Bitmap)TeamData.Logo.LogoBitmap.Clone();
 
 			ColorPalette cpal = tempLogo.Palette;
 			cpal.Entries[0] = Color.FromArgb(0, 0, 0, 0);
@@ -116,63 +107,46 @@ namespace HB5Tool
 
 			pbLogo.Image = tempLogo;
 
-			tbPitcherHook.Value = CommonData.GetManagerSlider_Hook();
-			tbStealBases.Value = CommonData.GetManagerSlider_Steal();
-			tbRunners.Value = CommonData.GetManagerSlider_Runners();
-			tbSacrifice.Value = CommonData.GetManagerSlider_Sacrifice();
-			tbOffenseDefense.Value = CommonData.GetManagerSlider_OffenseDefense();
-			tbSpeedPower.Value = CommonData.GetManagerSlider_SpeedPower();
-			tbRookieVeteran.Value = CommonData.GetManagerSlider_RookieVeteran();
+			tbPitcherHook.Value = TeamData.GetManagerSlider_Hook();
+			tbStealBases.Value = TeamData.GetManagerSlider_Steal();
+			tbRunners.Value = TeamData.GetManagerSlider_Runners();
+			tbSacrifice.Value = TeamData.GetManagerSlider_Sacrifice();
+			tbOffenseDefense.Value = TeamData.GetManagerSlider_OffenseDefense();
+			tbSpeedPower.Value = TeamData.GetManagerSlider_SpeedPower();
+			tbRookieVeteran.Value = TeamData.GetManagerSlider_RookieVeteran();
 
 			StringBuilder sb = new StringBuilder();
-			sb.AppendLine(string.Format("Value at 0x50: 0x{0:X2}", CommonData.Unknown_50));
+			sb.AppendLine(string.Format("Value at 0x50: 0x{0:X2}", TeamData.Unknown_50));
 			sb.AppendLine();
 
-			sb.AppendLine(string.Format("Number of Starting Pitchers: {0}", CommonData.NumStartingPitchers));
+			sb.AppendLine(string.Format("Number of Starting Pitchers: {0}", TeamData.NumStartingPitchers));
 			sb.AppendLine();
 
 			sb.AppendLine("Unknown_5A values:");
-			foreach (byte b in CommonData.Unknown_5A)
+			foreach (byte b in TeamData.Unknown_5A)
 			{
 				sb.Append(string.Format("0x{0:X2} ", b));
 			}
 			sb.AppendLine(Environment.NewLine);
 
-			sb.AppendLine(string.Format("Value at 0x070D: 0x{0:X2}", CommonData.Unknown_70D));
+			sb.AppendLine(string.Format("Value at 0x070D: 0x{0:X2}", TeamData.Unknown_70D));
 			sb.AppendLine();
 
 			sb.AppendLine("Unknown_75E values:");
-			foreach (byte b in CommonData.Unknown_75E)
+			foreach (byte b in TeamData.Unknown_75E)
 			{
 				sb.Append(string.Format("0x{0:X2} ", b));
 			}
 			sb.AppendLine(Environment.NewLine);
 
 			sb.AppendLine("Slider Values:");
-			sb.AppendLine(string.Format("0x{0:X2} 0x{1:X2} 0x{2:X2} 0x{3:X2}", CommonData.SliderValues[0], CommonData.SliderValues[1], CommonData.SliderValues[2], CommonData.SliderValues[3]));
+			sb.AppendLine(string.Format("0x{0:X2} 0x{1:X2} 0x{2:X2} 0x{3:X2}", TeamData.SliderValues[0], TeamData.SliderValues[1], TeamData.SliderValues[2], TeamData.SliderValues[3]));
 			tbOutput.Text = sb.ToString();
 		}
 
 		private void UpdateTitle()
 		{
-			Text = string.Format("Team Editor{0} - {1}", ChangesMade ? "*" : "", CommonData.Name);
-		}
-
-		private void LoadData_TeamExport()
-		{
-			using (FileStream fs = new FileStream(FilePath, FileMode.Open))
-			{
-				using (BinaryReader br = new BinaryReader(fs))
-				{
-					//CommonData = new TeamCommonData(br);
-					TeamData = new ExportTeam(br);
-					CommonData = TeamData.CommonData;
-				}
-			}
-		}
-
-		private void LoadData_League(int _idx = -1)
-		{
+			Text = string.Format("Team Editor{0} - {1}", ChangesMade ? "*" : "", TeamData.Name);
 		}
 
 		private void saveChangesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -212,7 +186,7 @@ namespace HB5Tool
 				{
 					using (BinaryWriter bw = new BinaryWriter(fs))
 					{
-						CommonData.Logo.WriteData(bw);
+						TeamData.Logo.WriteData(bw);
 					}
 				}
 			}
@@ -225,18 +199,18 @@ namespace HB5Tool
 			sfd.Filter = string.Format("{0}|{1}", SharedStrings.PngFilter, SharedStrings.AllFilter);
 			if (sfd.ShowDialog() == DialogResult.OK)
 			{
-				CommonData.Logo.ExportImage(sfd.FileName);
+				TeamData.Logo.ExportImage(sfd.FileName);
 			}
 		}
 
 		private void nudHatColor_ValueChanged(object sender, EventArgs e)
 		{
-			pHatColor.BackColor = DefaultData.CapTrimColors_MLBPA[CommonData.CapColor][4];
+			pHatColor.BackColor = DefaultData.CapTrimColors_MLBPA[TeamData.CapColor][4];
 		}
 
 		private void nudTrimColor_ValueChanged(object sender, EventArgs e)
 		{
-			pTrimColor.BackColor = DefaultData.CapTrimColors_MLBPA[CommonData.TrimColor][4];
+			pTrimColor.BackColor = DefaultData.CapTrimColors_MLBPA[TeamData.TrimColor][4];
 		}
 	}
 }

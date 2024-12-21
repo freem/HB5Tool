@@ -74,7 +74,6 @@
     <Compile Include="DataStructures\HmiSound.cs" />
     <Compile Include="DataStructures\ImageMsh.cs" />
     <Compile Include="DataStructures\InstVars.cs" />
-    <Compile Include="DataStructures\LeagueTeam.cs" />
     <Compile Include="DataStructures\MgsFile.cs" />
     <Compile Include="DataStructures\PicsBin.cs" />
     <Compile Include="DataStructures\PitcherData.cs" />
@@ -94,7 +93,6 @@
     <Compile Include="DataStructures\GlueMB.cs" />
     <Compile Include="DataStructures\LeagueData.cs" />
     <Compile Include="DataStructures\ExportPlayer.cs" />
-    <Compile Include="DataStructures\ExportTeam.cs" />
     <Compile Include="DataStructures\MshFile.cs" />
     <Compile Include="DefaultData.cs" />
     <Compile Include="Dialogs\ProgOptionsDialog.cs">

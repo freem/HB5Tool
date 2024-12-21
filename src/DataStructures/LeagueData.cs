@@ -288,7 +288,7 @@ namespace HB5Tool
 		/// Teams in this league.
 		/// </summary>
 		/// Each team's data is 0x780 bytes
-		public List<LeagueTeam> Teams;
+		public List<TeamCommonData> Teams;
 
 		// four sets of player statistics follow:
 		// Historical, Season, Weekly, Lifetime
@@ -405,10 +405,10 @@ namespace HB5Tool
 
 				// team data
 				br.BaseStream.Seek(LgInfoOffset + DataSections[GetIndexOfType(LeagueDataTypes.TeamDefs)].Offset, SeekOrigin.Begin);
-				Teams = new List<LeagueTeam>();
+				Teams = new List<TeamCommonData>();
 				for (int i = 0; i < NumDefinedTeams; i++)
 				{
-					Teams.Add(new LeagueTeam(br));
+					Teams.Add(new TeamCommonData(br));
 				}
 
 				// all stats entries should be the same length. total length of a single section should be 0x166*num players
