@@ -46,18 +46,26 @@ namespace HB5Tool
 
 		#region Class Members
 		/// <summary>
+		/// Editor parameters.
+		/// </summary>
+		public EditorParams Params;
+
+		/// <summary>
 		/// Data source for this player.
 		/// </summary>
+		/// deprecated, to be replaced with Params.Source
 		public PlayerDataSources DataSource;
 
 		/// <summary>
 		/// Path to file containing this player's data.
 		/// </summary>
+		/// deprecated, to be replaced with Params.Filename
 		public string FilePath;
 
 		/// <summary>
 		/// Player index, only used if the source is Team Export or League.
 		/// </summary>
+		/// deprecated, to be replaced with Params.Index
 		public int PlayerIndex = -1;
 
 		/// <summary>
