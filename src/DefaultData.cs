@@ -68,6 +68,48 @@ namespace HB5Tool
 			"Sportsman's"
 		};
 
+		#region Palette Index Constants
+		/// <summary>
+		/// Palette index for the first set of custom stadium colors. (16 entries)
+		/// </summary>
+		public static readonly int PALETTE_INDEX_STADIUM1 = 0x20;
+
+		/// <summary>
+		/// Palette index for the second set of custom stadium colors. (16 entries)
+		/// </summary>
+		public static readonly int PALETTE_INDEX_STADIUM2 = 0x30;
+
+		/// <summary>
+		/// Palette index for the third set of custom stadium colors. (12 entries)
+		/// </summary>
+		public static readonly int PALETTE_INDEX_STADIUM3 = 0x40;
+
+		/// <summary>
+		/// Palette index for the fourth set of custom stadium colors. (8 entries)
+		/// </summary>
+		public static readonly int PALETTE_INDEX_STADIUM4 = 0xB8;
+
+		/// <summary>
+		/// Palette index for Team 1's cap colors. (8 entries)
+		/// </summary>
+		public static readonly int PALETTE_INDEX_TEAM1_CAP = 0xC0;
+
+		/// <summary>
+		/// Palette index for Team 1's trim colors. (8 entries)
+		/// </summary>
+		public static readonly int PALETTE_INDEX_TEAM1_TRIM = 0xC8;
+
+		/// <summary>
+		/// Palette index for Team 2's cap colors. (8 entries)
+		/// </summary>
+		public static readonly int PALETTE_INDEX_TEAM2_CAP = 0xD0;
+
+		/// <summary>
+		/// Palette index for Team 2's trim colors. (8 entries)
+		/// </summary>
+		public static readonly int PALETTE_INDEX_TEAM2_TRIM = 0xD8;
+		#endregion
+
 		/// <summary>
 		/// The game's "default" palette, modified so each palette index remains intact.
 		/// </summary>
