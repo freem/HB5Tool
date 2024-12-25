@@ -65,7 +65,6 @@ namespace HB5Tool
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tpMain = new System.Windows.Forms.TabPage();
 			this.gbManagerSliders = new System.Windows.Forms.GroupBox();
-			this.tpRoster = new System.Windows.Forms.TabPage();
 			this.tlpManagerSliders = new System.Windows.Forms.TableLayoutPanel();
 			this.tbPitcherHook = new System.Windows.Forms.TrackBar();
 			this.tbStealBases = new System.Windows.Forms.TrackBar();
@@ -88,6 +87,8 @@ namespace HB5Tool
 			this.label13 = new System.Windows.Forms.Label();
 			this.label14 = new System.Windows.Forms.Label();
 			this.label15 = new System.Windows.Forms.Label();
+			this.tpRoster = new System.Windows.Forms.TabPage();
+			this.tbRosterDump = new System.Windows.Forms.TextBox();
 			this.statusStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.gbSummary.SuspendLayout();
@@ -106,6 +107,7 @@ namespace HB5Tool
 			((System.ComponentModel.ISupportInitialize)(this.tbOffenseDefense)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tbSpeedPower)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tbRookieVeteran)).BeginInit();
+			this.tpRoster.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// statusStrip1
@@ -121,7 +123,7 @@ namespace HB5Tool
 			// tssLabelFilePath
 			// 
 			this.tssLabelFilePath.Name = "tssLabelFilePath";
-			this.tssLabelFilePath.Size = new System.Drawing.Size(54, 17);
+			this.tssLabelFilePath.Size = new System.Drawing.Size(58, 17);
 			this.tssLabelFilePath.Text = "[file path]";
 			// 
 			// menuStrip1
@@ -145,27 +147,27 @@ namespace HB5Tool
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
 			this.teamToolStripMenuItem.Name = "teamToolStripMenuItem";
-			this.teamToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+			this.teamToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
 			this.teamToolStripMenuItem.Text = "&Team";
 			// 
 			// saveChangesToolStripMenuItem
 			// 
 			this.saveChangesToolStripMenuItem.Name = "saveChangesToolStripMenuItem";
 			this.saveChangesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-			this.saveChangesToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+			this.saveChangesToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
 			this.saveChangesToolStripMenuItem.Text = "&Save Changes";
 			this.saveChangesToolStripMenuItem.Click += new System.EventHandler(this.saveChangesToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(178, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(184, 6);
 			// 
 			// importToolStripMenuItem
 			// 
 			this.importToolStripMenuItem.Name = "importToolStripMenuItem";
 			this.importToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-			this.importToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+			this.importToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
 			this.importToolStripMenuItem.Text = "&Import...";
 			this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
 			// 
@@ -173,20 +175,20 @@ namespace HB5Tool
 			// 
 			this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
 			this.exportToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-			this.exportToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+			this.exportToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
 			this.exportToolStripMenuItem.Text = "&Export...";
 			this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(178, 6);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(184, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
 			this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
 			this.exitToolStripMenuItem.Text = "E&xit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -297,19 +299,19 @@ namespace HB5Tool
             this.exportRawLogoToolStripMenuItem,
             this.exportPNGToolStripMenuItem});
 			this.cmsLogo.Name = "cmsLogo";
-			this.cmsLogo.Size = new System.Drawing.Size(169, 48);
+			this.cmsLogo.Size = new System.Drawing.Size(173, 48);
 			// 
 			// exportRawLogoToolStripMenuItem
 			// 
 			this.exportRawLogoToolStripMenuItem.Name = "exportRawLogoToolStripMenuItem";
-			this.exportRawLogoToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+			this.exportRawLogoToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
 			this.exportRawLogoToolStripMenuItem.Text = "Export &Raw Logo...";
 			this.exportRawLogoToolStripMenuItem.Click += new System.EventHandler(this.exportRawLogoToolStripMenuItem_Click);
 			// 
 			// exportPNGToolStripMenuItem
 			// 
 			this.exportPNGToolStripMenuItem.Name = "exportPNGToolStripMenuItem";
-			this.exportPNGToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+			this.exportPNGToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
 			this.exportPNGToolStripMenuItem.Text = "Export &PNG...";
 			this.exportPNGToolStripMenuItem.Click += new System.EventHandler(this.exportPNGToolStripMenuItem_Click);
 			// 
@@ -434,16 +436,6 @@ namespace HB5Tool
 			this.gbManagerSliders.TabIndex = 19;
 			this.gbManagerSliders.TabStop = false;
 			this.gbManagerSliders.Text = "Manager Sliders";
-			// 
-			// tpRoster
-			// 
-			this.tpRoster.Location = new System.Drawing.Point(4, 22);
-			this.tpRoster.Name = "tpRoster";
-			this.tpRoster.Padding = new System.Windows.Forms.Padding(3);
-			this.tpRoster.Size = new System.Drawing.Size(592, 260);
-			this.tpRoster.TabIndex = 1;
-			this.tpRoster.Text = "Roster";
-			this.tpRoster.UseVisualStyleBackColor = true;
 			// 
 			// tlpManagerSliders
 			// 
@@ -710,6 +702,28 @@ namespace HB5Tool
 			this.label15.TabIndex = 20;
 			this.label15.Text = "Veterans";
 			// 
+			// tpRoster
+			// 
+			this.tpRoster.Controls.Add(this.tbRosterDump);
+			this.tpRoster.Location = new System.Drawing.Point(4, 22);
+			this.tpRoster.Name = "tpRoster";
+			this.tpRoster.Padding = new System.Windows.Forms.Padding(3);
+			this.tpRoster.Size = new System.Drawing.Size(592, 260);
+			this.tpRoster.TabIndex = 1;
+			this.tpRoster.Text = "Roster";
+			this.tpRoster.UseVisualStyleBackColor = true;
+			// 
+			// tbRosterDump
+			// 
+			this.tbRosterDump.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tbRosterDump.Location = new System.Drawing.Point(3, 3);
+			this.tbRosterDump.Multiline = true;
+			this.tbRosterDump.Name = "tbRosterDump";
+			this.tbRosterDump.ReadOnly = true;
+			this.tbRosterDump.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.tbRosterDump.Size = new System.Drawing.Size(586, 254);
+			this.tbRosterDump.TabIndex = 0;
+			// 
 			// TeamEditor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -757,6 +771,8 @@ namespace HB5Tool
 			((System.ComponentModel.ISupportInitialize)(this.tbOffenseDefense)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tbSpeedPower)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tbRookieVeteran)).EndInit();
+			this.tpRoster.ResumeLayout(false);
+			this.tpRoster.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -821,5 +837,6 @@ namespace HB5Tool
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.Label label15;
+		private System.Windows.Forms.TextBox tbRosterDump;
 	}
 }
