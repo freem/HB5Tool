@@ -91,8 +91,6 @@ namespace HB5Tool
 
 		// offsets 0xB2-0xBB (inclusive) unknown
 
-		// todo: VGA palette values starting at 0xBC; three bytes per color
-
 		/// <summary>
 		/// Custom color set 1. 16 colors starting at palette index 0x20.
 		/// </summary>
@@ -120,6 +118,9 @@ namespace HB5Tool
 		// offset 0x158-EOF currently unknown
 		#endregion
 
+		/// <summary>
+		/// Default constructor.
+		/// </summary>
 		public StadiumInfo()
 		{
 			Unknown1 = 0;
@@ -135,11 +136,19 @@ namespace HB5Tool
 			ColorSet4 = new VgaColor[STADIUM_COLOR_SET_4_COUNT];
 		}
 
+		/// <summary>
+		/// Constructor using a BinaryReader.
+		/// </summary>
+		/// <param name="br">BinaryReader instance to use.</param>
 		public StadiumInfo(BinaryReader br)
 		{
 			ReadData(br);
 		}
 
+		/// <summary>
+		/// Read StadiumInfo data using a BinaryReader.
+		/// </summary>
+		/// <param name="br">BinaryReader instance to use.</param>
 		public void ReadData(BinaryReader br)
 		{
 			Unknown1 = br.ReadByte();

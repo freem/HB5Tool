@@ -31,8 +31,7 @@ namespace HB5Tool
 
 		public TeamCommonData TeamData;
 
-		//public ExportTeam ExportTeamData;
-		//public LeagueTeam LeagueTeamData;
+		// todo: players
 
 		#endregion
 		
@@ -142,6 +141,8 @@ namespace HB5Tool
 			sb.AppendLine("Slider Values:");
 			sb.AppendLine(string.Format("0x{0:X2} 0x{1:X2} 0x{2:X2} 0x{3:X2}", TeamData.SliderValues[0], TeamData.SliderValues[1], TeamData.SliderValues[2], TeamData.SliderValues[3]));
 			tbOutput.Text = sb.ToString();
+
+			// todo: player data
 		}
 
 		private void UpdateTitle()

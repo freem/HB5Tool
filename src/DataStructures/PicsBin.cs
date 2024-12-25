@@ -176,12 +176,23 @@ namespace HB5Tool
 			}
 		}
 
+		/// <summary>
+		/// Extract a single raw pic.
+		/// </summary>
+		/// <param name="picNum">Picture number/ID to extract.</param>
+		/// <param name="br">BinaryReader instance with a loaded PicsBin file.</param>
+		/// <returns>Byte array of the pic data.</returns>
 		public byte[] ExtractPic(int picNum, BinaryReader br)
 		{
 			br.BaseStream.Seek(DataOffset + Entries[picNum].Offset, SeekOrigin.Begin);
 			return br.ReadBytes(Entries[picNum].Length);
 		}
 
+		/// <summary>
+		/// Convert a raw pic to a Bitmap.
+		/// </summary>
+		/// <param name="_inPixels">Byte array of raw pic data.</param>
+		/// <returns>Bitmap with converted data.</returns>
 		public Bitmap ToBitmap(byte[] _inPixels)
 		{
 			MemoryStream inData = new MemoryStream(_inPixels);
@@ -268,8 +279,11 @@ namespace HB5Tool
 			return true;
 		}
 
-		// first byte is always 0x00
-		// then check byte value; if byte & 0xC0 != 0, this is a repeat command.
+		/// <summary>
+		/// Export a pic as a PNG file.
+		/// </summary>
+		/// <param name="_outFile">Output filename for exported picture.</param>
+		/// <param name="picNum">Picture number/ID to export.</param>
 		public void ExportPic(string _outFile, int picNum)
 		{
 			// todo: refactor this; this was just the test run
@@ -280,6 +294,7 @@ namespace HB5Tool
 
 			// handle initial 0x00 value.
 			byte value = inReader.ReadByte();
+			// then check byte value; if byte & 0xC0 != 0, this is a repeat command.
 			while (inData.Position < inData.Length)
 			{
 				value = inReader.ReadByte();
