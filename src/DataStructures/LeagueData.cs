@@ -486,5 +486,27 @@ namespace HB5Tool
 
 			return -1;
 		}
+
+		/// <summary>
+		/// Returns a player type based on the ID passed in.
+		/// </summary>
+		/// <param name="_input">Player ID to check type of.</param>
+		/// <returns>A PlayerTypes enum value based on the ID.</returns>
+		public PlayerTypes GetPlayerTypeFromID(int _input)
+		{
+			if (_input > NumPlayers || _input < 0)
+			{
+				return PlayerTypes.Invalid;
+			}
+
+			if (_input > NumBatters)
+			{
+				return PlayerTypes.Pitcher;
+			}
+			else
+			{
+				return PlayerTypes.Batter;
+			}
+		}
 	}
 }
