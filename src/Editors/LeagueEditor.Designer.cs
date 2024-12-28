@@ -72,6 +72,7 @@ namespace HB5Tool
 			this.tpUnknownC = new System.Windows.Forms.TabPage();
 			this.tbUnkC = new System.Windows.Forms.TextBox();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.btnEditTeam = new System.Windows.Forms.Button();
 			this.statusStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -290,6 +291,7 @@ namespace HB5Tool
 			// 
 			// tpTeams
 			// 
+			this.tpTeams.Controls.Add(this.btnEditTeam);
 			this.tpTeams.Controls.Add(this.pbStarPlayer);
 			this.tpTeams.Controls.Add(this.tbTeamOutput);
 			this.tpTeams.Controls.Add(this.lblTrimColor);
@@ -524,6 +526,16 @@ namespace HB5Tool
 			this.tbUnkC.Size = new System.Drawing.Size(620, 297);
 			this.tbUnkC.TabIndex = 4;
 			// 
+			// btnEditTeam
+			// 
+			this.btnEditTeam.Location = new System.Drawing.Point(169, 102);
+			this.btnEditTeam.Name = "btnEditTeam";
+			this.btnEditTeam.Size = new System.Drawing.Size(75, 23);
+			this.btnEditTeam.TabIndex = 24;
+			this.btnEditTeam.Text = "danger!!";
+			this.btnEditTeam.UseVisualStyleBackColor = true;
+			this.btnEditTeam.Click += new System.EventHandler(this.btnEditTeam_Click);
+			// 
 			// LeagueEditor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -619,5 +631,6 @@ namespace HB5Tool
 		private System.Windows.Forms.Label lblPitcherID;
 		private System.Windows.Forms.PictureBox pbStarPlayer;
 		private System.Windows.Forms.ToolTip toolTip1;
+		private System.Windows.Forms.Button btnEditTeam;
 	}
 }

@@ -462,5 +462,18 @@ namespace HB5Tool
 				//UpdateCapTrimColors(CurLeague.Teams[lbTeams.SelectedIndex]);
 			}
 		}
+
+		private void btnEditTeam_Click(object sender, EventArgs e)
+		{
+			if (lbTeams.SelectedIndex < 0)
+			{
+				return;
+			}
+
+			EditorParams param = new EditorParams(EditorDataSources.League, FilePath, lbTeams.SelectedIndex);
+			TeamEditor tEd = new TeamEditor(param);
+			EditorManager.Teams.Add(param, tEd);
+			tEd.Show();
+		}
 	}
 }
