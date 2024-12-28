@@ -37,6 +37,8 @@ namespace HB5Tool
 
 		public Dictionary<int, PlayerStats> HistoricalStats;
 
+		private int League_NumBatters = 0;
+
 		#endregion
 		
 		public TeamEditor(EditorParams _params)
@@ -94,16 +96,40 @@ namespace HB5Tool
 
 				case EditorDataSources.League:
 					{
-						/*
 						using (FileStream fs = new FileStream(Params.Filename, FileMode.Open))
 						{
 							using (BinaryReader br = new BinaryReader(fs))
 							{
 								LeagueData l = new LeagueData(br);
-								l.Teams[Params.Index];
+								TeamData = l.Teams[Params.Index];
+								League_NumBatters = l.NumBatters;
+								Batters = new Dictionary<int, BatterData>();
+								Pitchers = new Dictionary<int, PitcherData>();
+								HistoricalStats = new Dictionary<int, PlayerStats>();
+
+								// values in TeamData.PlayerIdent are indices into the league player index.
+								int playerID = 1; // valid player IDs start at 1
+								string pName = string.Empty;
+								foreach (UInt16 s in TeamData.PlayerIdent)
+								{
+									ushort masked = (ushort)(s & 0x3FFF);
+
+									if (masked != 0)
+									{
+										if (masked > l.NumBatters)
+										{
+											Pitchers.Add(playerID, l.PitcherDatabase[masked - l.NumBatters]);
+										}
+										else
+										{
+											Batters.Add(playerID, l.BatterDatabase[masked]);
+										}
+									}
+
+									playerID++;
+								}
 							}
 						}
-						*/
 					}
 					break;
 
@@ -176,8 +202,22 @@ namespace HB5Tool
 			sb.AppendLine(string.Format("0x{0:X2} 0x{1:X2} 0x{2:X2} 0x{3:X2}", TeamData.SliderValues[0], TeamData.SliderValues[1], TeamData.SliderValues[2], TeamData.SliderValues[3]));
 			tbOutput.Text = sb.ToString();
 
-			sb.Clear();
-			// player data
+			if (Params.Source == EditorDataSources.TeamExport)
+			{
+				LoadRoster_Export();
+			}
+			else if (Params.Source == EditorDataSources.League)
+			{
+				LoadRoster_League();
+			}
+		}
+
+		/// <summary>
+		/// Load team roster for .hb5 team exports
+		/// </summary>
+		private void LoadRoster_Export()
+		{
+			StringBuilder sb = new StringBuilder();
 			sb.AppendLine("PlayerIdent values:");
 			int playerNum = 1;
 			int rosterCount = 0;
@@ -193,12 +233,26 @@ namespace HB5Tool
 				{
 					case 1:
 						pDesc = "[Bat]";
-						pName = Batters[playerNum].CommonData.Name;
+						if (Batters.ContainsKey(playerNum))
+						{
+							pName = Batters[playerNum].CommonData.Name;
+						}
+						else
+						{
+							pName = string.Format("broken batter 0x{0:X}", playerNum);
+						}
 						break;
 
 					case 2:
 						pDesc = "[Pit]";
-						pName = Pitchers[playerNum].CommonData.Name;
+						if (Pitchers.ContainsKey(playerNum))
+						{
+							pName = Pitchers[playerNum].CommonData.Name;
+						}
+						else
+						{
+							pName = string.Format("broken pitcher 0x{0:X}", playerNum);
+						}
 						break;
 
 					default:
@@ -229,7 +283,75 @@ namespace HB5Tool
 			sb.AppendLine();
 			sb.AppendLine(string.Format("Roster Count: {0} ({1} Batters, {2} Pitchers)", rosterCount, batterCount, pitcherCount));
 			tbRosterDump.Text = sb.ToString();
-			
+		}
+
+		/// <summary>
+		/// Load team roster for .lgd teams
+		/// </summary>
+		private void LoadRoster_League()
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.AppendLine("PlayerIdent values:");
+			int playerNum = 1;
+			int rosterCount = 0;
+			int batterCount = 0;
+			int pitcherCount = 0;
+			string pDesc = string.Empty;
+			string pName = string.Empty;
+			foreach (UInt16 s in TeamData.PlayerIdent)
+			{
+				ushort masked = (ushort)(s & 0x3FFF);
+
+				pDesc = string.Empty;
+				pName = string.Empty;
+
+				if (masked > League_NumBatters)
+				{
+					pDesc = "[Pit]";
+					if (Pitchers.ContainsKey(playerNum))
+					{
+						pName = Pitchers[playerNum].CommonData.Name;
+					}
+					else
+					{
+						pName = string.Format("broken pitcher 0x{0:X}", playerNum);
+					}
+				}
+				else if(masked != 0)
+				{
+					pDesc = "[Bat]";
+					if (Batters.ContainsKey(playerNum))
+					{
+						pName = Batters[playerNum].CommonData.Name;
+					}
+					else
+					{
+						pName = string.Format("broken batter 0x{0:X}", playerNum);
+					}
+				}
+
+				sb.AppendLine(string.Format("0x{0:X2} = {1:X4} {2} {3}", playerNum, s, pDesc, pName));
+
+				if (s != 0)
+				{
+					++rosterCount;
+				}
+
+				if (masked <= League_NumBatters)
+				{
+					++batterCount;
+				}
+
+				if (masked > League_NumBatters)
+				{
+					++pitcherCount;
+				}
+
+				playerNum++;
+			}
+			sb.AppendLine();
+			sb.AppendLine(string.Format("Roster Count: {0} ({1} Batters, {2} Pitchers)", rosterCount, batterCount, pitcherCount));
+			tbRosterDump.Text = sb.ToString();
 		}
 
 		private void UpdateTitle()
