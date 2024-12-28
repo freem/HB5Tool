@@ -48,6 +48,7 @@ namespace HB5Tool
 			ChangesMade = false;
 
 			tssLabelFilePath.Text = Params.Filename;
+			tssEditorType.Text = SharedStrings.DataSourceStrings[Params.Source];
 
 			// load team data based on params
 			switch (Params.Source)
@@ -116,13 +117,15 @@ namespace HB5Tool
 
 									if (masked != 0)
 									{
-										if (masked > l.NumBatters)
+										if (masked > League_NumBatters)
 										{
-											Pitchers.Add(playerID, l.PitcherDatabase[masked - l.NumBatters]);
+											Pitchers.Add(playerID, l.PitcherDatabase[masked - League_NumBatters]);
+											HistoricalStats.Add(playerID, l.Stats_Historical[masked]);
 										}
 										else
 										{
 											Batters.Add(playerID, l.BatterDatabase[masked]);
+											HistoricalStats.Add(playerID, l.Stats_Historical[masked]);
 										}
 									}
 

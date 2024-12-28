@@ -89,6 +89,7 @@ namespace HB5Tool
 			this.label15 = new System.Windows.Forms.Label();
 			this.tpRoster = new System.Windows.Forms.TabPage();
 			this.tbRosterDump = new System.Windows.Forms.TextBox();
+			this.tssEditorType = new System.Windows.Forms.ToolStripStatusLabel();
 			this.statusStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.gbSummary.SuspendLayout();
@@ -113,17 +114,19 @@ namespace HB5Tool
 			// statusStrip1
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tssEditorType,
             this.tssLabelFilePath});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 451);
+			this.statusStrip1.Location = new System.Drawing.Point(0, 449);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(624, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(624, 24);
 			this.statusStrip1.TabIndex = 0;
 			this.statusStrip1.Text = "statusStrip1";
 			// 
 			// tssLabelFilePath
 			// 
+			this.tssLabelFilePath.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
 			this.tssLabelFilePath.Name = "tssLabelFilePath";
-			this.tssLabelFilePath.Size = new System.Drawing.Size(54, 17);
+			this.tssLabelFilePath.Size = new System.Drawing.Size(62, 19);
 			this.tssLabelFilePath.Text = "[file path]";
 			// 
 			// menuStrip1
@@ -147,27 +150,27 @@ namespace HB5Tool
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
 			this.teamToolStripMenuItem.Name = "teamToolStripMenuItem";
-			this.teamToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+			this.teamToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
 			this.teamToolStripMenuItem.Text = "&Team";
 			// 
 			// saveChangesToolStripMenuItem
 			// 
 			this.saveChangesToolStripMenuItem.Name = "saveChangesToolStripMenuItem";
 			this.saveChangesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-			this.saveChangesToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+			this.saveChangesToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
 			this.saveChangesToolStripMenuItem.Text = "&Save Changes";
 			this.saveChangesToolStripMenuItem.Click += new System.EventHandler(this.saveChangesToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(178, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(184, 6);
 			// 
 			// importToolStripMenuItem
 			// 
 			this.importToolStripMenuItem.Name = "importToolStripMenuItem";
 			this.importToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-			this.importToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+			this.importToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
 			this.importToolStripMenuItem.Text = "&Import...";
 			this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
 			// 
@@ -175,20 +178,20 @@ namespace HB5Tool
 			// 
 			this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
 			this.exportToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-			this.exportToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+			this.exportToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
 			this.exportToolStripMenuItem.Text = "&Export...";
 			this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(178, 6);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(184, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
 			this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
 			this.exitToolStripMenuItem.Text = "E&xit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -299,19 +302,19 @@ namespace HB5Tool
             this.exportRawLogoToolStripMenuItem,
             this.exportPNGToolStripMenuItem});
 			this.cmsLogo.Name = "cmsLogo";
-			this.cmsLogo.Size = new System.Drawing.Size(169, 48);
+			this.cmsLogo.Size = new System.Drawing.Size(173, 48);
 			// 
 			// exportRawLogoToolStripMenuItem
 			// 
 			this.exportRawLogoToolStripMenuItem.Name = "exportRawLogoToolStripMenuItem";
-			this.exportRawLogoToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+			this.exportRawLogoToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
 			this.exportRawLogoToolStripMenuItem.Text = "Export &Raw Logo...";
 			this.exportRawLogoToolStripMenuItem.Click += new System.EventHandler(this.exportRawLogoToolStripMenuItem_Click);
 			// 
 			// exportPNGToolStripMenuItem
 			// 
 			this.exportPNGToolStripMenuItem.Name = "exportPNGToolStripMenuItem";
-			this.exportPNGToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+			this.exportPNGToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
 			this.exportPNGToolStripMenuItem.Text = "Export &PNG...";
 			this.exportPNGToolStripMenuItem.Click += new System.EventHandler(this.exportPNGToolStripMenuItem_Click);
 			// 
@@ -725,6 +728,13 @@ namespace HB5Tool
 			this.tbRosterDump.Size = new System.Drawing.Size(586, 254);
 			this.tbRosterDump.TabIndex = 0;
 			// 
+			// tssEditorType
+			// 
+			this.tssEditorType.Name = "tssEditorType";
+			this.tssEditorType.Size = new System.Drawing.Size(38, 19);
+			this.tssEditorType.Text = "(type)";
+			this.tssEditorType.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
 			// TeamEditor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -839,5 +849,6 @@ namespace HB5Tool
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.TextBox tbRosterDump;
+		private System.Windows.Forms.ToolStripStatusLabel tssEditorType;
 	}
 }
