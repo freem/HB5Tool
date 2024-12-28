@@ -648,7 +648,7 @@ namespace HB5Tool
 		}
 
 		#region Form Action-related Callbacks
-		private void MdiChild_CloseFormCallback(object sender, EventArgs e)
+		public void MdiChild_CloseFormCallback(object sender, EventArgs e)
 		{
 			if (MdiChildren.Length == 1)
 			{
@@ -664,7 +664,7 @@ namespace HB5Tool
 		/// <summary>
 		/// League Editor-specific form closing callback.
 		/// </summary>
-		private void LeagueEditor_CloseFormCallback(object sender, EventArgs e)
+		public void LeagueEditor_CloseFormCallback(object sender, EventArgs e)
 		{
 			LeagueEditor editor = sender as LeagueEditor;
 			ActiveLeagueEditors.Remove(Path.GetFullPath(editor.FilePath));
@@ -673,7 +673,7 @@ namespace HB5Tool
 		/// <summary>
 		/// Player Editor-specific form closing callback.
 		/// </summary>
-		private void PlayerEditor_CloseFormCallback(object sender, EventArgs e)
+		public void PlayerEditor_CloseFormCallback(object sender, EventArgs e)
 		{
 			// todo: determine if this was a Batter or Pitcher
 		}
@@ -681,7 +681,7 @@ namespace HB5Tool
 		/// <summary>
 		/// Team Editor-specific form closing callback.
 		/// </summary>
-		private void TeamEditor_CloseFormCallback(object sender, EventArgs e)
+		public void TeamEditor_CloseFormCallback(object sender, EventArgs e)
 		{
 			TeamEditor editor = sender as TeamEditor;
 			EditorManager.Teams.Remove(editor.Params);
