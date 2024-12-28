@@ -101,6 +101,12 @@
     <Compile Include="Dialogs\ProgOptionsDialog.Designer.cs">
       <DependentUpon>ProgOptionsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\SelectCapTrimColorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SelectCapTrimColorDialog.Designer.cs">
+      <DependentUpon>SelectCapTrimColorDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editors\AnnounceBinEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProgOptionsDialog.resx">
       <DependentUpon>ProgOptionsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelectCapTrimColorDialog.resx">
+      <DependentUpon>SelectCapTrimColorDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\AnnounceBinEditor.resx">
       <DependentUpon>AnnounceBinEditor.cs</DependentUpon>

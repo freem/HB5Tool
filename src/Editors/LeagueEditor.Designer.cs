@@ -50,6 +50,7 @@ namespace HB5Tool
 			this.lblPitcherID = new System.Windows.Forms.Label();
 			this.lbPitchers = new System.Windows.Forms.ListBox();
 			this.tpTeams = new System.Windows.Forms.TabPage();
+			this.pbStarPlayer = new System.Windows.Forms.PictureBox();
 			this.tbTeamOutput = new System.Windows.Forms.TextBox();
 			this.lblTrimColor = new System.Windows.Forms.Label();
 			this.lblHatColor = new System.Windows.Forms.Label();
@@ -70,7 +71,6 @@ namespace HB5Tool
 			this.tbUnkB = new System.Windows.Forms.TextBox();
 			this.tpUnknownC = new System.Windows.Forms.TabPage();
 			this.tbUnkC = new System.Windows.Forms.TextBox();
-			this.pbStarPlayer = new System.Windows.Forms.PictureBox();
 			this.statusStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -81,6 +81,7 @@ namespace HB5Tool
 			this.gbBatters.SuspendLayout();
 			this.gbPitchers.SuspendLayout();
 			this.tpTeams.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbStarPlayer)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
 			this.cmsLogo.SuspendLayout();
 			this.tpSchedule.SuspendLayout();
@@ -88,7 +89,6 @@ namespace HB5Tool
 			this.tpUnknown6.SuspendLayout();
 			this.tpUnknownB.SuspendLayout();
 			this.tpUnknownC.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbStarPlayer)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// statusStrip1
@@ -104,7 +104,7 @@ namespace HB5Tool
 			// tssLabelFilePath
 			// 
 			this.tssLabelFilePath.Name = "tssLabelFilePath";
-			this.tssLabelFilePath.Size = new System.Drawing.Size(54, 17);
+			this.tssLabelFilePath.Size = new System.Drawing.Size(58, 17);
 			this.tssLabelFilePath.Text = "[file path]";
 			// 
 			// leagueToolStripMenuItem
@@ -112,14 +112,14 @@ namespace HB5Tool
 			this.leagueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem});
 			this.leagueToolStripMenuItem.Name = "leagueToolStripMenuItem";
-			this.leagueToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+			this.leagueToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
 			this.leagueToolStripMenuItem.Text = "&League";
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
 			this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
 			this.exitToolStripMenuItem.Text = "E&xit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -304,6 +304,16 @@ namespace HB5Tool
 			this.tpTeams.Text = "Teams";
 			this.tpTeams.UseVisualStyleBackColor = true;
 			// 
+			// pbStarPlayer
+			// 
+			this.pbStarPlayer.Location = new System.Drawing.Point(490, 5);
+			this.pbStarPlayer.MaximumSize = new System.Drawing.Size(128, 120);
+			this.pbStarPlayer.MinimumSize = new System.Drawing.Size(128, 120);
+			this.pbStarPlayer.Name = "pbStarPlayer";
+			this.pbStarPlayer.Size = new System.Drawing.Size(128, 120);
+			this.pbStarPlayer.TabIndex = 23;
+			this.pbStarPlayer.TabStop = false;
+			// 
 			// tbTeamOutput
 			// 
 			this.tbTeamOutput.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -341,6 +351,7 @@ namespace HB5Tool
 			this.pTrimColor.Name = "pTrimColor";
 			this.pTrimColor.Size = new System.Drawing.Size(76, 20);
 			this.pTrimColor.TabIndex = 19;
+			this.pTrimColor.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pTrimColor_MouseClick);
 			// 
 			// pHatColor
 			// 
@@ -349,6 +360,7 @@ namespace HB5Tool
 			this.pHatColor.Name = "pHatColor";
 			this.pHatColor.Size = new System.Drawing.Size(76, 20);
 			this.pHatColor.TabIndex = 18;
+			this.pHatColor.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pHatColor_MouseClick);
 			// 
 			// pbLogo
 			// 
@@ -365,19 +377,19 @@ namespace HB5Tool
             this.exportRawLogoToolStripMenuItem,
             this.exportPNGToolStripMenuItem});
 			this.cmsLogo.Name = "cmsLogo";
-			this.cmsLogo.Size = new System.Drawing.Size(169, 48);
+			this.cmsLogo.Size = new System.Drawing.Size(173, 48);
 			// 
 			// exportRawLogoToolStripMenuItem
 			// 
 			this.exportRawLogoToolStripMenuItem.Name = "exportRawLogoToolStripMenuItem";
-			this.exportRawLogoToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+			this.exportRawLogoToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
 			this.exportRawLogoToolStripMenuItem.Text = "Export &Raw Logo...";
 			this.exportRawLogoToolStripMenuItem.Click += new System.EventHandler(this.exportRawLogoToolStripMenuItem_Click);
 			// 
 			// exportPNGToolStripMenuItem
 			// 
 			this.exportPNGToolStripMenuItem.Name = "exportPNGToolStripMenuItem";
-			this.exportPNGToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+			this.exportPNGToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
 			this.exportPNGToolStripMenuItem.Text = "Export &PNG...";
 			this.exportPNGToolStripMenuItem.Click += new System.EventHandler(this.exportPNGToolStripMenuItem_Click);
 			// 
@@ -511,16 +523,6 @@ namespace HB5Tool
 			this.tbUnkC.Size = new System.Drawing.Size(620, 297);
 			this.tbUnkC.TabIndex = 4;
 			// 
-			// pbStarPlayer
-			// 
-			this.pbStarPlayer.Location = new System.Drawing.Point(490, 5);
-			this.pbStarPlayer.MaximumSize = new System.Drawing.Size(128, 120);
-			this.pbStarPlayer.MinimumSize = new System.Drawing.Size(128, 120);
-			this.pbStarPlayer.Name = "pbStarPlayer";
-			this.pbStarPlayer.Size = new System.Drawing.Size(128, 120);
-			this.pbStarPlayer.TabIndex = 23;
-			this.pbStarPlayer.TabStop = false;
-			// 
 			// LeagueEditor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -556,6 +558,7 @@ namespace HB5Tool
 			this.gbPitchers.PerformLayout();
 			this.tpTeams.ResumeLayout(false);
 			this.tpTeams.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbStarPlayer)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
 			this.cmsLogo.ResumeLayout(false);
 			this.tpSchedule.ResumeLayout(false);
@@ -568,7 +571,6 @@ namespace HB5Tool
 			this.tpUnknownB.PerformLayout();
 			this.tpUnknownC.ResumeLayout(false);
 			this.tpUnknownC.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbStarPlayer)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

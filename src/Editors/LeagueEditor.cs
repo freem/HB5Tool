@@ -422,5 +422,33 @@ namespace HB5Tool
 
 			lblPitcherID.Text = string.Format("Pitcher ID: 0x{0:X4} (0x{1:X4})", lbPitchers.SelectedIndex + 1, CurLeague.NumBatters + lbPitchers.SelectedIndex + 1);
 		}
+
+		private void pHatColor_MouseClick(object sender, MouseEventArgs e)
+		{
+			if (lbTeams.SelectedIndex < 0)
+			{
+				return;
+			}
+
+			SelectCapTrimColorDialog cd = new SelectCapTrimColorDialog(CurLeague.Teams[lbTeams.SelectedIndex].CapColor, CurLeague.LeagueType == LeagueTypes.Legends);
+			if (cd.ShowDialog() == DialogResult.OK)
+			{
+				// update hat color
+			}
+		}
+
+		private void pTrimColor_MouseClick(object sender, MouseEventArgs e)
+		{
+			if (lbTeams.SelectedIndex < 0)
+			{
+				return;
+			}
+
+			SelectCapTrimColorDialog cd = new SelectCapTrimColorDialog(CurLeague.Teams[lbTeams.SelectedIndex].TrimColor, CurLeague.LeagueType == LeagueTypes.Legends);
+			if (cd.ShowDialog() == DialogResult.OK)
+			{
+				// update trim color
+			}
+		}
 	}
 }
