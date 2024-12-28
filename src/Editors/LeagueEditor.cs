@@ -191,6 +191,8 @@ namespace HB5Tool
 			tbUnkC.Text = sb.ToString();
 		}
 
+		// todo: if any team editors have been opened from this league on form closing, go through and handle each team form
+
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Close();
@@ -473,6 +475,8 @@ namespace HB5Tool
 			EditorParams param = new EditorParams(EditorDataSources.League, FilePath, lbTeams.SelectedIndex);
 			TeamEditor tEd = new TeamEditor(param);
 			EditorManager.Teams.Add(param, tEd);
+			tEd.CloseFormCallback += ((MainForm)this.Parent.Parent).TeamEditor_CloseFormCallback;
+			tEd.MdiParent = (Form)this.Parent.Parent;
 			tEd.Show();
 		}
 	}
