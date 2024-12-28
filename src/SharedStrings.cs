@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace HB5Tool
 {
 	public static class SharedStrings
 	{
+		#region File Open/Save Dialog Filters
 		/// <summary>
 		/// File filter for exported batters.
 		/// </summary>
@@ -91,5 +93,17 @@ namespace HB5Tool
 			FontFilter,
 			AllFilter
 		);
+		#endregion
+
+		/// <summary>
+		/// Mapping of EditorDataSources to strings.
+		/// </summary>
+		public static readonly Dictionary<EditorDataSources, string> DataSourceStrings = new Dictionary<EditorDataSources, string>()
+		{
+			{ EditorDataSources.Invalid, "Invalid" },
+			{ EditorDataSources.PlayerExport, "Player Export" },
+			{ EditorDataSources.TeamExport, "Team Export" },
+			{ EditorDataSources.League, "League" },
+		};
 	}
 }
