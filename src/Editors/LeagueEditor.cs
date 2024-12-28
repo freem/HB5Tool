@@ -473,11 +473,20 @@ namespace HB5Tool
 			}
 
 			EditorParams param = new EditorParams(EditorDataSources.League, FilePath, lbTeams.SelectedIndex);
-			TeamEditor tEd = new TeamEditor(param);
-			EditorManager.Teams.Add(param, tEd);
-			tEd.CloseFormCallback += ((MainForm)this.Parent.Parent).TeamEditor_CloseFormCallback;
-			tEd.MdiParent = (Form)this.Parent.Parent;
-			tEd.Show();
+
+			if (EditorManager.Teams.ContainsKey(param))
+			{
+				EditorManager.Teams[param].BringToFront();
+				EditorManager.Teams[param].Activate();
+			}
+			else
+			{
+				TeamEditor tEd = new TeamEditor(param);
+				EditorManager.Teams.Add(param, tEd);
+				tEd.CloseFormCallback += ((MainForm)this.Parent.Parent).TeamEditor_CloseFormCallback;
+				tEd.MdiParent = (Form)this.Parent.Parent;
+				tEd.Show();
+			}
 		}
 	}
 }
