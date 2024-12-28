@@ -35,6 +35,8 @@ namespace HB5Tool
 
 		public Dictionary<int, PitcherData> Pitchers;
 
+		public Dictionary<int, PlayerStats> HistoricalStats;
+
 		#endregion
 		
 		public TeamEditor(EditorParams _params)
@@ -57,10 +59,34 @@ namespace HB5Tool
 								TeamData = new TeamCommonData(br);
 								Batters = new Dictionary<int, BatterData>();
 								Pitchers = new Dictionary<int, PitcherData>();
+								HistoricalStats = new Dictionary<int, PlayerStats>();
 
 								// player data is stored based on values in TeamData.PlayerIdent
-
 								// data is similar to player exports, but without the first two bytes
+
+								int playerID = 1; // valid player IDs start at 1
+								foreach (UInt16 s in TeamData.PlayerIdent)
+								{
+									ushort masked = (ushort)(s & 0x3FFF);
+
+									if (masked != 0)
+									{
+										if (masked == 1)
+										{
+											Batters.Add(playerID, new BatterData(br));
+											br.ReadBytes(6);
+											HistoricalStats.Add(playerID, new PlayerStats(br));
+										}
+										else if (masked == 2)
+										{
+											Pitchers.Add(playerID, new PitcherData(br));
+											br.ReadBytes(2);
+											HistoricalStats.Add(playerID, new PlayerStats(br));
+										}
+									}
+
+									playerID++;
+								}
 							}
 						}
 					}
@@ -157,10 +183,31 @@ namespace HB5Tool
 			int rosterCount = 0;
 			int batterCount = 0;
 			int pitcherCount = 0;
+			string pDesc = string.Empty;
+			string pName = string.Empty;
 			foreach (UInt16 s in TeamData.PlayerIdent)
 			{
 				ushort masked = (ushort)(s & 0x3FFF);
-				sb.AppendLine(string.Format("0x{0:X2} = {1:X4}", playerNum, s));
+
+				switch (masked)
+				{
+					case 1:
+						pDesc = "[Bat]";
+						pName = Batters[playerNum].CommonData.Name;
+						break;
+
+					case 2:
+						pDesc = "[Pit]";
+						pName = Pitchers[playerNum].CommonData.Name;
+						break;
+
+					default:
+						pDesc = string.Empty;
+						pName = string.Empty;
+						break;
+				}
+
+				sb.AppendLine(string.Format("0x{0:X2} = {1:X4} {2} {3}", playerNum, s, pDesc, pName));
 
 				if (s != 0)
 				{
