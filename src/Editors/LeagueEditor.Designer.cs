@@ -71,6 +71,7 @@ namespace HB5Tool
 			this.tbUnkB = new System.Windows.Forms.TextBox();
 			this.tpUnknownC = new System.Windows.Forms.TabPage();
 			this.tbUnkC = new System.Windows.Forms.TextBox();
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.statusStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -617,5 +618,6 @@ namespace HB5Tool
 		private System.Windows.Forms.Label lblBatterID;
 		private System.Windows.Forms.Label lblPitcherID;
 		private System.Windows.Forms.PictureBox pbStarPlayer;
+		private System.Windows.Forms.ToolTip toolTip1;
 	}
 }

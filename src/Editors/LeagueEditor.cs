@@ -232,25 +232,8 @@ namespace HB5Tool
 			}
 		}
 
-		private void lbTeams_SelectedIndexChanged(object sender, EventArgs e)
+		private void UpdateCapTrimColors(TeamCommonData CurTeam)
 		{
-			if (lbTeams.SelectedIndex < 0)
-			{
-				tbTeamOutput.Clear();
-				return;
-			}
-
-			TeamCommonData CurTeam = CurLeague.Teams[lbTeams.SelectedIndex];
-
-			// transparency hack; avoids modifying TeamLogo's bitmap
-			Bitmap tempLogo = (Bitmap)CurTeam.Logo.LogoBitmap.Clone();
-
-			ColorPalette cpal = tempLogo.Palette;
-			cpal.Entries[0] = Color.FromArgb(0, 0, 0, 0);
-			tempLogo.Palette = cpal;
-
-			pbLogo.Image = tempLogo;
-
 			// Hat and Trim colors depend on league type.
 			if (CurLeague.LeagueType == LeagueTypes.MLBPA)
 			{
@@ -272,6 +255,31 @@ namespace HB5Tool
 				pHatColor.BackColor = DefaultData.CapTrimColors_Legends[CurTeam.CapColor][4];
 				pTrimColor.BackColor = DefaultData.CapTrimColors_Legends[CurTeam.TrimColor][4];
 			}
+
+			toolTip1.SetToolTip(pHatColor, string.Format("Color {0}", CurTeam.CapColor));
+			toolTip1.SetToolTip(pTrimColor, string.Format("Color {0}", CurTeam.TrimColor));
+		}
+
+		private void lbTeams_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (lbTeams.SelectedIndex < 0)
+			{
+				tbTeamOutput.Clear();
+				return;
+			}
+
+			TeamCommonData CurTeam = CurLeague.Teams[lbTeams.SelectedIndex];
+
+			// transparency hack; avoids modifying TeamLogo's bitmap
+			Bitmap tempLogo = (Bitmap)CurTeam.Logo.LogoBitmap.Clone();
+
+			ColorPalette cpal = tempLogo.Palette;
+			cpal.Entries[0] = Color.FromArgb(0, 0, 0, 0);
+			tempLogo.Palette = cpal;
+
+			pbLogo.Image = tempLogo;
+
+			UpdateCapTrimColors(CurTeam);
 
 			// handle star player image
 			if (Program.GlobalPicsBin != null)
@@ -434,6 +442,8 @@ namespace HB5Tool
 			if (cd.ShowDialog() == DialogResult.OK)
 			{
 				// update hat color
+				//CurLeague.Teams[lbTeams.SelectedIndex].CapColor = (byte)cd.ColorSet;
+				//UpdateCapTrimColors(CurLeague.Teams[lbTeams.SelectedIndex]);
 			}
 		}
 
@@ -448,6 +458,8 @@ namespace HB5Tool
 			if (cd.ShowDialog() == DialogResult.OK)
 			{
 				// update trim color
+				//CurLeague.Teams[lbTeams.SelectedIndex].TrimColor = (byte)cd.ColorSet;
+				//UpdateCapTrimColors(CurLeague.Teams[lbTeams.SelectedIndex]);
 			}
 		}
 	}
