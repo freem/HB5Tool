@@ -47,15 +47,17 @@ namespace HB5Tool
 			this.nudJerseyNum = new System.Windows.Forms.NumericUpDown();
 			this.lblPlayerType = new System.Windows.Forms.Label();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.gbRatings = new System.Windows.Forms.GroupBox();
 			this.tbRatings = new System.Windows.Forms.TextBox();
-			this.gbStats = new System.Windows.Forms.GroupBox();
 			this.tbStats = new System.Windows.Forms.TextBox();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tpRatings = new System.Windows.Forms.TabPage();
+			this.tpStats = new System.Windows.Forms.TabPage();
 			this.statusStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudJerseyNum)).BeginInit();
-			this.gbRatings.SuspendLayout();
-			this.gbStats.SuspendLayout();
+			this.tabControl1.SuspendLayout();
+			this.tpRatings.SuspendLayout();
+			this.tpStats.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// statusStrip1
@@ -71,7 +73,7 @@ namespace HB5Tool
 			// tssLabelFilePath
 			// 
 			this.tssLabelFilePath.Name = "tssLabelFilePath";
-			this.tssLabelFilePath.Size = new System.Drawing.Size(54, 17);
+			this.tssLabelFilePath.Size = new System.Drawing.Size(58, 17);
 			this.tssLabelFilePath.Text = "[file path]";
 			// 
 			// tbName
@@ -113,27 +115,27 @@ namespace HB5Tool
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-			this.fileToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
+			this.fileToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
 			this.fileToolStripMenuItem.Text = "&Player";
 			// 
 			// saveToolStripMenuItem
 			// 
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
 			this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-			this.saveToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+			this.saveToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
 			this.saveToolStripMenuItem.Text = "&Save Changes";
 			this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(178, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(184, 6);
 			// 
 			// importToolStripMenuItem
 			// 
 			this.importToolStripMenuItem.Name = "importToolStripMenuItem";
 			this.importToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-			this.importToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+			this.importToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
 			this.importToolStripMenuItem.Text = "&Import...";
 			this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
 			// 
@@ -141,20 +143,20 @@ namespace HB5Tool
 			// 
 			this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
 			this.exportToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-			this.exportToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+			this.exportToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
 			this.exportToolStripMenuItem.Text = "&Export...";
 			this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(178, 6);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(184, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
 			this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
 			this.exitToolStripMenuItem.Text = "E&xit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -190,61 +192,68 @@ namespace HB5Tool
 			this.lblPlayerType.TabIndex = 6;
 			this.lblPlayerType.Text = "Player Type:";
 			// 
-			// gbRatings
-			// 
-			this.gbRatings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.gbRatings.Controls.Add(this.tbRatings);
-			this.gbRatings.Location = new System.Drawing.Point(12, 52);
-			this.gbRatings.Name = "gbRatings";
-			this.gbRatings.Size = new System.Drawing.Size(610, 149);
-			this.gbRatings.TabIndex = 7;
-			this.gbRatings.TabStop = false;
-			this.gbRatings.Text = "Ratings";
-			// 
 			// tbRatings
 			// 
 			this.tbRatings.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tbRatings.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tbRatings.Location = new System.Drawing.Point(3, 16);
+			this.tbRatings.Location = new System.Drawing.Point(3, 3);
 			this.tbRatings.Multiline = true;
 			this.tbRatings.Name = "tbRatings";
 			this.tbRatings.ReadOnly = true;
 			this.tbRatings.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.tbRatings.Size = new System.Drawing.Size(604, 130);
+			this.tbRatings.Size = new System.Drawing.Size(596, 266);
 			this.tbRatings.TabIndex = 0;
-			// 
-			// gbStats
-			// 
-			this.gbStats.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.gbStats.Controls.Add(this.tbStats);
-			this.gbStats.Location = new System.Drawing.Point(12, 207);
-			this.gbStats.Name = "gbStats";
-			this.gbStats.Size = new System.Drawing.Size(610, 143);
-			this.gbStats.TabIndex = 8;
-			this.gbStats.TabStop = false;
-			this.gbStats.Text = "Statistics";
 			// 
 			// tbStats
 			// 
 			this.tbStats.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tbStats.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tbStats.Location = new System.Drawing.Point(3, 16);
+			this.tbStats.Location = new System.Drawing.Point(3, 3);
 			this.tbStats.Multiline = true;
 			this.tbStats.Name = "tbStats";
 			this.tbStats.ReadOnly = true;
 			this.tbStats.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.tbStats.Size = new System.Drawing.Size(604, 124);
+			this.tbStats.Size = new System.Drawing.Size(596, 266);
 			this.tbStats.TabIndex = 0;
+			// 
+			// tabControl1
+			// 
+			this.tabControl1.Controls.Add(this.tpRatings);
+			this.tabControl1.Controls.Add(this.tpStats);
+			this.tabControl1.Location = new System.Drawing.Point(12, 52);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(610, 298);
+			this.tabControl1.TabIndex = 1;
+			// 
+			// tpRatings
+			// 
+			this.tpRatings.Controls.Add(this.tbRatings);
+			this.tpRatings.Location = new System.Drawing.Point(4, 22);
+			this.tpRatings.Name = "tpRatings";
+			this.tpRatings.Padding = new System.Windows.Forms.Padding(3);
+			this.tpRatings.Size = new System.Drawing.Size(602, 272);
+			this.tpRatings.TabIndex = 0;
+			this.tpRatings.Text = "Ratings";
+			this.tpRatings.UseVisualStyleBackColor = true;
+			// 
+			// tpStats
+			// 
+			this.tpStats.Controls.Add(this.tbStats);
+			this.tpStats.Location = new System.Drawing.Point(4, 22);
+			this.tpStats.Name = "tpStats";
+			this.tpStats.Padding = new System.Windows.Forms.Padding(3);
+			this.tpStats.Size = new System.Drawing.Size(602, 272);
+			this.tpStats.TabIndex = 1;
+			this.tpStats.Text = "Statistics";
+			this.tpStats.UseVisualStyleBackColor = true;
 			// 
 			// PlayerEditor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(634, 375);
-			this.Controls.Add(this.gbStats);
-			this.Controls.Add(this.gbRatings);
+			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.lblPlayerType);
 			this.Controls.Add(this.nudJerseyNum);
 			this.Controls.Add(this.lblJerseyNum);
@@ -268,10 +277,11 @@ namespace HB5Tool
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudJerseyNum)).EndInit();
-			this.gbRatings.ResumeLayout(false);
-			this.gbRatings.PerformLayout();
-			this.gbStats.ResumeLayout(false);
-			this.gbStats.PerformLayout();
+			this.tabControl1.ResumeLayout(false);
+			this.tpRatings.ResumeLayout(false);
+			this.tpRatings.PerformLayout();
+			this.tpStats.ResumeLayout(false);
+			this.tpStats.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -295,9 +305,10 @@ namespace HB5Tool
 		private System.Windows.Forms.NumericUpDown nudJerseyNum;
 		private System.Windows.Forms.Label lblPlayerType;
 		private System.Windows.Forms.ToolTip toolTip1;
-		private System.Windows.Forms.GroupBox gbRatings;
-		private System.Windows.Forms.GroupBox gbStats;
 		private System.Windows.Forms.TextBox tbRatings;
 		private System.Windows.Forms.TextBox tbStats;
+		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabPage tpRatings;
+		private System.Windows.Forms.TabPage tpStats;
 	}
 }

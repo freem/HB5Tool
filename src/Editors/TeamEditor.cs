@@ -31,7 +31,9 @@ namespace HB5Tool
 
 		public TeamCommonData TeamData;
 
-		// todo: players
+		public Dictionary<int, BatterData> Batters;
+
+		public Dictionary<int, PitcherData> Pitchers;
 
 		#endregion
 		
@@ -53,6 +55,12 @@ namespace HB5Tool
 							using (BinaryReader br = new BinaryReader(fs))
 							{
 								TeamData = new TeamCommonData(br);
+								Batters = new Dictionary<int, BatterData>();
+								Pitchers = new Dictionary<int, PitcherData>();
+
+								// player data is stored based on values in TeamData.PlayerIdent
+
+								// data is similar to player exports, but without the first two bytes
 							}
 						}
 					}
@@ -142,7 +150,39 @@ namespace HB5Tool
 			sb.AppendLine(string.Format("0x{0:X2} 0x{1:X2} 0x{2:X2} 0x{3:X2}", TeamData.SliderValues[0], TeamData.SliderValues[1], TeamData.SliderValues[2], TeamData.SliderValues[3]));
 			tbOutput.Text = sb.ToString();
 
-			// todo: player data
+			sb.Clear();
+			// player data
+			sb.AppendLine("PlayerIdent values:");
+			int playerNum = 1;
+			int rosterCount = 0;
+			int batterCount = 0;
+			int pitcherCount = 0;
+			foreach (UInt16 s in TeamData.PlayerIdent)
+			{
+				ushort masked = (ushort)(s & 0x3FFF);
+				sb.AppendLine(string.Format("0x{0:X2} = {1:X4}", playerNum, s));
+
+				if (s != 0)
+				{
+					++rosterCount;
+				}
+
+				if (s == 1)
+				{
+					++batterCount;
+				}
+
+				if (s == 2)
+				{
+					++pitcherCount;
+				}
+
+				playerNum++;
+			}
+			sb.AppendLine();
+			sb.AppendLine(string.Format("Roster Count: {0} ({1} Batters, {2} Pitchers)", rosterCount, batterCount, pitcherCount));
+			tbRosterDump.Text = sb.ToString();
+			
 		}
 
 		private void UpdateTitle()

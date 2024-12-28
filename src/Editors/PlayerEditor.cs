@@ -73,26 +73,90 @@ namespace HB5Tool
 		/// </summary>
 		public bool ChangesMade;
 
+		/// <summary>
+		/// Set this to true when writing back data for Team Exports and Leagues.
+		/// Unnecessary for player exports.
+		/// </summary>
+		public bool ChangesSaved;
+
 		// temporary
 		public ExportPlayer PlayerDataExp;
+
+		// less temporary
+		public BatterData Batter;
+		public PitcherData Pitcher;
+		public PlayerStats Stats;
+
 		#endregion
 
-		/*
-		public PlayerEditor(BatterData _btr, PlayerStats _stats)
-		{
-			CommonInit();
-		}
-
-		public PlayerEditor(PitcherData _pit, PlayerStats _stats)
-		{
-			CommonInit();
-		}
-
-		private void CommonInit()
+		public PlayerEditor(EditorParams _params)
 		{
 			InitializeComponent();
+			ChangesMade = false;
+			ChangesSaved = false;
+
+			Params = _params;
+
+			if (Params.Source == EditorDataSources.PlayerExport)
+			{
+				// direct file read
+				tssLabelFilePath.Text = Params.Filename;
+
+				// temporary!!
+				using (FileStream fs = new FileStream(Params.Filename, FileMode.Open))
+				{
+					using (BinaryReader br = new BinaryReader(fs))
+					{
+						PlayerDataExp = new ExportPlayer(br);
+					}
+				}
+			}
+			else if (Params.Source == EditorDataSources.TeamExport)
+			{
+				//Params.Index into team roster
+				tssLabelFilePath.Text = string.Format("{0} | Player Index {1}", Params.Filename, Params.Index);
+
+				using (FileStream fs = new FileStream(Params.Filename, FileMode.Open))
+				{
+					using (BinaryReader br = new BinaryReader(fs))
+					{
+						TeamCommonData team = new TeamCommonData(br);
+						ushort pType = team.PlayerIdent[Params.Index]; // 1 = batter, 2 = pitcher
+
+						// location will already be at first player data.
+						// each player is 0x194 bytes (same size as an exported player, sans the two header bytes)
+					}
+				}
+			}
+			else if (Params.Source == EditorDataSources.League)
+			{
+				//Params.Index into league player DB
+				tssLabelFilePath.Text = string.Format("{0} | Player Index {1}", Params.Filename, Params.Index);
+
+				using (FileStream fs = new FileStream(Params.Filename, FileMode.Open))
+				{
+					using (BinaryReader br = new BinaryReader(fs))
+					{
+						LeagueData lgd = new LeagueData(br);
+						PlayerTypes pType = lgd.GetPlayerTypeFromID(Params.Index);
+						if (pType == PlayerTypes.Batter)
+						{
+							Icon = Properties.Resources.icon_batter;
+							Pitcher = null;
+							Batter = lgd.BatterDatabase[Params.Index];
+							Stats = lgd.Stats_Lifetime[Params.Index];
+						}
+						else if (pType == PlayerTypes.Pitcher)
+						{
+							Icon = Properties.Resources.icon_pitcher;
+							Batter = null;
+							Pitcher = lgd.PitcherDatabase[Params.Index - lgd.NumBatters];
+							Stats = lgd.Stats_Lifetime[Params.Index];
+						}
+					}
+				}
+			}
 		}
-		*/
 
 		/// <summary>
 		/// 
@@ -121,11 +185,11 @@ namespace HB5Tool
 					break;
 
 				case PlayerDataSources.TeamExport:
-					LoadData_TeamExport(_idx);
+					//LoadData_TeamExport(_idx);
 					break;
 
 				case PlayerDataSources.League:
-					LoadData_League(_idx);
+					//LoadData_League(_idx);
 					break;
 			}
 

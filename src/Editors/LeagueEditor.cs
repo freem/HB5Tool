@@ -304,7 +304,15 @@ namespace HB5Tool
 						}
 					}
 				}
-				pbStarPlayer.Image = Program.GlobalPicsBin.RenderedPics[picNum];
+
+				if (starID != 0)
+				{
+					pbStarPlayer.Image = Program.GlobalPicsBin.RenderedPics[picNum];
+				}
+				else
+				{
+					pbStarPlayer.Image = null;
+				}
 			}
 
 			StringBuilder sb = new StringBuilder();
