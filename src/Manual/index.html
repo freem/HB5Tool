@@ -20,6 +20,31 @@
 <h2>Table of Contents</h2>
 <ol>
 <li><a href="#intro">Introduction</a></li>
+<li><a href="#notes">Notes, Warnings, Precautions, etc.</a></li>
+
+<li><a href="#userFacing">User-Facing Data</a><ol>
+<li><a href="#playerExp">Player Exports (<code>.btr</code>/<code>.pit</code> Files)</a></li>
+<li><a href="#teamExp">Team Exports (<code>.hb5</code> Files)</a></li>
+<li><a href="#league">Leagues (<code>.lgd</code> Files)</a></li>
+</ol></li>
+
+<li><a href="#internalData">Internal Data</a><ol>
+<li><a href="#glue">Main "Glue" Files</a> (<code>HARDBALL.BIN</code>/<code>HB5CDROM.BIN</code>)</li>
+<li><a href="#customBin">Customization Data</a> (<code>CUSTOM.BIN</code>)</li>
+<li><a href="#defaultsBin">Settings/Options</a> (<code>DEFAULTS.BIN</code>)</li>
+<li><a href="#digs">"Digs" Files</a> (<code>DIGS.BIN</code>, <code>TEAMSDIG.BIN</code>)</li>
+<!--
+pics.bin
+schedule files
+announce.bin
+words.bin
+.msh files
+.mgs files
+stadium-related files
+-->
+</ol></li>
+
+<li><a href="#progSettings">Program Settings</a></li>
 </ol>
 
 <hr />
@@ -29,6 +54,69 @@
 In its current state, you can't do much with it, but this will change over time.</p>
 
 <p>Due to the early state of the program, this manual is still under construction.</p>
+
+<p>This program is meant to work with multiple data sources. Some of these
+are user-facing files, like player exports, team exports, and leagues.
+Other files are meant to be internal, or not edited by the player directly.
+These files would typically be extracted from <code>HARDBALL.BIN</code> or
+<code>HB5CDROM.BIN</code>. It is important to keep this "user-facing" vs.
+"internal" divide in mind when using HB5Tool.</p>
+
+<hr />
+
+<h2><a name="notes">Notes, Warnings, Precautions, etc.</a></h2>
+<p>The primary target for this program is PC versions of HardBall 5.
+HardBall 4 files are kind of supported, though you may need to rename
+a few files to get HB5Tool to load them.</p>
+
+<p>As this program targets the PC version, data is assumed to be little endian.
+This can cause issues when trying to open PlayStation HardBall 5 data.</p>
+
+<hr />
+
+<h2><a name="userFacing">User-Facing Data</a></h2>
+<p>This portion of the manual covers the user-facing data files.</p>
+
+<h2><a name="playerExp">Player Exports</a></h2>
+<p>HardBall 5 allows you to export a player to a file. The player type is
+typically defined by the file extension:</p>
+<ul>
+<li><code>.btr</code> &ndash; Batters</li>
+<li><code>.pit</code> &ndash; Pitchers</li>
+</ul>
+
+<p>However, the player export files have a value at the beginning that prevents
+players from just changing the file extension. (This value also differentiates
+HardBall 4 player exports from HardBall 5 ones.)</p>
+
+<p>In addition to the "standard" data (e.g. jersey number, name, skin color, etc.)
+and ratings data, historical stats are also stored in player export files.</p>
+
+<h2><a name="teamExp">Team Exports</a></h2>
+<p>Entire teams can be exported from HardBall 5. Team exports have a
+<code>.hb5</code> file extension. Players on the roster are also included in
+the team export data, including their historical stats.</p>
+
+<h2><a name="league">Leagues</a></h2>
+<p>Leagues are a combination of players, teams, and other data. League files have
+a <code>.lgd</code> file extension.</p>
+
+<hr />
+
+<h2><a name="internalData">Internal Data</a></h2>
+<p>This portion of the manual covers the internal data files. Most of these are
+not meant to be edited by the player directly. Some files are partially user-facing,
+as their data can be changed in-game (e.g. the Options and Customization settings).</p>
+
+<hr />
+
+<h2><a name="progSettings">Program Settings</a></h2>
+<p>There are very few program settings, and only one of them actually works right now!</p>
+<ul>
+<li><strong>Hardball 5 Path</strong> &ndash; currently unused. Would be used for reading various files in a HardBall 5 install.</li>
+<li><strong>Default PICS.BIN Path</strong> &ndash; Path to a <code>PICS.BIN</code> (or similar) file with HardBall 5-format player pictures.</li>
+<li><strong>Override Default League</strong> &ndash; currently unused. If "HardBall 5 Path" support were to read <code>DEFAULTS.BIN</code> to get the current active league, this would let you override that league.</li>
+</ul>
 
 <hr />
 
