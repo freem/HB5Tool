@@ -125,10 +125,11 @@ namespace HB5Tool
 
 		public Bitmap DecodeImage()
 		{
-			// xxx: 8bpp assumption
-			Bitmap outBitmap = new Bitmap(Width, Height, PixelFormat.Format8bppIndexed);
-			BitmapData bData = outBitmap.LockBits(new Rectangle(0, 0, Width, Height), ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
+			PixelFormat pf = Is4BPP() ? PixelFormat.Format4bppIndexed : PixelFormat.Format8bppIndexed;
+			Bitmap outBitmap = new Bitmap(Width, Height, pf);
+			BitmapData bData = outBitmap.LockBits(new Rectangle(0, 0, Width, Height), ImageLockMode.WriteOnly, pf);
 
+			// todo: stride may intentionally be different for 4bpp images
 			bool differingStride = false;
 			if (Math.Abs(bData.Stride) != Width)
 			{
@@ -153,7 +154,16 @@ namespace HB5Tool
 			{
 				if (Is4BPP())
 				{
-					// compressed 4bpp, idk how to handle these
+					// compressed 4bpp; all known 4BPP images have the RLE bit (or whatever function it actually serves) set
+
+					// read these first few values from the beginning of ImageData
+
+					// number of palette colors (byte)
+					//int numColors = ImageData[0];
+
+					// palette indices (see previous byte for length)
+
+					// pixel data, handled similar to 8bpp, except each byte represents 2 pixels.
 				}
 				else
 				{
