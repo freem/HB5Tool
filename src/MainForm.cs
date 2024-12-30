@@ -177,7 +177,7 @@ namespace HB5Tool
 				case ".pit":
 					{
 						// exported batter or pitcher
-						PlayerEditor pEd = new PlayerEditor(PlayerEditor.PlayerDataSources.PlayerExport, _filePath);
+						PlayerEditor pEd = new PlayerEditor(EditorDataSources.PlayerExport, _filePath);
 						pEd.MdiParent = this;
 						pEd.CloseFormCallback += MdiChild_CloseFormCallback;
 						pEd.Show();

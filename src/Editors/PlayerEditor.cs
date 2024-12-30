@@ -13,33 +13,6 @@ namespace HB5Tool
 	public partial class PlayerEditor : Form
 	{
 		/// <summary>
-		/// Source of the player's data.
-		/// This makes a difference, since league and team exports operate differently from player exports.
-		/// </summary>
-		public enum PlayerDataSources
-		{
-			/// <summary>
-			/// Player export (*.btr, *.pit)
-			/// </summary>
-			PlayerExport = 0,
-
-			/// <summary>
-			/// Team export (*.hb5)
-			/// </summary>
-			TeamExport = 1,
-
-			/// <summary>
-			/// League data (*.lgd)
-			/// </summary>
-			League = 2,
-
-			/// <summary>
-			/// Not a valid source
-			/// </summary>
-			Invalid = -1
-		}
-
-		/// <summary>
 		/// Provided solely so the main form can hide the Window menu if the last form is closed.
 		/// </summary>
 		public event EventHandler CloseFormCallback;
@@ -54,7 +27,7 @@ namespace HB5Tool
 		/// Data source for this player.
 		/// </summary>
 		/// deprecated, to be replaced with Params.Source
-		public PlayerDataSources DataSource;
+		public EditorDataSources DataSource;
 
 		/// <summary>
 		/// Path to file containing this player's data.
@@ -96,6 +69,7 @@ namespace HB5Tool
 			ChangesSaved = false;
 
 			Params = _params;
+			tssEditorType.Text = SharedStrings.DataSourceStrings[Params.Source];
 
 			if (Params.Source == EditorDataSources.PlayerExport)
 			{
@@ -159,12 +133,12 @@ namespace HB5Tool
 		}
 
 		/// <summary>
-		/// 
+		/// this is the old form opening routine, to be replaced
 		/// </summary>
 		/// <param name="_src">Player data source.</param>
 		/// <param name="_filePath">Path to file containing player data.</param>
 		/// <param name="_idx">Player index to load. Optional for _src==PlayerExport; required for all others.</param>
-		public PlayerEditor(PlayerDataSources _src, string _filePath, int _idx = -1)
+		public PlayerEditor(EditorDataSources _src, string _filePath, int _idx = -1)
 		{
 			InitializeComponent();
 			ChangesMade = false;
@@ -180,15 +154,15 @@ namespace HB5Tool
 
 			switch (_src)
 			{
-				case PlayerDataSources.PlayerExport:
+				case EditorDataSources.PlayerExport:
 					LoadData_PlayerExport();
 					break;
 
-				case PlayerDataSources.TeamExport:
+				case EditorDataSources.TeamExport:
 					//LoadData_TeamExport(_idx);
 					break;
 
-				case PlayerDataSources.League:
+				case EditorDataSources.League:
 					//LoadData_League(_idx);
 					break;
 			}

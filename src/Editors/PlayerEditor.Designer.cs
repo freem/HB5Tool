@@ -52,6 +52,7 @@ namespace HB5Tool
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tpRatings = new System.Windows.Forms.TabPage();
 			this.tpStats = new System.Windows.Forms.TabPage();
+			this.tssEditorType = new System.Windows.Forms.ToolStripStatusLabel();
 			this.statusStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudJerseyNum)).BeginInit();
@@ -63,17 +64,19 @@ namespace HB5Tool
 			// statusStrip1
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tssEditorType,
             this.tssLabelFilePath});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 353);
+			this.statusStrip1.Location = new System.Drawing.Point(0, 351);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(634, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(634, 24);
 			this.statusStrip1.TabIndex = 0;
 			this.statusStrip1.Text = "statusStrip1";
 			// 
 			// tssLabelFilePath
 			// 
+			this.tssLabelFilePath.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
 			this.tssLabelFilePath.Name = "tssLabelFilePath";
-			this.tssLabelFilePath.Size = new System.Drawing.Size(58, 17);
+			this.tssLabelFilePath.Size = new System.Drawing.Size(62, 19);
 			this.tssLabelFilePath.Text = "[file path]";
 			// 
 			// tbName
@@ -248,6 +251,12 @@ namespace HB5Tool
 			this.tpStats.Text = "Statistics";
 			this.tpStats.UseVisualStyleBackColor = true;
 			// 
+			// tssEditorType
+			// 
+			this.tssEditorType.Name = "tssEditorType";
+			this.tssEditorType.Size = new System.Drawing.Size(38, 19);
+			this.tssEditorType.Text = "(type)";
+			// 
 			// PlayerEditor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -310,5 +319,6 @@ namespace HB5Tool
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tpRatings;
 		private System.Windows.Forms.TabPage tpStats;
+		private System.Windows.Forms.ToolStripStatusLabel tssEditorType;
 	}
 }
