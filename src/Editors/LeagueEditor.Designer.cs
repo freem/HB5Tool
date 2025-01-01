@@ -50,6 +50,7 @@ namespace HB5Tool
 			this.lblPitcherID = new System.Windows.Forms.Label();
 			this.lbPitchers = new System.Windows.Forms.ListBox();
 			this.tpTeams = new System.Windows.Forms.TabPage();
+			this.btnEditTeam = new System.Windows.Forms.Button();
 			this.pbStarPlayer = new System.Windows.Forms.PictureBox();
 			this.tbTeamOutput = new System.Windows.Forms.TextBox();
 			this.lblTrimColor = new System.Windows.Forms.Label();
@@ -72,7 +73,18 @@ namespace HB5Tool
 			this.tpUnknownC = new System.Windows.Forms.TabPage();
 			this.tbUnkC = new System.Windows.Forms.TextBox();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.btnEditTeam = new System.Windows.Forms.Button();
+			this.tpStats = new System.Windows.Forms.TabPage();
+			this.lblStatsPlayer = new System.Windows.Forms.Label();
+			this.cbPlayerStats = new System.Windows.Forms.ComboBox();
+			this.tcPlayerStats = new System.Windows.Forms.TabControl();
+			this.tpStatsSeason = new System.Windows.Forms.TabPage();
+			this.tpStatsWeekly = new System.Windows.Forms.TabPage();
+			this.tpStatsHistorical = new System.Windows.Forms.TabPage();
+			this.tpStatsLifetime = new System.Windows.Forms.TabPage();
+			this.tbStatsHistorical = new System.Windows.Forms.TextBox();
+			this.tbStatsSeason = new System.Windows.Forms.TextBox();
+			this.tbStatsWeekly = new System.Windows.Forms.TextBox();
+			this.tbStatsLifetime = new System.Windows.Forms.TextBox();
 			this.statusStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -91,6 +103,12 @@ namespace HB5Tool
 			this.tpUnknown6.SuspendLayout();
 			this.tpUnknownB.SuspendLayout();
 			this.tpUnknownC.SuspendLayout();
+			this.tpStats.SuspendLayout();
+			this.tcPlayerStats.SuspendLayout();
+			this.tpStatsSeason.SuspendLayout();
+			this.tpStatsWeekly.SuspendLayout();
+			this.tpStatsHistorical.SuspendLayout();
+			this.tpStatsLifetime.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// statusStrip1
@@ -160,6 +178,7 @@ namespace HB5Tool
 			this.tabControl1.Controls.Add(this.tpUnknown6);
 			this.tabControl1.Controls.Add(this.tpUnknownB);
 			this.tabControl1.Controls.Add(this.tpUnknownC);
+			this.tabControl1.Controls.Add(this.tpStats);
 			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl1.Location = new System.Drawing.Point(0, 24);
 			this.tabControl1.Name = "tabControl1";
@@ -306,6 +325,16 @@ namespace HB5Tool
 			this.tpTeams.TabIndex = 2;
 			this.tpTeams.Text = "Teams";
 			this.tpTeams.UseVisualStyleBackColor = true;
+			// 
+			// btnEditTeam
+			// 
+			this.btnEditTeam.Location = new System.Drawing.Point(169, 102);
+			this.btnEditTeam.Name = "btnEditTeam";
+			this.btnEditTeam.Size = new System.Drawing.Size(75, 23);
+			this.btnEditTeam.TabIndex = 24;
+			this.btnEditTeam.Text = "danger!!";
+			this.btnEditTeam.UseVisualStyleBackColor = true;
+			this.btnEditTeam.Click += new System.EventHandler(this.btnEditTeam_Click);
 			// 
 			// pbStarPlayer
 			// 
@@ -526,15 +555,144 @@ namespace HB5Tool
 			this.tbUnkC.Size = new System.Drawing.Size(620, 297);
 			this.tbUnkC.TabIndex = 4;
 			// 
-			// btnEditTeam
+			// tpStats
 			// 
-			this.btnEditTeam.Location = new System.Drawing.Point(169, 102);
-			this.btnEditTeam.Name = "btnEditTeam";
-			this.btnEditTeam.Size = new System.Drawing.Size(75, 23);
-			this.btnEditTeam.TabIndex = 24;
-			this.btnEditTeam.Text = "danger!!";
-			this.btnEditTeam.UseVisualStyleBackColor = true;
-			this.btnEditTeam.Click += new System.EventHandler(this.btnEditTeam_Click);
+			this.tpStats.Controls.Add(this.tcPlayerStats);
+			this.tpStats.Controls.Add(this.cbPlayerStats);
+			this.tpStats.Controls.Add(this.lblStatsPlayer);
+			this.tpStats.Location = new System.Drawing.Point(4, 22);
+			this.tpStats.Name = "tpStats";
+			this.tpStats.Padding = new System.Windows.Forms.Padding(3);
+			this.tpStats.Size = new System.Drawing.Size(626, 303);
+			this.tpStats.TabIndex = 9;
+			this.tpStats.Text = "Stats";
+			this.tpStats.UseVisualStyleBackColor = true;
+			// 
+			// lblStatsPlayer
+			// 
+			this.lblStatsPlayer.AutoSize = true;
+			this.lblStatsPlayer.Location = new System.Drawing.Point(9, 9);
+			this.lblStatsPlayer.Name = "lblStatsPlayer";
+			this.lblStatsPlayer.Size = new System.Drawing.Size(36, 13);
+			this.lblStatsPlayer.TabIndex = 0;
+			this.lblStatsPlayer.Text = "&Player";
+			// 
+			// cbPlayerStats
+			// 
+			this.cbPlayerStats.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.cbPlayerStats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbPlayerStats.FormattingEnabled = true;
+			this.cbPlayerStats.Location = new System.Drawing.Point(107, 6);
+			this.cbPlayerStats.Name = "cbPlayerStats";
+			this.cbPlayerStats.Size = new System.Drawing.Size(511, 21);
+			this.cbPlayerStats.TabIndex = 1;
+			this.cbPlayerStats.SelectedIndexChanged += new System.EventHandler(this.cbPlayerStats_SelectedIndexChanged);
+			// 
+			// tcPlayerStats
+			// 
+			this.tcPlayerStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tcPlayerStats.Controls.Add(this.tpStatsHistorical);
+			this.tcPlayerStats.Controls.Add(this.tpStatsSeason);
+			this.tcPlayerStats.Controls.Add(this.tpStatsWeekly);
+			this.tcPlayerStats.Controls.Add(this.tpStatsLifetime);
+			this.tcPlayerStats.Location = new System.Drawing.Point(6, 33);
+			this.tcPlayerStats.Name = "tcPlayerStats";
+			this.tcPlayerStats.SelectedIndex = 0;
+			this.tcPlayerStats.Size = new System.Drawing.Size(614, 264);
+			this.tcPlayerStats.TabIndex = 2;
+			// 
+			// tpStatsSeason
+			// 
+			this.tpStatsSeason.Controls.Add(this.tbStatsSeason);
+			this.tpStatsSeason.Location = new System.Drawing.Point(4, 22);
+			this.tpStatsSeason.Name = "tpStatsSeason";
+			this.tpStatsSeason.Padding = new System.Windows.Forms.Padding(3);
+			this.tpStatsSeason.Size = new System.Drawing.Size(606, 238);
+			this.tpStatsSeason.TabIndex = 0;
+			this.tpStatsSeason.Text = "Season";
+			this.tpStatsSeason.UseVisualStyleBackColor = true;
+			// 
+			// tpStatsWeekly
+			// 
+			this.tpStatsWeekly.Controls.Add(this.tbStatsWeekly);
+			this.tpStatsWeekly.Location = new System.Drawing.Point(4, 22);
+			this.tpStatsWeekly.Name = "tpStatsWeekly";
+			this.tpStatsWeekly.Padding = new System.Windows.Forms.Padding(3);
+			this.tpStatsWeekly.Size = new System.Drawing.Size(606, 238);
+			this.tpStatsWeekly.TabIndex = 1;
+			this.tpStatsWeekly.Text = "Weekly";
+			this.tpStatsWeekly.UseVisualStyleBackColor = true;
+			// 
+			// tpStatsHistorical
+			// 
+			this.tpStatsHistorical.Controls.Add(this.tbStatsHistorical);
+			this.tpStatsHistorical.Location = new System.Drawing.Point(4, 22);
+			this.tpStatsHistorical.Name = "tpStatsHistorical";
+			this.tpStatsHistorical.Size = new System.Drawing.Size(606, 238);
+			this.tpStatsHistorical.TabIndex = 2;
+			this.tpStatsHistorical.Text = "Historical";
+			this.tpStatsHistorical.UseVisualStyleBackColor = true;
+			// 
+			// tpStatsLifetime
+			// 
+			this.tpStatsLifetime.Controls.Add(this.tbStatsLifetime);
+			this.tpStatsLifetime.Location = new System.Drawing.Point(4, 22);
+			this.tpStatsLifetime.Name = "tpStatsLifetime";
+			this.tpStatsLifetime.Size = new System.Drawing.Size(606, 238);
+			this.tpStatsLifetime.TabIndex = 3;
+			this.tpStatsLifetime.Text = "Lifetime";
+			this.tpStatsLifetime.UseVisualStyleBackColor = true;
+			// 
+			// tbStatsHistorical
+			// 
+			this.tbStatsHistorical.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tbStatsHistorical.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tbStatsHistorical.Location = new System.Drawing.Point(0, 0);
+			this.tbStatsHistorical.Multiline = true;
+			this.tbStatsHistorical.Name = "tbStatsHistorical";
+			this.tbStatsHistorical.ReadOnly = true;
+			this.tbStatsHistorical.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.tbStatsHistorical.Size = new System.Drawing.Size(606, 238);
+			this.tbStatsHistorical.TabIndex = 0;
+			// 
+			// tbStatsSeason
+			// 
+			this.tbStatsSeason.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tbStatsSeason.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tbStatsSeason.Location = new System.Drawing.Point(3, 3);
+			this.tbStatsSeason.Multiline = true;
+			this.tbStatsSeason.Name = "tbStatsSeason";
+			this.tbStatsSeason.ReadOnly = true;
+			this.tbStatsSeason.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.tbStatsSeason.Size = new System.Drawing.Size(600, 232);
+			this.tbStatsSeason.TabIndex = 1;
+			// 
+			// tbStatsWeekly
+			// 
+			this.tbStatsWeekly.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tbStatsWeekly.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tbStatsWeekly.Location = new System.Drawing.Point(3, 3);
+			this.tbStatsWeekly.Multiline = true;
+			this.tbStatsWeekly.Name = "tbStatsWeekly";
+			this.tbStatsWeekly.ReadOnly = true;
+			this.tbStatsWeekly.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.tbStatsWeekly.Size = new System.Drawing.Size(600, 232);
+			this.tbStatsWeekly.TabIndex = 1;
+			// 
+			// tbStatsLifetime
+			// 
+			this.tbStatsLifetime.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tbStatsLifetime.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tbStatsLifetime.Location = new System.Drawing.Point(0, 0);
+			this.tbStatsLifetime.Multiline = true;
+			this.tbStatsLifetime.Name = "tbStatsLifetime";
+			this.tbStatsLifetime.ReadOnly = true;
+			this.tbStatsLifetime.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.tbStatsLifetime.Size = new System.Drawing.Size(606, 238);
+			this.tbStatsLifetime.TabIndex = 1;
 			// 
 			// LeagueEditor
 			// 
@@ -584,6 +742,17 @@ namespace HB5Tool
 			this.tpUnknownB.PerformLayout();
 			this.tpUnknownC.ResumeLayout(false);
 			this.tpUnknownC.PerformLayout();
+			this.tpStats.ResumeLayout(false);
+			this.tpStats.PerformLayout();
+			this.tcPlayerStats.ResumeLayout(false);
+			this.tpStatsSeason.ResumeLayout(false);
+			this.tpStatsSeason.PerformLayout();
+			this.tpStatsWeekly.ResumeLayout(false);
+			this.tpStatsWeekly.PerformLayout();
+			this.tpStatsHistorical.ResumeLayout(false);
+			this.tpStatsHistorical.PerformLayout();
+			this.tpStatsLifetime.ResumeLayout(false);
+			this.tpStatsLifetime.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -632,5 +801,17 @@ namespace HB5Tool
 		private System.Windows.Forms.PictureBox pbStarPlayer;
 		private System.Windows.Forms.ToolTip toolTip1;
 		private System.Windows.Forms.Button btnEditTeam;
+		private System.Windows.Forms.TabPage tpStats;
+		private System.Windows.Forms.TabControl tcPlayerStats;
+		private System.Windows.Forms.TabPage tpStatsSeason;
+		private System.Windows.Forms.TabPage tpStatsWeekly;
+		private System.Windows.Forms.ComboBox cbPlayerStats;
+		private System.Windows.Forms.Label lblStatsPlayer;
+		private System.Windows.Forms.TabPage tpStatsHistorical;
+		private System.Windows.Forms.TabPage tpStatsLifetime;
+		private System.Windows.Forms.TextBox tbStatsHistorical;
+		private System.Windows.Forms.TextBox tbStatsSeason;
+		private System.Windows.Forms.TextBox tbStatsWeekly;
+		private System.Windows.Forms.TextBox tbStatsLifetime;
 	}
 }

@@ -189,6 +189,34 @@ namespace HB5Tool
 				}
 			}
 			tbUnkC.Text = sb.ToString();
+
+			// stats list
+			cbPlayerStats.BeginUpdate();
+			foreach (KeyValuePair<int,BatterData> b in CurLeague.BatterDatabase)
+			{
+				string pName = b.Value.CommonData.Name;
+				if (pName != null)
+				{
+					cbPlayerStats.Items.Add(pName);
+				}
+				else
+				{
+					cbPlayerStats.Items.Add(string.Format("batter 0x{0:X}", b.Key));
+				}
+			}
+			foreach (KeyValuePair<int, PitcherData> p in CurLeague.PitcherDatabase)
+			{
+				string pName = p.Value.CommonData.Name;
+				if (pName != null)
+				{
+					cbPlayerStats.Items.Add(pName);
+				}
+				else
+				{
+					cbPlayerStats.Items.Add(string.Format("pitcher 0x{0:X}", p.Key));
+				}
+			}
+			cbPlayerStats.EndUpdate();
 		}
 
 		// todo: if any team editors have been opened from this league on form closing, go through and handle each team form
@@ -487,6 +515,77 @@ namespace HB5Tool
 				tEd.MdiParent = (Form)this.Parent.Parent;
 				tEd.Show();
 			}
+		}
+
+		private void cbPlayerStats_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (cbPlayerStats.SelectedIndex < 0)
+			{
+				tbStatsHistorical.Clear();
+				tbStatsSeason.Clear();
+				tbStatsWeekly.Clear();
+				tbStatsLifetime.Clear();
+				return;
+			}
+
+			StringBuilder sb = new StringBuilder();
+
+			int pNum = cbPlayerStats.SelectedIndex;
+
+			int colCount = 0;
+			foreach (byte b in CurLeague.Stats_Historical[pNum].StatsData)
+			{
+				sb.Append(string.Format("{0:X2} ", b));
+				++colCount;
+				if (colCount == 16)
+				{
+					sb.AppendLine();
+					colCount = 0;
+				}
+			}
+			tbStatsHistorical.Text = sb.ToString();
+
+			sb.Clear();
+			colCount = 0;
+			foreach (byte b in CurLeague.Stats_Season[pNum].StatsData)
+			{
+				sb.Append(string.Format("{0:X2} ", b));
+				++colCount;
+				if (colCount == 16)
+				{
+					sb.AppendLine();
+					colCount = 0;
+				}
+			}
+			tbStatsSeason.Text = sb.ToString();
+
+			sb.Clear();
+			colCount = 0;
+			foreach (byte b in CurLeague.Stats_Weekly[pNum].StatsData)
+			{
+				sb.Append(string.Format("{0:X2} ", b));
+				++colCount;
+				if (colCount == 16)
+				{
+					sb.AppendLine();
+					colCount = 0;
+				}
+			}
+			tbStatsWeekly.Text = sb.ToString();
+
+			sb.Clear();
+			colCount = 0;
+			foreach (byte b in CurLeague.Stats_Lifetime[pNum].StatsData)
+			{
+				sb.Append(string.Format("{0:X2} ", b));
+				++colCount;
+				if (colCount == 16)
+				{
+					sb.AppendLine();
+					colCount = 0;
+				}
+			}
+			tbStatsLifetime.Text = sb.ToString();
 		}
 	}
 }
