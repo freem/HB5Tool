@@ -29,9 +29,9 @@
 </ol></li>
 
 <li><a href="#internalData">Internal Data</a><ol>
-<li><a href="#glue">Main "Glue" Files</a> (<code>HARDBALL.BIN</code>/<code>HB5CDROM.BIN</code>)</li>
-<li><a href="#customBin">Customization Data</a> (<code>CUSTOM.BIN</code>)</li>
-<li><a href="#defaultsBin">Settings/Options</a> (<code>DEFAULTS.BIN</code>)</li>
+<li><a href="#glue">Main "Glue" Files</a></li>
+<li><a href="#customBin">Customization Data</a></li>
+<li><a href="#defaultsBin">Settings/Options</a></li>
 <li><a href="#digs">"Digs" Files</a> (<code>DIGS.BIN</code>, <code>TEAMSDIG.BIN</code>)</li>
 <!--
 pics.bin
@@ -44,7 +44,23 @@ stadium-related files
 -->
 </ol></li>
 
+<li><a href="#">ok, but how the hell does this tool *work*</a></li>
+
 <li><a href="#progSettings">Program Settings</a></li>
+</ol>
+
+<h3>File Format Information Appendices</h3>
+<ol type="A">
+<li><a href="#fmtPlayer">.BTR/.PIT</a></li>
+<li><a href="#fmtTeam">.HB5</a></li>
+<li><a href="#fmtLeague">.LGD</a></li>
+<li><a href="#fmtGlue">Glue files</a></li>
+<!--
+logofile
+stadium info
+.msh
+.mgs
+-->
 </ol>
 
 <hr />
@@ -60,7 +76,9 @@ are user-facing files, like player exports, team exports, and leagues.
 Other files are meant to be internal, or not edited by the player directly.
 These files would typically be extracted from <code>HARDBALL.BIN</code> or
 <code>HB5CDROM.BIN</code>. It is important to keep this "user-facing" vs.
-"internal" divide in mind when using HB5Tool.</p>
+"internal" divide in mind when using HB5Tool. Some tasks will require extracting
+files from an archive, editing them, and then re-inserting them into the same
+archive.</p>
 
 <hr />
 
@@ -108,6 +126,21 @@ a <code>.lgd</code> file extension.</p>
 not meant to be edited by the player directly. Some files are partially user-facing,
 as their data can be changed in-game (e.g. the Options and Customization settings).</p>
 
+<h2><a name="glue">Main "Glue" Files</a></h2>
+<p>A "glue" file is an archive containing multiple files "glued" together.
+The two primary "glue" files are <code>HB5CDROM.BIN</code> and <code>HARDBALL.BIN</code>.
+These two files contain the bulk of the game data.</p>
+
+<h2><a name="customBin">Customization Data</a></h2>
+<p>HardBall 5 lets you customize league names and logos, along with various
+other names. This data lives in <code>CUSTOM.BIN</code>.</p>
+
+<h2><a name="defaultsBin">Settings/Options</a></h2>
+<p>Options are stored in <code>DEFAULTS.BIN</code>.</p>
+
+<h2><a name="digs">"Digs" Files</a></h2>
+<p>"Digs" is short for "digital sounds".</p>
+
 <hr />
 
 <h2><a name="progSettings">Program Settings</a></h2>
@@ -117,6 +150,55 @@ as their data can be changed in-game (e.g. the Options and Customization setting
 <li><strong>Default PICS.BIN Path</strong> &ndash; Path to a <code>PICS.BIN</code> (or similar) file with HardBall 5-format player pictures.</li>
 <li><strong>Override Default League</strong> &ndash; currently unused. If "HardBall 5 Path" support were to read <code>DEFAULTS.BIN</code> to get the current active league, this would let you override that league.</li>
 </ul>
+
+<hr />
+
+<h2><a name="fmtPlayer">Appendix A: .BTR/.PIT File Format</a></h2>
+<p>Player exports are stored in <code>.BTR</code> files (for Batters) and
+<code>.PIT</code> files (for Pitchers). Both formats are largely similar, only
+differing in the details.</p>
+
+<table>
+<thead>
+<tr>
+<th>File Offset</th>
+<th>Batter/.BTR</th>
+<th>Pitcher/.PIT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x0000</td>
+<td>0x41,0x00<br/>HB5 Batter Identifier</td>
+<td>0x42,0x00<br/>HB5 Pitcher Identifier</td>
+</tr>
+<tr>
+<td>0x0002</td>
+<td>btr</td>
+<td>pit</td>
+</tr>
+<tr>
+<td>0x0004</td>
+<td>btr</td>
+<td>pit</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2><a name="fmtTeam">Appendix B: .HB5 File Format</a></h2>
+<p>Team exports are stored in <code>.HB5</code> files.</p>
+
+<hr />
+
+<h2><a name="fmtLeague">Appendix C: .LGD File Format</a></h2>
+<p>Leagues are stored in <code>.LGD</code> files.</p>
+
+<hr />
+
+<h2><a name="fmtGlue">Appendix D: Glue File Format</a></h2>
+<p>a</p>
 
 <hr />
 
