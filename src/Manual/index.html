@@ -11,7 +11,7 @@
 <div id="header">
 <h1><img class="logoimg" src="./img/hb5ico.png" /> <abbr title="HardBall 5">HB5</abbr>Tool</h1>
 <h2>Program Manual</h2>
-<p>Version 0.1.5.0 (? ?, 2024)<br />Program and Manual by freem<br /><br />
+<p>Version 0.1.5.0 (? ?, 2025)<br />Program and Manual by freem<br /><br />
 <a href="https://ajworld.net/hb5/">https://ajworld.net/hb5/</a><br /><a href="https://github.com/freem/HB5Tool">https://github.com/freem/HB5Tool</a></p>
 </div>
 
@@ -169,21 +169,209 @@ differing in the details.</p>
 <tbody>
 <tr>
 <td>0x0000</td>
-<td>0x41,0x00<br/>HB5 Batter Identifier</td>
-<td>0x42,0x00<br/>HB5 Pitcher Identifier</td>
+<td>0x41,0x00<br/>(HB5 Batter Identifier)</td>
+<td>0x42,0x00<br/>(HB5 Pitcher Identifier)</td>
 </tr>
 <tr>
 <td>0x0002</td>
-<td>btr</td>
-<td>pit</td>
+<td>Picture Index</td>
+<td>Picture Index</td>
 </tr>
 <tr>
 <td>0x0004</td>
-<td>btr</td>
-<td>pit</td>
+<td>Name Call</td>
+<td>Name Call</td>
+</tr>
+<tr>
+<td>0x0006</td>
+<td>Player Name<br/>(16 characters maximum,<br/>including 0x00/null terminator)</td>
+<td>Player Name<br/>(16 characters maximum,<br/>including 0x00/null terminator)</td>
+</tr>
+<tr>
+<td>0x0016</td>
+<td>Jersey Number</td>
+<td>Jersey Number</td>
+</tr>
+<tr>
+<td>0x0017</td>
+<td>Age</td>
+<td>Age</td>
+</tr>
+<tr>
+<td>0x0018</td>
+<td>Experience</td>
+<td>Experience</td>
+</tr>
+<tr>
+<td>0x0019</td>
+<td>Running Speed</td>
+<td>Running Speed</td>
+</tr>
+<tr>
+<td>0x001A</td>
+<td>Fielding Ability</td>
+<td>Fielding Ability</td>
+</tr>
+<tr>
+<td>0x001B</td>
+<td>Close/Late</td>
+<td>Close/Late</td>
+</tr>
+<tr>
+<td>0x001C</td>
+<td>Scoring Position</td>
+<td>Scoring Position</td>
+</tr>
+<tr>
+<td>0x001D</td>
+<td>Home/Away</td>
+<td>Versus Left Handed Batters</td>
+</tr>
+<tr>
+<td>0x001E</td>
+<td>Player Position/Skin Color</td>
+<td>Skin Color</td>
+</tr>
+<tr>
+<td>0x001F</td>
+<td>Handedness</td>
+<td>Handedness</td>
+</tr>
+<tr>
+<td>0x0020</td>
+<td>Streak Type</td>
+<td>Streak Type</td>
+</tr>
+<tr>
+<td>0x0021</td>
+<td>(unknown; 0x00 for most players)</td>
+<td>(unknown; 0x00 for most players)</td>
+</tr>
+<tr>
+<td>0x0022</td>
+<td>Contact Hitting</td>
+<td>Stamina</td>
+</tr>
+<tr>
+<td>0x0023</td>
+<td>Power Hitting</td>
+<td>Accuracy/Control</td>
+</tr>
+<tr>
+<td>0x0024</td>
+<td>Arm Strength</td>
+<td>Fastball</td>
+</tr>
+<tr>
+<td>0x0025</td>
+<td>Secondary Fielding Ability</td>
+<td>Curveball</td>
+</tr>
+<tr>
+<td>0x0026</td>
+<td>Groundout Percent</td>
+<td>Changeup</td>
+</tr>
+<tr>
+<td>0x0027</td>
+<td>Pull Percent</td>
+<td>Slider</td>
+</tr>
+<tr>
+<td>0x0028</td>
+<td>Versus Left Handed Pitchers</td>
+<td>Sinker</td>
+</tr>
+<tr>
+<td>0x0029</td>
+<td>Secondary Position</td>
+<td>Knuckleball</td>
+</tr>
+<tr>
+<td>0x002A</td>
+<td>unused?</td>
+<td>Screwball</td>
+</tr>
+<tr>
+<td>0x002B</td>
+<td>unused?</td>
+<td>Home/Away</td>
+</tr>
+<tr>
+<td>0x002C</td>
+<td>unused?</td>
+<td>Pitcher Type</td>
+</tr>
+<tr>
+<td>0x002D</td>
+<td>unused?</td>
+<td>unused?, but required when<br/>reading player data in Leagues</td>
+</tr>
+<tr>
+<td>0x002E</td>
+<td>unused?</td>
+<td>unused?</td>
+</tr>
+<tr>
+<td>0x002F</td>
+<td>unused?</td>
+<td>unused?</td>
 </tr>
 </tbody>
 </table>
+
+<h3>Picture Index</h3>
+<p>(todo: top two bits control certain things)</p>
+
+<h3>Player Position/Skin Color</h3>
+<pre>
+76543210
+|__|||||
+ |  |||+-- Skin Color (0=Light, 1=Dark)
+ |  ||+--- ???
+ |  |+---- ???
+ |  +----- ???
+ +-------- Position
+</pre>
+
+<p>Player Position is only meant to be used by Batters. It should be set to 0
+for Pitchers.</p>
+<ul>
+<li>0 &ndash; Pitcher ("-" is used for Batter's Secondary Position)</li>
+<li>1 &ndash; Catcher</li>
+<li>2 &ndash; 1st Base</li>
+<li>3 &ndash; 2nd Base</li>
+<li>4 &ndash; Shortstop</li>
+<li>5 &ndash; 3rd Base</li>
+<li>6 &ndash; Right Field</li>
+<li>7 &ndash; Center Field</li>
+<li>8 &ndash; Left Field</li>
+<li>9 &ndash; Designated Hitter</li>
+<li>A &ndash; Utility Infielder</li>
+<li>B &ndash; Utility Outfielder</li>
+<li>C &ndash; Pinch Hitter (normally unselectable; displays as "PH")</li>
+<li>D &ndash; (unused/invalid; displays as "OF")</li>
+<li>E &ndash; (unused/invalid; displays as "CU")</li>
+<li>F &ndash; (unused/invalid; displays as "FA")</li>
+</ul>
+
+<h3>Handedness</h3>
+<pre>
+76543210
+|__||__|
+  |   |
+  |   +--- Batting (0=Right, 1=Left, 2=Switch)
+  +------- Throwing (0=Right, 1=Left)
+</pre>
+
+<h3>Streak Type</h3>
+<ul>
+<li>0 &ndash; Even throughout season</li>
+<li>1 &ndash; Hot at start, Cools at end</li>
+<li>2 &ndash; Hot at start and end, Cools in middle</li>
+<li>3 &ndash; Cool at start and end, Hot in middle</li>
+<li>4 &ndash; Cool at the start, Hot at end</li>
+</ul>
 
 <hr />
 
